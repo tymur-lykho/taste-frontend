@@ -1,0 +1,6 @@
+.header {
+  background-color: var(--darck-brown);
+  height: 74px;
+  flex-shrink: 0;
+  padding: 14px 0;
+}
