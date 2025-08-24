@@ -1,15 +1,22 @@
 button {
   border-radius: var(--radius-i-sm);
   font-family: inherit;
-  font-size: var(--text-size);
+  font-size: var(--btn-font, var(--text-size));
+  width: var(--btn-width, 40px);
+  height: var(--btn-height, 40px);
   font-weight: var(--weight-semibold);
-  color: var(--black);
-  padding: 8px;
+  padding: var(--btn-padding, 8px);
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  transition: background-color 0.25s;
+}
+
+.white {
   background-color: transparent;
+  color: var(--black);
   border: 1px solid var(--black);
+
   &:hover,
   &:focus,
   &:focus-visible {
@@ -28,7 +35,7 @@ button {
   }
 }
 
-.button-fill {
+.fill {
   background-color: var(--light-brown);
   color: var(--white);
   border: none;
@@ -51,7 +58,7 @@ button {
   }
 }
 
-.button-red {
+.red {
   border: none;
   color: var(--red);
 }

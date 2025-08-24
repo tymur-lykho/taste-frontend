@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 // import Navigation from "../Navigation/Navigation";
 import css from "./AppBar.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Button } from "../Button/Button";
 // import UserMenu from "../UserMenu/UserMenu";
 
 export default function AppBar() {
@@ -12,6 +13,7 @@ export default function AppBar() {
       {/* <h2>Navigation</h2> */}
       {/* <Navigation /> */}
       {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
+      <Button color="fill" width="101px" height="44px" font="18px" />
     </header>
   );
 }
