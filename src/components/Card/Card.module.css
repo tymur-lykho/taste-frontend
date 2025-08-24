@@ -1,0 +1,21 @@
+.card {
+  background-color: var(--light-beige);
+  width: 361px;
+  height: 483px;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  opacity: 1;
+
+  @media (max-width: 768px) {
+    width: 339px;
+  }
+
+  @media (max-width: 1440px) {
+    width: 288px;
+    height: 431px;
+  }
+}
