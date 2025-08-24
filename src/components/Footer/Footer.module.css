@@ -1,0 +1,14 @@
+.footer {
+  background-color: var(--darck-brown);
+  height: 261px;
+  flex-shrink: 0;
+  padding: 24px 0;
+
+  @media (max-width: 768px) {
+    height: 197px;
+  }
+
+  @media (max-width: 1440px) {
+    height: 94px;
+  }
+}
