@@ -1,0 +1,133 @@
+body {
+  background: #f8f9f4;
+  font-family: Arial, sans-serif;
+  color: #222;
+}
+
+/* h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+   */
+
+form {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* --- General Info --- */
+.general-info {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.photo-upload {
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  background: #9f9f9f;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 1rem;
+}
+
+/* --- Two columns --- */
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* --- Ingredients --- */
+.ingredients {
+}
+
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* --- Buttons --- */
+.add-btn {
+  border-radius: 8px;
+  padding: 4px 8px;
+  width: 258px;
+  height: 23px;
+  background: #9B6C43;
+  color: #fff;
+  padding: 4px 8px;
+}
+.submit-btn {
+  background: #9B6C43;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-btn:hover,
+.submit-btn:hover {
+  background: #70492d;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+  
+}
+
+@media (max-width: 768px) {
+  .general-info {
+    grid-template-columns: 1fr;
+  }
+  .two-cols {
+    grid-template-columns: 1fr;
+  }
+  .ingredient-row {
+    grid-template-columns: 1fr;
+  }
+}
