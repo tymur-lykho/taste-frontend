@@ -2,5 +2,26 @@
   background-color: var(--darck-brown);
   height: 74px;
   flex-shrink: 0;
-  padding: 14px 0;
+  padding: 14px;
+  padding-left: 114px;
+  padding-right: 108px;
+  display: flex;
+  justify-content: space-between;
 }
+
+/* 
+.header {
+  background-color: var(--darck-brown);
+  height: 74px;
+  flex-shrink: 0;
+  padding: 14px 0;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 0 32px;
+  }
+
+  @media (max-width: 1440px) {
+    padding: 0 108px;
+  }
+} */

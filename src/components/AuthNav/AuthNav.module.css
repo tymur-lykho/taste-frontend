@@ -1,0 +1,85 @@
+.authNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 4px;
+
+    font-size: var(--text-s-size);
+    font-weight: var(--weight-semibold);
+
+    padding-block: 0px 4px;
+    padding-inline: 0px;
+    width: 39px;
+    height: 19px;
+
+    position: relative;
+    color: var(--white);
+    text-decoration: inherit;
+    transition: opacity 0.3s ease;
+    /* плавний ефект прозорості */
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        opacity: 0.5;
+        /* ефект прозорості при ховері */
+    }
+}
+
+.active {
+    &::after {
+        transform: scaleX(1);
+        /* підкреслення для активного посилання */
+    }
+}
+
+.regLink {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 12px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    /* об’єднано padding-block + padding-inline */
+    width: 101px;
+    height: 44px;
+    background: var(--light-brown);
+    text-decoration: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+
+    &::after {
+        display: none;
+        /* прибираємо нижню лінію */
+    }
+
+    &:hover {
+        background: var(--brown);
+    }
+}
+
+/* Активний стан Register */
+.regActive {
+    box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+    background: var(--light-brown);
+}
