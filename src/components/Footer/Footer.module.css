@@ -4,11 +4,11 @@
   flex-shrink: 0;
   padding: 24px 0;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     height: 197px;
   }
 
-  @media (max-width: 1440px) {
+  @media (min-width: 1440px) {
     height: 94px;
   }
 }
