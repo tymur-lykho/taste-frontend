@@ -4,46 +4,26 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    gap: 32px;
     margin: 0;
+    margin-bottom: 32px;
     padding: 0;
-}
-
-
-
-
-@media(min-width: 768px) {
-
-    .navLinks {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        flex-direction: row;
-        list-style: none;
-        gap: 32px;
-        margin: 0;
-        padding: 0;
-
-
-
-    }
-
-
 }
 
 .link {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    gap: 4px;
+    flex-direction: column;
+    gap: 8px;
 
-    font-size: var(--text-s-size);
+    font-size: var(--text-m-size);
     font-weight: var(--weight-semibold);
 
     padding-block: 0px 4px;
     padding-inline: 0px;
-    width: 62px;
-    height: 19px;
+    width: 100%;
+    height: 24px;
 
     position: relative;
     color: var(--white);
@@ -78,7 +58,6 @@
     }
 }
 
-
 .addRecipe {
     color: #fff;
     display: flex;
@@ -88,9 +67,11 @@
     gap: 12px;
     border-radius: 8px;
     padding: 12px 16px;
-    /* об’єднано padding-block + padding-inline */
-    width: 127px;
+
+    width: 361px;
     height: 44px;
+    font-size: var(--text-m-size);
+    font-weight: var(--weight-semibold);
     background: var(--light-brown);
     text-decoration: none;
     transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -151,8 +132,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--light-brown);
     color: var(--white);
@@ -166,4 +147,165 @@
     font-size: var(--text-s-size);
     font-weight: var(--weight-semibold);
     color: var(--white);
+}
+
+
+
+
+
+
+
+@media(min-width: 768px) {
+
+    .navLinks {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        list-style: none;
+        gap: 32px;
+        margin: 0;
+        padding: 0;
+    }
+
+
+
+
+    .link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 4px;
+
+        font-size: var(--text-s-size);
+        font-weight: var(--weight-semibold);
+
+        padding-block: 0px 4px;
+        padding-inline: 0px;
+        width: 83px;
+        height: 24px;
+
+        position: relative;
+        color: var(--white);
+        text-decoration: inherit;
+        transition: opacity 0.3s ease;
+        /* плавний ефект прозорості */
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        &:hover {
+            opacity: 0.5;
+            /* ефект прозорості при ховері */
+        }
+    }
+
+    .active {
+        &::after {
+            transform: scaleX(1);
+
+            /* підкреслення для активного посилання */
+        }
+    }
+
+
+    .addRecipe {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 12px;
+        border-radius: 8px;
+        padding: 12px 16px;
+        /* об’єднано padding-block + padding-inline */
+        width: 127px;
+        height: 44px;
+        background: var(--light-brown);
+        text-decoration: none;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+
+        &::after {
+            display: none;
+            /* прибираємо нижню лінію */
+        }
+
+        &:hover {
+            background: var(--brown);
+        }
+    }
+
+    /* Активний стан Register */
+    .addRecipeActive {
+        box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
+        background: var(--light-brown);
+    }
+
+    .userBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .line {
+        width: 1px;
+        height: 39px;
+        background: var(--white);
+    }
+
+
+    .logoutBtn {
+        display: flex;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        background-color: transparent;
+        transition: opacity 0.3s ease;
+    }
+
+    .logoutBtn:hover {
+        opacity: 0.8;
+
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--light-brown);
+        color: var(--white);
+        font-size: var(--text-s-size);
+        font-weight: var(--weight-semibold);
+        text-transform: uppercase;
+        margin-right: 8px;
+    }
+
+    .username {
+        font-size: var(--text-s-size);
+        font-weight: var(--weight-semibold);
+        color: var(--white);
+    }
 }
