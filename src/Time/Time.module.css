@@ -1,0 +1,13 @@
+.card-time {
+  display: flex;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 2px;
+  width: 53px;
+  height: 28px;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}

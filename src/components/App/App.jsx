@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
   ) : (
