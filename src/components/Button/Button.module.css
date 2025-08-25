@@ -1,15 +1,24 @@
-button {
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: var(--radius-i-sm);
   font-family: inherit;
-  font-size: var(--text-size);
+  font-size: var(--btn-font, var(--text-size));
   font-weight: var(--weight-semibold);
-  color: var(--black);
   padding: 8px;
   overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.25s;
   background-color: transparent;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.25s;
+}
+
+.white {
+  background-color: transparent;
+  color: var(--black);
   border: 1px solid var(--black);
+
   &:hover,
   &:focus,
   &:focus-visible {
@@ -28,7 +37,7 @@ button {
   }
 }
 
-.button-fill {
+.fill {
   background-color: var(--light-brown);
   color: var(--white);
   border: none;
@@ -51,7 +60,25 @@ button {
   }
 }
 
-.button-red {
+.red {
   border: none;
-  color: var(--red);
+  background-color: var(--red);
+}
+
+.md40 {
+  width: 40px;
+  height: 40px;
+}
+
+.md289 {
+  width: 289px;
+  height: 40px;
+
+  @media (min-width: 768px) {
+    width: 267px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 216px;
+  }
 }
