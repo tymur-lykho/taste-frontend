@@ -49,7 +49,7 @@ function App() {
               }
             />
             {/* Other routes */}
-          </Routes>
+            </Routes>
         </Suspense>
       </Layout>
     </>

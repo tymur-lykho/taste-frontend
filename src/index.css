@@ -118,7 +118,7 @@ a {
     color: var(--light-beige);
     text-decoration: none;
 
-    &::after {
+    /* &::after {
       content: "";
       position: absolute;
       left: 0;
@@ -129,7 +129,7 @@ a {
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
-    }
+    } */
 
     &:hover::after {
       transform: scaleX(1);
