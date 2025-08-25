@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import css from "./AuthNav.module.css";
 import clsx from "clsx";
 
-export default function AuthNav() {
+export default function AuthNav({ toggleMenu }) {
   const getActiveLinkLogIn = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -10,13 +10,25 @@ export default function AuthNav() {
     return clsx(css.regLink, isActive && css.regActive);
   };
   return (
-    <div className={css.authNav}>
-      <NavLink className={getActiveLinkLogIn} to="/login">
-        Log In
-      </NavLink>
-      <NavLink className={getActiveLinkReg} to="/register">
-        Register
-      </NavLink>
-    </div>
+    <ul className={css.authNav}>
+      <li className={css.authNavItem}>
+        <NavLink
+          className={getActiveLinkLogIn}
+          to="/login"
+          onClick={toggleMenu}
+        >
+          Log In
+        </NavLink>
+      </li>
+      <li className={css.authNavItem}>
+        <NavLink
+          className={getActiveLinkReg}
+          to="/register"
+          onClick={toggleMenu}
+        >
+          Register
+        </NavLink>
+      </li>
+    </ul>
   );
 }

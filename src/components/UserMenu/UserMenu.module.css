@@ -1,13 +1,31 @@
 .navLinks {
+    list-style: none;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    flex-direction: row;
-    list-style: none;
-    gap: 32px;
+    flex-direction: column;
     margin: 0;
     padding: 0;
+}
 
+
+
+
+@media(min-width: 768px) {
+
+    .navLinks {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+        list-style: none;
+        gap: 32px;
+        margin: 0;
+        padding: 0;
+
+
+
+    }
 
 
 }
@@ -114,6 +132,12 @@
     cursor: pointer;
     padding: 0;
     background-color: transparent;
+    transition: opacity 0.3s ease;
+}
+
+.logoutBtn:hover {
+    opacity: 0.8;
+
 }
 
 .divider {

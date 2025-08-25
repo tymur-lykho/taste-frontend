@@ -9,7 +9,7 @@ const slice = createSlice({
       email: null,
     },
     token: null,
-    isLoggedIn: true,
+    isLoggedIn: false,
     isRefreshing: false,
   },
   extraReducers: (builder) => {

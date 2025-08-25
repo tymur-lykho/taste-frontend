@@ -4,7 +4,7 @@ import clsx from "clsx";
 import LogOut from "../UserMenu/LogOut.svg";
 import Line from "../UserMenu/Line.svg";
 
-export default function UserMenu() {
+export default function UserMenu({ toggleMenu }) {
   const userName = "User"; // поки статично
   const userInitial = userName[0]; // перша літера
   const getActiveLinkClass = ({ isActive }) => {
@@ -18,12 +18,20 @@ export default function UserMenu() {
     <>
       <ul className={css.navLinks}>
         <li>
-          <NavLink to="/profile" className={getActiveLinkClass}>
+          <NavLink
+            to="/profile"
+            className={getActiveLinkClass}
+            onClick={toggleMenu}
+          >
             My Profile
           </NavLink>
         </li>
         <li>
-          <NavLink to="/add-recipe" className={getActiveLinkaddRecipe}>
+          <NavLink
+            to="/add-recipe"
+            className={getActiveLinkaddRecipe}
+            onClick={toggleMenu}
+          >
             Add Recipe
           </NavLink>
         </li>

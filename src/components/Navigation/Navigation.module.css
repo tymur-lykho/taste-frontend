@@ -1,9 +1,37 @@
-.navbar {
+.navBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 32px;
 
+}
+
+
+.navList {
+    display: none;
+
+
+
+}
+
+@media (min-width: 768px) {
+    .navList {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+}
+
+
+
+
+.navItem {
+    display: flex;
+    gap: 32px;
 }
 
 
