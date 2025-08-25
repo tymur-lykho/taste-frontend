@@ -46,7 +46,6 @@
 
   /* Font weights */
   --weight-regular: 400;
-  --weight-medium: 500;
   --weight-semibold: 600;
   --weight-bold: 700;
 
@@ -68,11 +67,34 @@
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
   /* place-items: center; */
-  min-width: 320px;
+  min-width: 393px;
   min-height: 100%;
 }
 
@@ -81,12 +103,12 @@ body {
   margin: 0 auto;
   padding: 0 16px;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     max-width: 768px;
     padding: 0 32px;
   }
 
-  @media (max-width: 1440px) {
+  @media (min-width: 1440px) {
     max-width: 1440px;
     padding: 0 107.5px;
   }
@@ -112,7 +134,8 @@ a {
   position: relative;
   font-weight: var(--weight-semibold);
   color: var(--black);
-  text-decoration: inherit;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     color: var(--light-beige);
@@ -141,7 +164,6 @@ p {
   font-size: var(--text-size);
   font-weight: var(--weight-regular);
 }
-
 
 /* @media (prefers-color-scheme: light) {
   :root {

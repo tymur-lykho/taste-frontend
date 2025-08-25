@@ -1,22 +1,11 @@
-import { useSelector } from "react-redux";
-import RecipesList from "../components/RecipesList/RecipesList";
-import SearchBox from "../components/SearchBox/SearchBox";
-import { selectRecipes } from "../redux/recipes/selectors";
-
-// export default function LoginPage() {
-// }
+import Hero from "../components/Hero/Hero";
+import SectionRecipes from "../components/SectionRecipes/SectionRecipes";
 
 export default function HomePage() {
-  const allRecipes = useSelector(selectRecipes);
-
   return (
     <div>
-      <SearchBox />
-      <div>
-        <h2>Recepies</h2>
-        {/* <Filters /> */}
-        <RecipesList recipes={allRecipes} />
-      </div>
+      {/* <Hero /> */}
+      <SectionRecipes />
     </div>
   );
 }

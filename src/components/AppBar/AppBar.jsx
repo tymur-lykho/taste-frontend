@@ -13,7 +13,7 @@ export default function AppBar() {
       {/* <h2>Navigation</h2> */}
       {/* <Navigation /> */}
       {/* {isLoggedIn ? <UserMenu /> : <AuthNav />} */}
-      <Button color="fill" width="101px" height="44px" font="18px" />
     </header>
   );
 }
+3;

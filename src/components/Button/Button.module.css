@@ -1,12 +1,14 @@
-button {
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: var(--radius-i-sm);
   font-family: inherit;
   font-size: var(--btn-font, var(--text-size));
-  width: var(--btn-width, 40px);
-  height: var(--btn-height, 40px);
   font-weight: var(--weight-semibold);
-  padding: var(--btn-padding, 8px);
+  padding: 8px;
   overflow: hidden;
+  background-color: transparent;
   cursor: pointer;
   border: none;
   transition: background-color 0.25s;
@@ -60,5 +62,23 @@ button {
 
 .red {
   border: none;
-  color: var(--red);
+  background-color: var(--red);
+}
+
+.md40 {
+  width: 40px;
+  height: 40px;
+}
+
+.md289 {
+  width: 289px;
+  height: 40px;
+
+  @media (min-width: 768px) {
+    width: 267px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 216px;
+  }
 }
