@@ -1,5 +1,4 @@
 import "modern-normalize";
-import "./App.css";
 
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
