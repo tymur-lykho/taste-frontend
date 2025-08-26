@@ -1,5 +1,4 @@
 import "modern-normalize";
-import "./App.css";
 
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
@@ -12,7 +11,9 @@ import { selectIsRefreshing } from "../../redux/auth/selectors.js";
 import HomePage from "../../pages/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
 import LoginPage from "../../pages/LoginPage.jsx";
-import RegstrationPage from "../../pages/RegistrationPage.jsx";
+import RegistrationPage from "../../pages/RegistrationPage.jsx";
+import UserPage from "../../pages/UserPage.jsx";
+import AddRecipePage from "../../pages/AddRecipePage.jsx";
 
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
@@ -26,6 +27,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
   ) : (
@@ -46,7 +48,22 @@ function App() {
               element={
                 <RestrictedRoute
                   redirectTo="/"
-                  component={<RegstrationPage />}
+                  component={<RegistrationPage />}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              }
+            />
+            <Route
+              path="/add-recipe"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<AddRecipePage />}
                 />
               }
             />
