@@ -71,3 +71,16 @@
   align-items: center;
   gap: 8px;
 }
+
+.md289 {
+  width: 289px;
+  height: 40px;
+
+  @media (min-width: 768px) {
+    width: 267px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 216px;
+  }
+}

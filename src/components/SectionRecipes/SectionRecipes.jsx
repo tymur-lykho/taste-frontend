@@ -1,9 +1,8 @@
 import RecipesList from "../RecipesList/RecipesList";
 import css from "./SectionRecipes.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { selectRecipes } from "../../redux/recipes/selectors";
-import clsx from "clsx";
 import { useSelector } from "react-redux";
+import { Container } from "../../reuseable/Container/Container.jsx";
 
 export default function SectionRecipes({ type }) {
   const isAuthenticated = useSelector(selectIsLoggedIn);
@@ -16,10 +15,10 @@ export default function SectionRecipes({ type }) {
   }
 
   return (
-    <div className={clsx("container", css["all-recipes"])}>
+    <Container>
       <h2 className={css.title}>{title}</h2>
       {/* <Filters filters={filters} /> */}
       <RecipesList />
-    </div>
+    </Container>
   );
 }

@@ -11,3 +11,10 @@
   overflow: hidden;
   white-space: nowrap;
 }
+
+.time-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--black-text-color);
+  stroke: var(--black-text-color)
+};

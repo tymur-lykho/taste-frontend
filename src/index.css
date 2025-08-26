@@ -1,6 +1,27 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
 :root {
-  --font-main: "Montserrat", sans-serif;
-  --second-family: "DM Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+
   line-height: normal;
 
   font-synthesis: none;
@@ -8,35 +29,55 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --black: #000;
-  --gray: #595d62;
-  --white: #fff;
-  --light-brown: #9b6c43;
-  --light-beige: #faf3e0;
+  /* Base text colors */
+  --black-text-color: #000;
+  --white-text-color: #fff;
+
+  /* Base background */
+  --main-background: #fbfcf8;
+
+  /* Recipe card / Modal / GeneralInfo - background  */
+  --light-beige-background: #faf3e0;
+  /* ---------------------------------------------- */
+
+  /* Header/Footer - background */
+  --dark-brown-background: #3d2218;
+  /* ---------------------------- */
+
+/*Card background*/
+  --card-background: #FAF3E0;
+
+  --light-brown-background: #9b6c43;
+
+  /* Save recipe btn */
+  --saved-background-btn: var(--light-brown-background);
+
+  /* Button var Fill*/
+  --btn-background: var(--light-brown-background);
+  --btn-text-color: var(--white-text-color);
+  --hover-btn-background: #6d554b;
+  --box-shadow-active-btn: 0 0 0 6px rgba(78, 70, 180, 0.12),
+    0 0 0 2px var(--white);
+  --active-background-btn: var(--light-brown-background);
+  --disabled-background-btn: #9B6C43;
+
+
+  /* Button var white(Outline)*/
+  --hover-white-btn-background: #D9D9D9
+
+  /* Error color */
+  --error-color: #c80000;
+
   --light-gray: #d9d9d9;
-  --darck-brown: #3d2218;
-  --background: #fbfcf8;
-  --brown: #6d554b;
-  --light-gray-2: #d3d3d3;
-  --light-gray-3: #c5c5c5;
-  --gray-3: #9f9f9f;
-  --social-media-background: rgba(255, 255, 255, 0);
-  --gray-2: #575757;
-  --black-2: #070707;
-  --beige: #e3caa5;
-  --beige-2: #edd9aa;
-  --white-55: rgba(255, 255, 255, 0.55);
-  --white-80: rgba(255, 255, 255, 0.8);
-  --black-60: rgba(0, 0, 0, 0.6);
-  --black-50: rgba(0, 0, 0, 0.5);
-  --white-55-: rgba(255, 255, 255, 0.55);
-  --white-80-: rgba(255, 255, 255, 0.8);
-  --darck-brown-65-: rgba(61, 34, 24, 0.65);
-  --icon-gray: #3a3a3a;
-  --light-beige-2: #fffbe9;
-  --darck-gray: #323232;
-  --light-beige-3: #e1d7c6;
-  --red: #c80000;
+
+  /* Input placeholder text */
+  --gray-placeholder-text: #9f9f9f;
+
+  /* Select placeholder text */
+  --gray-select-placeholder-text: #595d62;
+
+  --base-transition: color ease-in-out 300ms, background-color ease-in-out 300ms,
+    transform ease-in-out 300ms;
 
   background-color: var(--background);
   color: var(--black);
@@ -46,7 +87,9 @@
 
   /* Font weights */
   --weight-regular: 400;
+
   --weight-semibold: 600;
+
   --weight-bold: 700;
 
   /* Font sizes */
@@ -67,51 +110,20 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+h1, h2, h3, h4, h5, h6, p, ul, ol, li {
   margin: 0;
+  padding: 0;
 }
 
-ul,
-ol {
+ul, ol {
   list-style: none;
-  padding-left: 0;
-  margin: 0;
 }
 
 body {
   margin: 0;
   padding: 0;
-  /* place-items: center; */
-  min-width: 393px;
   min-height: 100%;
-}
-
-.container {
-  max-width: 393px;
-  margin: 0 auto;
-  padding: 0 16px;
-
-  @media (min-width: 768px) {
-    max-width: 768px;
-    padding: 0 32px;
-  }
-
-  @media (min-width: 1440px) {
-    max-width: 1440px;
-    padding: 0 107.5px;
-  }
 }
 
 h1 {
@@ -130,50 +142,74 @@ h3 {
   font-weight: var(--weight-semibold);
 }
 
-a {
-  position: relative;
-  font-weight: var(--weight-semibold);
-  color: var(--black);
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    color: var(--light-beige);
-    text-decoration: none;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 100%;
-      height: 1px;
-      background-color: currentColor;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    &:hover::after {
-      transform: scaleX(1);
-    }
-  }
-}
-
 p {
   font-size: var(--text-size);
   font-weight: var(--weight-regular);
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-i-sm);
+  font-family: inherit;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  overflow: hidden;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.25s;
+}
+
+.white {
+  background-color: transparent;
+  color: var(--black-text-color);
+  border: 1px solid var(--black-text-color);
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background: var(--Light-gray, #d9d9d9);
   }
-  a:hover {
-    color: #747bff;
+
+  &:active {
+    background: var(--Light-gray, #d9d9d9);
+    box-shadow: --box-shadow-active-btn;
   }
-  button {
-    background-color: #f9f9f9;
+
+  &:disabled {
+    background-color: var(--light-gray);
+    opacity: 0.3;
+    box-shadow: --box-shadow-active-btn;
   }
-} */
+}
+
+.fill {
+  background-color: var(--btn-background);
+  color: var(--btn-text-color);
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background-color: var(--hover-btn-background);
+  }
+
+  &:active {
+    background-color: var(--active-background-btn);
+    box-shadow: --box-shadow-active-btn;
+  }
+
+  &:disabled {
+    background-color: var(--disabled-background-btn);
+    opacity: 0.3;
+    box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+  }
+}
+
+.red {
+  border: none;
+  background-color: var(--error-color);
+}

@@ -5,7 +5,7 @@
 }
 
 .header {
-  background-color: var(--darck-brown);
+  background-color: var(--dark-brown-background);
   height: 74px;
   flex-shrink: 0;
   padding: 14px 0;
