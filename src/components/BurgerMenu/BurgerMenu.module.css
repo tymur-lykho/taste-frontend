@@ -73,7 +73,6 @@
         justify-content: center;
         flex-direction: row;
         gap: 4px;
-
         font-size: var(--text-size);
         font-weight: var(--weight-semibold);
 

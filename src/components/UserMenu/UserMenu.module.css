@@ -96,9 +96,6 @@
     gap: 8px;
 }
 
-
-
-
 .line {
     width: 1px;
     height: 39px;
@@ -131,7 +128,6 @@
     font-size: var(--text-s-size);
     font-weight: var(--weight-semibold);
     text-transform: uppercase;
-
 }
 
 .username {
