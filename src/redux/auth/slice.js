@@ -5,8 +5,8 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     user: {
-      name: null,
-      email: null,
+      name: "Yurii",
+      email: "example@meil.com",
     },
     token: null,
     isLoggedIn: true,

@@ -3,15 +3,10 @@
     justify-content: space-between;
     align-items: center;
     gap: 32px;
-
 }
-
 
 .navList {
     display: none;
-
-
-
 }
 
 @media (min-width: 768px) {
@@ -23,17 +18,12 @@
         margin: 0;
         padding: 0;
     }
-
 }
-
-
-
 
 .navItem {
     display: flex;
     gap: 32px;
 }
-
 
 .link {
     display: flex;
@@ -41,21 +31,18 @@
     justify-content: center;
     flex-direction: row;
     gap: 4px;
-
     font-size: var(--text-s-size);
     font-weight: var(--weight-semibold);
+    padding: 0;
 
-    padding-block: 0px 4px;
-    padding-inline: 0px;
     width: 49px;
     height: 19px;
-
     position: relative;
-    color: var(--white);
+    color: var(--white-text-color);
     text-decoration: inherit;
     transition: opacity 0.3s ease;
-    /* плавний ефект прозорості */
 
+    /* плавний ефект прозорості */
     &::after {
         content: "";
         position: absolute;
