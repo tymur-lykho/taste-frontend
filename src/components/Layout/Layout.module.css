@@ -5,17 +5,17 @@
 }
 
 .header {
-  background-color: var(--darck-brown);
+  background-color: var(--dark-brown-background);
   height: 74px;
   flex-shrink: 0;
   padding: 14px 0;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     padding: 0 32px;
   }
 
-  @media (max-width: 1440px) {
+  @media (min-width: 1440px) {
     padding: 0 108px;
   }
 }

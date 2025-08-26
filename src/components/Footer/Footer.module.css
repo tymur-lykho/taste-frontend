@@ -1,15 +1,17 @@
 .footer {
+
   background-color: var(--dark-brown-background);
-  /* flex-shrink: 0; */
   padding: 24px 0;
   height: 261px;
 }
+
 
 @media screen and (min-width: 768px) {
   .footer {
     height: 197px;
   }
 }
+
 
 @media screen and (min-width: 1440px) {
   .footer {

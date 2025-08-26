@@ -1,0 +1,15 @@
+.input-btn {
+  padding: 6px;
+  position: relative;
+  width: 42px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  outline: none;
+  border-radius: 12px;
+  background-color: var(--white);
+
+  &::placeholder {
+    font-size: 12px;
+  }
+}
