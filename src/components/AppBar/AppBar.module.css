@@ -1,33 +1,19 @@
 .header {
   background-color: var(--dark-brown-background);
   height: 74px;
+  padding: 14px 0;
+}
 
+@media (min-width: 768px) {
+  .header {
+    padding: 15px 0;
+  }
 }
 
 .container {
-  max-width: 393px;
-  margin: 0 auto;
   width: 100%;
-  padding: 14px 16px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 15px 32px;
-    max-width: 768px;
-
-  }
-}
-
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1440px;
-    padding-left: 114px;
-    padding-right: 108px;
-  }
 }
