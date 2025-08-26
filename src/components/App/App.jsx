@@ -18,6 +18,8 @@ import AddRecipePage from "../../pages/AddRecipePage.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
 
+import NotFoundPage from "../../pages/NotFoundPage.jsx";
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -65,6 +67,7 @@ function App() {
                 />
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
           </Routes>
         </Suspense>
