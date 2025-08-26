@@ -1,4 +1,3 @@
-import "modern-normalize";
 
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";

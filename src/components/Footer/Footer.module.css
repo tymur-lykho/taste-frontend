@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--darck-brown);
+  background-color: var(--hover-btn-background);
   height: 261px;
   flex-shrink: 0;
   padding: 24px 0;
