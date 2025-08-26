@@ -1,4 +1,3 @@
-import "modern-normalize";
 
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
@@ -69,7 +68,7 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
-          </Routes>
+            </Routes>
         </Suspense>
       </Layout>
     </>
