@@ -1,3 +1,3 @@
 export default function AddRecipePage() {
-  return <h1>Add Recipe</h1>;
+  return <h1>Add your recipe</h1>;
 }

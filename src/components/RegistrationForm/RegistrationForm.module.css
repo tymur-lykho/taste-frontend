@@ -1,0 +1,90 @@
+.form {
+  position: absolute;
+  top: 130px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 362px;
+  height: 711px;
+  gap: 20px;
+  border-radius: 32px;
+  padding-top: 48px;
+  padding-right: 32px;
+  padding-bottom: 48px;
+  padding-left: 32px;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.field {
+  padding: 8px 12px;
+  width: 298px;
+  height: 41px;
+  border: 1px solid var(--light-gray, #d9d9d9);
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+
+  &:focus {
+    border-image-source: linear-gradient(
+        0deg,
+        var(--Light-brown, #9b6c43),
+        var(--Light-brown, #9b6c43)
+      ),
+      linear-gradient(
+        0deg,
+        var(--Light-gray, #d9d9d9),
+        var(--Light-gray, #d9d9d9)
+      );
+
+    box-shadow: 0px 0px 0px 4px #4e46b433;
+
+    outline: none;
+  }
+}
+
+.fieldError {
+  background: var(--error-color, #c80000);
+
+  &:focus {
+    border: 2px solid red;
+    box-shadow: 0 0 4px rgba(211, 47, 47, 0.5);
+  }
+}
+
+/* .fieldValid {
+  border-bottom: 2px solid lightgreen;
+  box-shadow: 0 0 8px lightgreen;
+
+  &:focus {
+    border: 2px solid lightgreen;
+    box-shadow: 0 0 8px lightgreen;
+  }
+} */
+
+.error {
+  position: absolute;
+  text-align: center;
+  top: 62px;
+  left: 0;
+  font-size: var(--text-s-size);
+  color: red;
+  padding: 0 12px;
+}
+
+.btnReg {
+  width: 298px;
+  height: 36px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
