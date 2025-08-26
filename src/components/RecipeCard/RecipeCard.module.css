@@ -43,7 +43,6 @@
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 58px;
 }
@@ -60,6 +59,13 @@
   height: 50px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: Montserrat;
+  line-height: 155%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .card-cal {
