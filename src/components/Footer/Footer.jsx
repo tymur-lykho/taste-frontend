@@ -6,7 +6,7 @@ import Icon from "../../Icon/Icon";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import css from "./Footer.module.css";
-import { Container } from "../../reuseable";
+import Container from "../../reuseable/Container/Container";
 
 export default function Footer() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,9 +19,9 @@ export default function Footer() {
       <footer className={css.footer}>
         <Container>
           <a className={css.link} href="/">
-              <Icon name="logo" width={32} height={30}/>
-              Tasteorama
-            </a>
+            <Icon name="logo" width={32} height={30} />
+            Tasteorama
+          </a>
           <p className={css.copyright}>
             &copy; {currentYear} CookingCompanion. All rights reserved.
           </p>

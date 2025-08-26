@@ -1,5 +1,5 @@
 import css from "./Time.module.css";
-import { Icon } from "../../reuseable/Icon/Icon";
+import Icon from "../../reuseable/Icon/Icon";
 
 export default function Time({ time }) {
   return (
