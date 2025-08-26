@@ -68,7 +68,7 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
-          </Routes>
+            </Routes>
         </Suspense>
       </Layout>
     </>

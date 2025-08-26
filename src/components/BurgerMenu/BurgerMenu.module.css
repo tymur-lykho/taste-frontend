@@ -44,7 +44,7 @@
         top: 73px;
         width: 100%;
         height: calc(100vh - 73px);
-        background-color: var(--darck-brown);
+        background-color: #3d2218;
         padding: 0 16px;
         display: flex;
         flex-direction: column;
@@ -73,8 +73,7 @@
         justify-content: center;
         flex-direction: row;
         gap: 4px;
-
-        font-size: var(--text-m-size);
+        font-size: var(--text-size);
         font-weight: var(--weight-semibold);
 
         padding-block: 0px 4px;
@@ -83,7 +82,7 @@
         height: 24px;
 
         position: relative;
-        color: var(--white);
+        color: var(--white-text-color);
         text-decoration: inherit;
         transition: opacity 0.3s ease;
         /* плавний ефект прозорості */

@@ -1,17 +1,30 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import css from "./UserMenu.module.css";
 import clsx from "clsx";
+import { useSelector, useDispatch } from "react-redux";
+
+import { selectUser } from "../../redux/auth/selectors";
+import { logout } from "../../redux/auth/operations";
 import LogOut from "../UserMenu/LogOut.svg";
 import Line from "../UserMenu/Line.svg";
 
 export default function UserMenu({ toggleMenu }) {
-  const userName = "User"; // поки статично
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
+  const userName = user.name;
   const userInitial = userName[0]; // перша літера
   const getActiveLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
   const getActiveLinkaddRecipe = ({ isActive }) => {
     return clsx(css.addRecipe, isActive && css.addRecipeActive);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate("/");
+    });
   };
 
   return (
@@ -43,7 +56,11 @@ export default function UserMenu({ toggleMenu }) {
             </div>
             <img src={Line} alt="line" className={css.line} />
 
-            <button type="button" className={css.logoutBtn}>
+            <button
+              type="button"
+              className={css.logoutBtn}
+              onClick={handleLogout}
+            >
               <img src={LogOut} alt="logo" />
             </button>
           </div>

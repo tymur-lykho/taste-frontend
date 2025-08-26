@@ -2,7 +2,7 @@ import RecipesList from "../RecipesList/RecipesList";
 import css from "./SectionRecipes.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
-import { Container } from "../../reuseable/Container/Container.jsx";
+import Container from "../../reuseable/Container/Container.jsx";
 
 export default function SectionRecipes({ type }) {
   const isAuthenticated = useSelector(selectIsLoggedIn);

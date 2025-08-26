@@ -38,6 +38,7 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
+  // return true; //- необязательно возвращать значение-провірка локально!!!
 });
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
