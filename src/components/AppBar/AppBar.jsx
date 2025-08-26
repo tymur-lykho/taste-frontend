@@ -7,8 +7,10 @@ import MainLogo from "../MainLogo/MainLogo.jsx";
 export default function AppBar() {
   return (
     <header className={css.header}>
-      <MainLogo />
-      <Navigation />
+      <div className={css.container}>
+        <MainLogo />
+        <Navigation />
+      </div>
     </header>
   );
-};
+}
