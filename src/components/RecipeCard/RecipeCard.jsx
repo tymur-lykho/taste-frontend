@@ -1,6 +1,7 @@
-import Time from "../../Time/Time";
+import clsx from "clsx";
 import { Button } from "../Button/Button";
 import Cal from "../Cal/Cal";
+import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
 
 export default function RecipesCard({ recipe }) {
@@ -22,10 +23,14 @@ export default function RecipesCard({ recipe }) {
         <Cal cal={recipe.calories} />
       </div>
       <div className={css["card-btn"]}>
-        <Button size="md289" title="Learn more" aria-label="Learn more">
+        <Button
+          className={clsx("white", css.md289)}
+          title="Learn more"
+          aria-label="Learn more"
+        >
           Learn more
         </Button>
-        <Button title="Add to favorite" aria-label="Add to favorite">
+        <Button className="white" title="Add to favorite" aria-label="Add to favorite">
           icon
         </Button>
       </div>

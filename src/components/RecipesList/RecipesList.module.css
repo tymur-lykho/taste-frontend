@@ -16,7 +16,7 @@
 }
 
 .item {
-  background-color: var(--light-beige);
+  background-color: var(--card-background);
   max-width: 361px;
   height: 483px;
   border-radius: 16px;
