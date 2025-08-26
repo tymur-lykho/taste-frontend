@@ -1,6 +1,26 @@
 .header {
   background-color: var(--hover-btn-background);
-  height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-shrink: 0;
-  padding: 14px 0;
+
+  height: 74px;
+  padding: 14px 16px;
+
 }
+
+
+@media (min-width: 768px) {
+  .header {
+    padding: 14px 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    padding-left: 114px;
+    padding-right: 108px;
+  }
+}
+
