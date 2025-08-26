@@ -1,0 +1,27 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+}
+
+.link {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--white-text-color);
+}
+
+.isActive {
+  color: var(--light-brown-background);
+  text-decoration: underline;
+}
