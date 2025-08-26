@@ -17,14 +17,13 @@
     justify-content: center;
     flex-direction: column;
     gap: 8px;
-    font-size: var(--text-m-size);
+    font-size: var(--text-size);
     font-weight: var(--weight-semibold);
-    padding-block: 0px 4px;
-    padding-inline: 0px;
+
     width: 100%;
     height: 24px;
     position: relative;
-    color: var(--white);
+    color: var(--white-text-color);
     text-decoration: inherit;
     transition: opacity 0.3s ease;
     order: 1;
@@ -52,7 +51,7 @@
 }
 
 .addRecipe {
-    color: #fff;
+    color: var(--white-text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +63,7 @@
     height: 44px;
     font-size: var(--text-m-size);
     font-weight: var(--weight-semibold);
-    background: var(--light-brown);
+    background: var(--light-brown-background);
     text-decoration: none;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 
@@ -75,12 +74,13 @@
 }
 
 .addRecipe:hover {
-    background: var(--brown);
+    background: var(--hover-btn-background);
+    box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--white-text-color);
 }
 
 .addRecipeActive {
     box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
-    background: var(--light-brown);
+    background: var(--light-brown-background);
 }
 
 .userBox,
@@ -92,12 +92,17 @@
     gap: 16px;
 }
 
+.divider {
+    gap: 8px;
+}
+
+
 
 
 .line {
     width: 1px;
     height: 39px;
-    background: var(--white);
+    background: var(--white-text-color);
 }
 
 .logoutBtn {
@@ -121,18 +126,18 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: var(--light-brown);
-    color: var(--white);
+    background: var(--light-brown-background);
+    color: var(--white-text-color);
     font-size: var(--text-s-size);
     font-weight: var(--weight-semibold);
     text-transform: uppercase;
-    margin-right: 8px;
+
 }
 
 .username {
     font-size: var(--text-s-size);
     font-weight: var(--weight-semibold);
-    color: var(--white);
+    color: var(--white-text-color);
 }
 
 /* My Profile */
@@ -165,8 +170,9 @@
         flex-direction: row;
         gap: 4px;
         font-size: var(--text-s-size);
-        width: 83px;
-        height: 24px;
+        width: 62px;
+        height: 19px;
+        padding: 0;
     }
 
     .addRecipe {
