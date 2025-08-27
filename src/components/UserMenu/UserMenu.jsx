@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import css from "./UserMenu.module.css";
 import clsx from "clsx";
@@ -5,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 import Icon from "../../Icon/Icon";
+import ModalWindow from "../ModalWindow/ModalWindow";
 
 export default function UserMenu({ toggleMenu }) {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ export default function UserMenu({ toggleMenu }) {
   const user = useSelector(selectUser);
   const userName = user.name;
   const userInitial = userName[0]; // перша літера
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const getActiveLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -56,13 +59,20 @@ export default function UserMenu({ toggleMenu }) {
             <button
               type="button"
               className={css.logoutBtn}
-              onClick={handleLogout}
+              onClick={() => setIsModalOpen(true)}
             >
               <Icon name="LogOut" width={24} height={24} />
             </button>
           </div>
         </li>
       </ul>
+      <ModalWindow
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleLogout}
+        title="Are you sure?"
+        message="We will miss you!"
+      />
     </>
   );
 }
