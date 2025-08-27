@@ -24,7 +24,7 @@ const slice = createSlice({
       .addCase(fetchRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.items.push(...action.payload.data);
+        state.items = action.payload.data;
       })
       .addCase(fetchRecipes.rejected, handleRejected);
   },
