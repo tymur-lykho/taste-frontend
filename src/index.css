@@ -1,18 +1,18 @@
 @font-face {
   font-family: "Montserrat";
-  src: url("../public/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/Montserrat-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("../public/assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
+  src: url("/assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("../public/assets/fonts/Montserrat-Bold.ttf") format("truetype");
+  src: url("/assets/fonts/Montserrat-Bold.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
@@ -21,68 +21,53 @@
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 16px;
-
+  background-color: var(--background);
+  color: var(--black-text-color);
   line-height: normal;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Base text colors */
   --black-text-color: #000;
   --white-text-color: #fff;
-
-  /* Base background */
   --main-background: #fbfcf8;
-
   /* Recipe card / Modal / GeneralInfo - background  */
   --light-beige-background: #faf3e0;
-  /* ---------------------------------------------- */
-
   /* Header/Footer - background */
   --dark-brown-background: #3d2218;
-  /* ---------------------------- */
-
+  /*Card background*/
+  --card-background: #faf3e0;
   --light-brown-background: #9b6c43;
-
   /* Save recipe btn */
   --saved-background-btn: var(--light-brown-background);
-
-  /* Button var */
+  /* Button var Fill*/
   --btn-background: var(--light-brown-background);
   --btn-text-color: var(--white-text-color);
   --hover-btn-background: #6d554b;
   --box-shadow-active-btn: 0 0 0 6px rgba(78, 70, 180, 0.12),
     0 0 0 2px var(--white);
   --active-background-btn: var(--light-brown-background);
-
+  --disabled-background-btn: #9b6c43;
+  /* Button var white(Outline)*/
+  --hover-white-btn-background: #d9d9d9;
   /* Error color */
   --error-color: #c80000;
-
+  --light-gray--light-gray: #d9d9d9;
   --light-gray: #d9d9d9;
-
   /* Input placeholder text */
   --gray-placeholder-text: #9f9f9f;
-
   /* Select placeholder text */
   --gray-select-placeholder-text: #595d62;
-
   --base-transition: color ease-in-out 300ms, background-color ease-in-out 300ms,
     transform ease-in-out 300ms;
 
-  background-color: var(--background);
-  color: var(--black);
-
   /*Interactive border radius*/
   --radius-i-sm: 8px;
-
   /* Font weights */
   --weight-regular: 400;
   --weight-semibold: 600;
-
   --weight-bold: 700;
-
   /* Font sizes */
   --h1-size: 40px;
   --h2-size: 32px;
@@ -91,7 +76,7 @@
   --text-size: 16px;
   --text-s-size: 12px;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     --h1-size: 48px;
     --h2-size: 40px;
     --h3-size: 24px;
@@ -101,51 +86,29 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-p {
+p,
+ul,
+ol,
+li {
   margin: 0;
+  padding: 0;
 }
 
 ul,
 ol {
   list-style: none;
-  padding-left: 0;
-  margin: 0;
 }
 
 body {
   margin: 0;
   padding: 0;
-  /* place-items: center; */
-  min-width: 393px;
   min-height: 100%;
-}
-
-.container {
-  max-width: 393px;
-  margin: 0 auto;
-  padding: 0 16px;
-
-  @media (min-width: 768px) {
-    max-width: 768px;
-    padding: 0 32px;
-  }
-
-  @media (min-width: 1440px) {
-    max-width: 1440px;
-    padding: 0 107.5px;
-  }
 }
 
 h1 {
@@ -164,14 +127,17 @@ h3 {
   font-weight: var(--weight-semibold);
 }
 
-/* a {
+a {
   position: relative;
   font-weight: var(--weight-semibold);
-  color: var(--black);
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 
   &:hover {
+    text-decoration: 1px underline;
+    text-underline-offset: 4px;
+  }
+  /* &:hover {
     color: var(--light-beige);
     text-decoration: none;
 
@@ -191,24 +157,78 @@ h3 {
     &:hover::after {
       transform: scaleX(1);
     }
-  }
-} */
-
+  } */
+}
 
 p {
   font-size: var(--text-size);
   font-weight: var(--weight-regular);
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-i-sm);
+  font-family: inherit;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  overflow: hidden;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.25s;
+}
+
+.white {
+  background-color: transparent;
+  color: var(--black-text-color);
+  border: 1px solid var(--black-text-color);
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background: var(--Light-gray, #d9d9d9);
   }
-  a:hover {
-    color: #747bff;
+
+  &:active {
+    background: var(--Light-gray, #d9d9d9);
+    box-shadow: --box-shadow-active-btn;
   }
-  button {
-    background-color: #f9f9f9;
+
+  &:disabled {
+    background-color: var(--light-gray);
+    opacity: 0.3;
+    box-shadow: --box-shadow-active-btn;
   }
-} */
+}
+
+.fill {
+  background-color: var(--btn-background);
+  color: var(--btn-text-color);
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background-color: var(--hover-btn-background);
+  }
+
+  &:active {
+    background-color: var(--active-background-btn);
+    box-shadow: --box-shadow-active-btn;
+  }
+
+  &:disabled {
+    background-color: var(--disabled-background-btn);
+    opacity: 0.3;
+    box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+  }
+}
+
+.red {
+  border: none;
+  background-color: var(--error-color);
+}
+

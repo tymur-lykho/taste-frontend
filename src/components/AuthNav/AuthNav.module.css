@@ -11,19 +11,18 @@
 }
 
 .link {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 4px;
-
-    width: 51px;
+    /* width: 51px; */
     height: 24px;
-    font-size: var(--text-m-size);
+    font-size: var(--text-size);
     font-weight: var(--weight-semibold);
-    color: var(--white);
+    color: var(--white-text-color);
     text-decoration: inherit;
-    position: relative;
     transition: opacity 0.3s ease;
 }
 
@@ -61,8 +60,8 @@
 
     font-size: var(--text-m-size);
     font-weight: var(--weight-semibold);
-    color: #fff;
-    background: var(--light-brown);
+    color: var(--white-text-color);
+    background: var(--light-brown-background);
     text-decoration: none;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -73,7 +72,7 @@
 
 .regActive {
     box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px #fff;
-    background: var(--light-brown);
+    background: var(--light-brown-background);
 }
 
 /* ================= Tablet (min-width: 768px) ================= */

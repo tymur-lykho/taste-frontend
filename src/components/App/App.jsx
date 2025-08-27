@@ -1,4 +1,3 @@
-import "modern-normalize";
 
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
@@ -17,6 +16,8 @@ import AddRecipePage from "../../pages/AddRecipePage.jsx";
 
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
+
+import NotFoundPage from "../../pages/NotFoundPage.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,8 +66,9 @@ function App() {
                 />
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
-          </Routes>
+            </Routes>
         </Suspense>
       </Layout>
     </>
