@@ -1,6 +1,5 @@
-import { Field, Form, Formik } from "formik";
-import { Icon } from "../../reuseable";
-import { Input } from "../../reuseable/Input/Input";
+import { Form, Formik } from "formik";
+import Input from "../../reuseable/Input/Input";
 import * as Yup from "yup";
 import css from "./LoginForm.module.css";
 
@@ -25,7 +24,7 @@ const loginValidationSchema = Yup.object({
   password: Yup.string().min(7).max(20).required(),
 });
 
-export const LoginForm = () => {
+export default function LoginForm() {
   return (
     <div className={css.formBody}>
       <h2 className={css.title}>Login</h2>
@@ -52,4 +51,4 @@ export const LoginForm = () => {
       </Formik>
     </div>
   );
-};
+}

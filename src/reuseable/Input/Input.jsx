@@ -1,10 +1,10 @@
 import { Field } from "formik";
-import { Icon } from "../index";
+import Icon from "../Icon/Icon";
 import css from "./Input.module.css";
 import { useState } from "react";
 import clsx from "clsx";
 
-export function Input({
+export default function Input({
   label,
   name,
   placeholder,
