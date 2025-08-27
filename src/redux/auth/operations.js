@@ -1,7 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
+// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
+axios.defaults.baseURL = "http://localhost:8080/api/";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -15,13 +16,14 @@ export const register = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.post("/auth/register", data);
-      setAuthHeader(res.data.token);
-      return res.data;
+      setAuthHeader(res.data.data.token);
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
   try {
     const res = await axios.post("/users/login", data);
