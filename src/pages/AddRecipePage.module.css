@@ -16,25 +16,20 @@ body {
    */
 
 form {
-  max-width: 900px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  padding: 0px 16px;
 }
 
-/* --- General Info --- */
-.general-info {
+/* .general-info {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 2rem;
+  gap: 24px;
   align-items: start;
-}
+} */
 
 label {
   display: block;
   font-weight: 500;
-  margin-bottom: 0.25rem;
+  margin-bottom: 8px
 }
 
 input,
@@ -43,25 +38,41 @@ select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  border-radius: 8px;
+  /* font-size: 1rem; */
+  margin-bottom: 32px;
 }
 
 textarea {
-  min-height: 100px;
+  /* min-height: 100px; */
+  height: 144px;
   resize: vertical;
 }
 
+.AddRecipePagetitle{
+  margin-top: 0px;
+margin-bottom: 32px;
+}
+
 .title {
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+.uploadphoto-title{
+  margin-top: 0px;
+  margin-bottom: 4px;
+  font-size: none;
 }
 
 .photo-upload {
-  border: 2px dashed #aaa;
-  border-radius: 8px;
   background: #9f9f9f;
-  height: 250px;
+  
+  border-radius: 16px;
+  width: 100%;
+  height: 383px;
+
+ 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +92,6 @@ textarea {
 }
 
 .ingredient-row {
-  display: grid;
   grid-template-columns: 2fr 1fr auto;
   gap: 1rem;
   align-items: center;
@@ -120,14 +130,99 @@ textarea {
   
 }
 
-@media (max-width: 768px) {
-  .general-info {
-    grid-template-columns: 1fr;
-  }
-  .two-cols {
-    grid-template-columns: 1fr;
-  }
+.general-info {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+
+@media only screen and (min-width: 768px) {
   .ingredient-row {
     grid-template-columns: 1fr;
   }
+  .uploadphoto-title{
+    margin-top: 0px;
+    margin-bottom: 18px;
+    font-size: none;
+  }
+  .form {
+    padding: 0px 32px;
+  }
+}
+
+
+@media only screen and (min-width: 1440px) {
+  .form {
+    padding: 0px;
+    max-width: 1226px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    margin: 0px;
+  }
+
+  .general-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .general-infotitle{
+    margin-top: 40px;
+    margin-bottom: 32px;
+  }
+  .photo-upload {
+    height: 374px;
+  }
+
+  .AddRecipePagetitle{
+    margin: 0px;
+  }
+  .photo-upload {
+    border-radius: 16px;
+    width: 391px;
+    height: 383px;
+
+  }
+  .ingredients{
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .labels-row {
+    display: grid;
+   
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ingredient-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  
+  .add-btn {
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  
 }

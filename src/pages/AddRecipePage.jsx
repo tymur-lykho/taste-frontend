@@ -1,13 +1,14 @@
+// 
 import styles from "./AddRecipePage.module.css";
 
 export default function AddRecipePage() {
   return (
     <>
-      <h1 className={styles.title}>Add Recipe</h1>
       <form className={styles.form}>
+        <h1 className={styles.title}>Add Recipe</h1>
         <div className={styles["general-info"]}>
           <div>
-            <h2>General Information</h2>
+            <h2 className={styles["general-infotitle"]}>General Information</h2>
             <label>Recipe Title</label>
             <input type="text" placeholder="Enter the name of your recipe" />
 
@@ -37,25 +38,33 @@ export default function AddRecipePage() {
           </div>
 
           <div>
-            <h2>Upload Photo</h2>
+            <h2 className={styles["uploadphoto-title"]}>Upload Photo</h2>
             <div className={styles["photo-upload"]}>📷</div>
           </div>
         </div>
 
         <div className={styles.ingredients}>
           <h2>Ingredients</h2>
+
           <div className={styles["ingredient-row"]}>
-            <select>
-              <option>Broccoli</option>
-              <option>Tomato</option>
-              <option>Carrot</option>
-            </select>
-            <input type="text" placeholder="100g" />
-</div>
-            <button type="button" className={styles["add-btn"]}>
-              Add new ingredient
-            </button>
-          
+            <div className={styles["ingredient-col"]}>
+              <label>Name</label>
+              <select>
+                <option>Broccoli</option>
+                <option>Tomato</option>
+                <option>Carrot</option>
+              </select>
+            </div>
+
+            <div className={styles["ingredient-col"]}>
+              <label>Amount</label>
+              <input type="text" placeholder="100g" />
+            </div>
+          </div>
+          <button type="button" className={styles["add-btn"]}>
+            Add new ingredient
+          </button>
+
           <p>
             <b>Name:</b> <span></span> <b>Amount:</b> <span></span>
           </p>
