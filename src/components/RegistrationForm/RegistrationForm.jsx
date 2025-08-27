@@ -5,44 +5,41 @@ import * as Yup from "yup";
 import css from "./RegistrationForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
+
+const validationSchema = Yup.object({
+  name: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Field is required"),
+  email: Yup.string().email("Not valid email").required("Field is required"),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
+      "Must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
+    )
+    .required("Field is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords do not match")
+    .required("Field is required"),
+});
+
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    terms: false,
-  };
 
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .min(3, "Too Short!")
-      .max(50, "Too Long!")
-      .required("Field is required"),
-    email: Yup.string().email("Not valid email").required("Field is required"),
-    password: Yup.string()
-      .matches(
-        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
-        "Must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
-      )
-      .required("Field is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords do not match")
-      .required("Field is required"),
-    terms: Yup.boolean().oneOf(
-      [true],
-      "You must accept the terms and privacy policy"
-    ),
-  });
-
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmit = async (values, action) => {
     const { name, email, password } = values;
     try {
       await dispatch(register({ name, email, password })).unwrap();
       toast.success("Registration successful!");
-      resetForm();
+      action.resetForm();
     } catch (error) {
       toast.error(error.message || "Registration failed");
     }
@@ -177,12 +174,6 @@ export default function RegistrationForm() {
                 )}
               </Field>
             </label>
-            <label className={css.checkboxLabel}>
-              <Field className={css.terms} type="checkbox" name="terms" />
-              <a className={css.LinkTerms} href="/terms">
-                I agree to the Terms of Service and Privacy Policy
-              </a>
-            </label>
             <ErrorMessage name="terms" component="div" className={css.error} />
           </div>
           <button
@@ -193,7 +184,7 @@ export default function RegistrationForm() {
             {isSubmitting ? "Registering..." : "Register"}
           </button>
           <p className={css.loginText}>
-            Already have an account? <a href="/login">Log in</a>
+            Already have an account? <Link to="/login">Log in</Link>
           </p>
         </Form>
       )}
