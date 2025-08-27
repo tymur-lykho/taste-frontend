@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <div>
-      <SvgSprite />
+      {/* <SvgSprite /> */}
 
       <footer className={css.footer}>
         <Container>
