@@ -12,6 +12,8 @@
 
     /* Кнопка бургер */
     .burgerBtn {
+        width: 32px;
+        height: 32px;
         background: transparent;
         border: none;
         cursor: pointer;
@@ -19,6 +21,8 @@
     }
 
     .closeBtn {
+        width: 32px;
+        height: 32px;
         background: transparent;
         border: none;
         cursor: pointer;

@@ -1,8 +1,8 @@
-
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо підключити тут
 
 import { refreshUser } from "../../redux/auth/operations.js";
 import { selectIsRefreshing } from "../../redux/auth/selectors.js";
@@ -31,6 +31,8 @@ function App() {
     <strong>Refreshing user...</strong>
   ) : (
     <>
+      {" "}
+      <SvgSprite /> {/* 👈 важливо підключити тут */}
       <Toaster />
       <Layout>
         <Suspense fallback={null}>
@@ -68,7 +70,7 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
-            </Routes>
+          </Routes>
         </Suspense>
       </Layout>
     </>
