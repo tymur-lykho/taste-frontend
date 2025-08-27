@@ -2,8 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import css from "./BurgerMenu.module.css";
 import clsx from "clsx";
-import BurgerBtn from "../BurgerMenu/BurgerBtn.svg";
-import CloseBtn from "../BurgerMenu/CloseBtn.svg";
+import Icon from "../../Icon/Icon";
 import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 
@@ -23,7 +22,11 @@ export default function BurgerMenu({ isLoggedIn }) {
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
-        <img src={isOpen ? CloseBtn : BurgerBtn} alt="menu icon" />
+        {isOpen ? (
+          <Icon name="CloseBtn" width={32} height={32} />
+        ) : (
+          <Icon name="BurgerBtn" width={32} height={32} />
+        )}
       </button>
 
       {/* Випадаюче меню */}
