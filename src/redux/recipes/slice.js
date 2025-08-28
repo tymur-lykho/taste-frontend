@@ -1,33 +1,43 @@
+// src/redux/recipes/slice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes } from "./operations";
 
-const handlePending = (state, action) => {
-  state.isLoading = true;
-  state.error = null;
+const initialState = {
+  items: [],
+  page: 1,
+  isLoading: false,
+  error: null,
+  hasNext: true,
 };
 
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload || action.error.message;
-};
-
-const RecipeSlice = createSlice({
+const recipesSlice = createSlice({
   name: "recipes",
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipes.pending, handlePending)
-      .addCase(fetchRecipes.fulfilled, (state, action) => {
-        state.isLoading = false;
+      .addCase(fetchRecipes.pending, (state) => {
+        state.isLoading = true;
         state.error = null;
-        state.items = action.payload;
       })
-      .addCase(fetchRecipes.rejected, handleRejected);
+      .addCase(fetchRecipes.fulfilled, (state, action) => {
+        const { list, page, hasNext } = action.payload;
+
+        if (page === 1) {
+          state.items = list; 
+        } else {
+          state.items.push(...list); 
+        }
+
+        state.page = page;
+        state.hasNext = hasNext; 
+        state.isLoading = false;
+      })
+      .addCase(fetchRecipes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || "Failed to load recipes";
+      });
   },
 });
 
-export default RecipeSlice.reducer;
+export default recipesSlice.reducer;
