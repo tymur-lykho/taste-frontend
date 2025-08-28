@@ -1,3 +1,4 @@
+// src/redux/recipes/slice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes } from "./operations";
 
