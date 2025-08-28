@@ -5,8 +5,15 @@ import * as Yup from "yup";
 import css from "./RegistrationForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import clsx from "clsx";
+import { useState } from "react";
+import { Button } from "../Button/Button";
+import Icon from "../../reuseable/Icon/Icon";
+import EyeButton from "../EyeButton/EyeButton";
 
 export default function RegistrationForm() {
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+
   const dispatch = useDispatch();
   const initialValues = {
     name: "",
@@ -19,22 +26,22 @@ export default function RegistrationForm() {
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Too Short!")
-      .max(50, "Too Long!")
+      .max(16, "Too Long! Max 16 character")
       .required("Field is required"),
-    email: Yup.string().email("Not valid email").required("Field is required"),
+    email: Yup.string()
+      .email("Not valid email")
+      .max(128, "Too Long!Max-128 character")
+      .required("Field is required"),
     password: Yup.string()
       .matches(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
         "Must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
       )
+      .max(128, "Too Long!Max-128 character")
       .required("Field is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords do not match")
       .required("Field is required"),
-    terms: Yup.boolean().oneOf(
-      [true],
-      "You must accept the terms and privacy policy"
-    ),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -47,6 +54,9 @@ export default function RegistrationForm() {
       toast.error(error.message || "Registration failed");
     }
   };
+
+  const messagePass =
+    "Must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character";
 
   return (
     <Formik
@@ -119,35 +129,44 @@ export default function RegistrationForm() {
                 )}
               </Field>
             </label>
-            <label className={css.label}>
-              Create a strong password
-              <Field name="password">
-                {({ field, meta }) => (
-                  <>
-                    <input
-                      {...field}
-                      type="password"
-                      name="password"
-                      placeholder="Enter password"
-                      aria-label="Create a strong password"
-                      className={`${css.field} ${
-                        meta.touched
-                          ? meta.error
-                            ? css.fieldError
-                            : css.fieldValid
-                          : ""
-                      }`}
-                      aria-invalid={
-                        meta.touched && meta.error ? "true" : "false"
-                      }
-                    />
-                    {meta.touched && meta.error && (
-                      <span className={css.error}>{meta.error}</span>
+            <Field name="password">
+              {({ field, meta }) => (
+                <label
+                  className={clsx(
+                    css.label,
+                    meta.touched && meta.error === messagePass
+                      ? css.labelLarge
+                      : css.label
+                  )}
+                >
+                  Create a strong password
+                  <input
+                    {...field}
+                    type={showPass ? "text" : "password"}
+                    placeholder="Enter password"
+                    aria-label="Create a strong password"
+                    className={clsx(
+                      css.field,
+                      css.pass,
+                      meta.touched &&
+                        (meta.error ? css.fieldError : css.fieldValid)
                     )}
-                  </>
-                )}
-              </Field>
-            </label>
+                    aria-invalid={meta.touched && meta.error ? "true" : "false"}
+                  />
+                  <span
+                    className={clsx(css.error, {
+                      [css.errorLarge]:
+                        meta.touched && meta.error === messagePass,
+                      [css.noError]: !meta.error || !meta.touched,
+                    })}
+                  >
+                    {meta.touched && meta.error ? meta.error : "\u00A0"}
+                  </span>
+                  <EyeButton show={showPass} setShow={setShowPass} />
+                </label>
+              )}
+            </Field>
+
             <label className={css.label}>
               Repeat your password
               <Field name="confirmPassword">
@@ -155,17 +174,16 @@ export default function RegistrationForm() {
                   <>
                     <input
                       {...field}
-                      type="password"
+                      type={showConfirmPass ? "text" : "password"}
                       name="confirmPassword"
                       placeholder="Confirm password"
                       aria-label="Repeat your password"
-                      className={`${css.field} ${
-                        meta.touched
-                          ? meta.error
-                            ? css.fieldError
-                            : css.fieldValid
-                          : ""
-                      }`}
+                      className={clsx(
+                        css.field,
+                        css.pass,
+                        meta.touched &&
+                          (meta.error ? css.fieldError : css.fieldValid)
+                      )}
                       aria-invalid={
                         meta.touched && meta.error ? "true" : "false"
                       }
@@ -176,14 +194,8 @@ export default function RegistrationForm() {
                   </>
                 )}
               </Field>
+              <EyeButton show={showConfirmPass} setShow={setShowConfirmPass} />
             </label>
-            <label className={css.checkboxLabel}>
-              <Field className={css.terms} type="checkbox" name="terms" />
-              <a className={css.LinkTerms} href="/terms">
-                I agree to the Terms of Service and Privacy Policy
-              </a>
-            </label>
-            <ErrorMessage name="terms" component="div" className={css.error} />
           </div>
           <button
             type="submit"

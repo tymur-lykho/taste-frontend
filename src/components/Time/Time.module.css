@@ -10,11 +10,16 @@
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
+  font-size: var(--text-s-size);
+  font-weight: var(--weight-semibold);
+  flex-shrink: 0;
 }
 
 .time-icon {
+  display: block;
   width: 24px;
   height: 24px;
-  color: var(--black-text-color);
-  stroke: var(--black-text-color)
-};
+  stroke: var(--black-text-color);
+  fill: none;
+  flex-shrink: 0;
+}
