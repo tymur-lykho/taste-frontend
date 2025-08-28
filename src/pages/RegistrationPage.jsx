@@ -1,10 +1,11 @@
 import RegistrationForm from "../components/RegistrationForm/RegistrationForm";
 import css from "./RegistrationPage.module.css";
+import Container from "../reuseable/Container/Container";
 
 export default function RegistrationPage() {
   return (
-    <div className={css.containerRegister}>
+    <Container className={css.containerRegister}>
       <RegistrationForm />
-    </div>
+    </Container>
   );
 }

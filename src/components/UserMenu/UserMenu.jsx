@@ -2,11 +2,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import css from "./UserMenu.module.css";
 import clsx from "clsx";
 import { useSelector, useDispatch } from "react-redux";
-
 import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
-import LogOut from "../UserMenu/LogOut.svg";
-import Line from "../UserMenu/Line.svg";
+import Icon from "../../Icon/Icon";
 
 export default function UserMenu({ toggleMenu }) {
   const dispatch = useDispatch();
@@ -54,14 +52,13 @@ export default function UserMenu({ toggleMenu }) {
               <span className={css.avatar}>{userInitial}</span>
               <span className={css.username}>{userName}</span>
             </div>
-            <img src={Line} alt="line" className={css.line} />
-
+            <Icon name="Line" width={1} height={39} />
             <button
               type="button"
               className={css.logoutBtn}
               onClick={handleLogout}
             >
-              <img src={LogOut} alt="logo" />
+              <Icon name="LogOut" width={24} height={24} />
             </button>
           </div>
         </li>

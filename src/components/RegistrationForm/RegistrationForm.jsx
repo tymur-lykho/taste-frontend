@@ -20,7 +20,6 @@ export default function RegistrationForm() {
     email: "",
     password: "",
     confirmPassword: "",
-    terms: false,
   };
 
   const validationSchema = Yup.object({
