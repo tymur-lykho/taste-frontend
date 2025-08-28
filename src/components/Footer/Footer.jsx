@@ -13,22 +13,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div>
-      {/* <SvgSprite /> */}
-
-      <footer className={css.footer}>
-        <Container>
-          <a className={css.link} href="/">
-            <Icon name="logo" width={32} height={30} />
-            Tasteorama
-          </a>
-          <p className={css.copyright}>
-            &copy; {currentYear} CookingCompanion. All rights reserved.
-          </p>
-          <NavigationFooter />
-          {/* {isLoggedIn ? <UserMenu/> : <AuthNav />} */}
-        </Container>
-      </footer>
-    </div>
+    <footer className={css.footer}>
+      <Container>
+        <a className={css.link} href="/">
+          <Icon name="logo" width={32} height={30} />
+          Tasteorama
+        </a>
+        <p className={css.copyright}>
+          &copy; {currentYear} CookingCompanion. All rights reserved.
+        </p>
+        <NavigationFooter />
+        {/* {isLoggedIn ? <UserMenu/> : <AuthNav />} */}
+      </Container>
+    </footer>
   );
 }

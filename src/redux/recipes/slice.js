@@ -6,8 +6,8 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  page: 0,       
-  hasNext: true, 
+  page: 0,        
+  hasNext: true,  
 };
 
 const handlePending = (state) => {
@@ -20,7 +20,7 @@ const handleRejected = (state, action) => {
   state.error = action.payload || action.error?.message || "Request failed";
 };
 
-const recipesSlice = createSlice({
+const slice = createSlice({
   name: "recipes",
   initialState,
   reducers: {},
@@ -28,7 +28,7 @@ const recipesSlice = createSlice({
     builder
       .addCase(fetchRecipes.pending, handlePending)
       .addCase(fetchRecipes.fulfilled, (state, action) => {
-        const { list, page, hasNext } = action.payload;
+        const { list = [], page = 1, hasNext = false } = action.payload || {};
 
         if (page === 1) state.items = list;
         else state.items.push(...list);
@@ -42,4 +42,4 @@ const recipesSlice = createSlice({
   },
 });
 
-export default recipesSlice.reducer;
+export default slice.reducer;

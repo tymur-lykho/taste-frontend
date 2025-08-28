@@ -5,6 +5,8 @@
   align-items: center;
   justify-content: center;
   padding: 79px 0;
+  max-width: 393px;
+  margin: 0 auto;
 }
 @media only screen and (min-width: 768px) {
   .container {
@@ -28,6 +30,7 @@
   }
 }
 .box {
+  text-align: center;
   margin-bottom: 16px;
 }
 .title {
