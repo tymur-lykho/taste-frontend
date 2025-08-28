@@ -22,110 +22,25 @@
     padding: 56px 24px 32px 24px;
 
     width: 362px;
-    height: 316px;
+    /* height: 316px; */
     background: var(--light-beige-background);
 }
 
 @media (min-width: 768px) {
     .modal {
         width: 420px;
-        height: 236px;
+        /* height: 236px; */
         padding: 56px 32px 32px 32px;
     }
-}
-
-.title {
-    font-size: 32px;
-    font-weight: var(--weight-semibold);
-    color: var(--black-text-color);
-    text-align: center;
-}
-
-.message {
-    font-size: var(--text-size);
-    font-weight: var(--weight-regular);
-    line-height: 1.55;
-    text-align: center;
-    color: var(--black-text-color);
-}
-
-.actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    width: 314px;
-    height: 124px;
 
 }
-
-@media (min-width: 768px) {
-    .actions {
-        flex-direction: row;
-        align-items: center;
-        gap: 27px;
-    }
-}
-
-.confirmBtn {
-    border-radius: 8px;
-    padding: 8px;
-    width: 314px;
-    height: 54px;
-    font-size: var(--text-size);
-    font-weight: var(--weight-semibold);
-    color: var(--white-text-color);
-    background: #ff4d4d;
-    order: 2
-}
-
-.confirmBtn:hover {
-    background: #e04343;
-}
-
-@media (min-width: 768px) {
-    .confirmBtn {
-        width: 164px;
-        height: 44px;
-        padding: 8px 16px;
-        order: initial;
-    }
-}
-
-
-.cancelBtn {
-    border: 1px solid var(--black-text-color);
-    border-radius: 8px;
-    padding: 8px;
-    width: 314px;
-    height: 54px;
-    font-size: var(--text-size);
-    font-weight: var(--weight-semibold);
-    background: transparent;
-    order: 1;
-}
-
-.cancelBtn:hover {
-    background: var(--hover-white-btn-background);
-}
-
-@media (min-width: 768px) {
-    .cancelBtn {
-        width: 164px;
-        height: 44px;
-        padding: 8px 16px;
-        order: initial;
-    }
-}
-
 
 .closeBtn {
     position: absolute;
     top: 16px;
-    right: 32px;
+    right: 16px;
     width: 24px;
-    height: 24px;
+    height: 28px;
     padding: 0;
     border: none;
     background: transparent;
@@ -133,6 +48,14 @@
     stroke: black;
 }
 
-.closeBtn:hover {
-    scale: 1.1;
+
+@media (min-width: 768px) {
+    .closeBtn {
+        right: 32px;
+        height: 24px;
+    }
+
+    .closeBtn:hover {
+        scale: 1.1;
+    }
 }

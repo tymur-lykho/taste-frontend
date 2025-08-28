@@ -7,14 +7,21 @@ import { selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
 import Icon from "../../Icon/Icon";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import { Button } from "../Button/Button";
 
 export default function UserMenu({ toggleMenu }) {
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
   const user = useSelector(selectUser);
+
   const userName = user.name;
+
   const userInitial = userName[0]; // перша літера
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   const getActiveLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -25,7 +32,14 @@ export default function UserMenu({ toggleMenu }) {
   const handleLogout = () => {
     dispatch(logout()).then(() => {
       navigate("/");
+      toggleMenu?.();
     });
+  };
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+  const openModal = () => {
+    setIsOpenModal(true);
   };
 
   return (
@@ -56,23 +70,27 @@ export default function UserMenu({ toggleMenu }) {
               <span className={css.username}>{userName}</span>
             </div>
             <Icon name="Line" width={1} height={39} />
-            <button
-              type="button"
-              className={css.logoutBtn}
-              onClick={() => setIsModalOpen(true)}
-            >
+            <button type="button" className={css.logoutBtn} onClick={openModal}>
               <Icon name="LogOut" width={24} height={24} />
             </button>
           </div>
         </li>
       </ul>
-      <ModalWindow
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleLogout}
-        title="Are you sure?"
-        message="We will miss you!"
-      />
+
+      {isOpenModal && (
+        <ModalWindow onClose={closeModal}>
+          <h3 className={css.title}>"Are you sure?"</h3>
+          <p className={css.message}>"We will miss you!"</p>
+          <div className={css.actions}>
+            <Button onClick={handleLogout} className={css.confirmBtn}>
+              Log Out
+            </Button>
+            <Button onClick={closeModal} className={css.cancelBtn}>
+              Cansel
+            </Button>
+          </div>
+        </ModalWindow>
+      )}
     </>
   );
 }

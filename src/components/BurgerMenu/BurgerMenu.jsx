@@ -10,6 +10,7 @@ export default function BurgerMenu({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
   const getActiveNavLink = ({ isActive }) => {
     return clsx(css.mobileNavLink, isActive && css.activeNavLink);
   };

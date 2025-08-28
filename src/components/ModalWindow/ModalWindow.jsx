@@ -1,37 +1,48 @@
+import { createPortal } from "react-dom";
 import { Button } from "../Button/Button";
 import css from "../ModalWindow/ModalWindow.module.css";
 import Icon from "../../Icon/Icon";
+import { useEffect } from "react";
 
-export default function ModalWindow({
-  isOpen,
-  onClose,
-  onConfirm,
-  title,
-  message,
-}) {
-  if (!isOpen) return null;
+export default function ModalWindow({ children, onClose }) {
+  const handleBackdropClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
 
-  return (
-    <div className={css.backdrop}>
-      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
-        <button
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "visible";
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div
+      className={css.backdrop}
+      onClick={handleBackdropClick}
+      role="dialog"
+      arial-modal="true"
+    >
+      <div className={css.modal}>
+        <Button
           className={css.closeBtn}
           onClick={onClose}
           aria-label="Close modal"
         >
           <Icon name="Icon_close" width={24} height={24} />
-        </button>
-        <h3 className={css.title}>{title}</h3>
-        <p className={css.message}>{message}</p>
-        <div className={css.actions}>
-          <Button onClick={onConfirm} className={css.confirmBtn}>
-            Log Out
-          </Button>
-          <Button onClick={onClose} className={css.cancelBtn}>
-            Cansel
-          </Button>
-        </div>
+        </Button>
+        {children}
       </div>
-    </div>
+    </div>,
+    document.getElementById("modal-root")
   );
 }

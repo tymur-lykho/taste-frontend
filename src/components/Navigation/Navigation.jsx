@@ -27,6 +27,7 @@ export default function Navigation() {
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </li>
       </ul>
+
       <BurgerMenu isLoggedIn={isLoggedIn} />
     </nav>
   );
