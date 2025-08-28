@@ -1,35 +1,89 @@
-.search {
+.heroSection {
+  background-image: url(../../../src/images/main-desk.webp);
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  position: relative;
+  color: white;
+}
+
+.heroOverlay {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 24px;
+  max-width: 393px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
 
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: flex-start;
+.heroTitle {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.heroForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heroInput {
+  width: 329px;
+  height: 46px;
+  padding: 12px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+}
+
+.heroButton {
+  width: 329px;
+  background-color: #9b6c43;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .heroOverlay {
+    max-width: 768px;
+    padding: 0 32px;
   }
 
-  @media (min-width: 1440px) {
-    gap: 12px;
+  .heroTitle {
+    font-size: 48px;
+  }
+
+  .heroForm {
+    flex-direction: row;
+  }
+
+  .heroInput {
+    width: 471px;
+  }
+
+  .heroButton {
+    width: 176px;
   }
 }
 
-.input {
-  max-width: 329px;
-  height: 46px;
-  border-radius: var(--radius-i-sm);
-  display: flex;
-  justify-content: space-between;
-  background: var(--White, #ffffff);
-  border: 1px solid var(--Light-gray, #d9d9d9);
-  padding: 12px;
-
-  @media (min-width: 768px) {
-    max-width: 471px;
+@media only screen and (min-width: 1440px) {
+  .heroOverlay {
+    max-width: 1440px;
+    padding: 0 108px;
   }
 
-  @media (min-width: 1440px) {
-    max-width: 459px;
+  .heroForm {
+    width: 459px;
+    font-size: 18px;
+  }
+
+  .heroButton {
+    width: 190px;
   }
 }
