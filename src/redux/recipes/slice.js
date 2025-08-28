@@ -5,8 +5,8 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
-  page: 0,
-  hasNext: true,
+  page: 0,       
+  hasNext: true, 
 };
 
 const handlePending = (state) => {
@@ -16,7 +16,7 @@ const handlePending = (state) => {
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  state.error = action.payload || action.error.message;
+  state.error = action.payload || action.error?.message || "Request failed";
 };
 
 const recipesSlice = createSlice({
@@ -33,7 +33,7 @@ const recipesSlice = createSlice({
         else state.items.push(...list);
 
         state.page = page;
-        state.hasNext = hasNext;
+        state.hasNext = !!hasNext;
         state.isLoading = false;
         state.error = null;
       })
