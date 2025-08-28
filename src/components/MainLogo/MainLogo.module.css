@@ -1,12 +1,18 @@
-.logo img {
-    display: block;
+.linkLogo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     width: 165px;
     height: 46px;
     object-fit: contain;
+    color: var(--white-text-color);
+
+    font-size: 18px;
+    letter-spacing: -0.03em;
+
 }
 
-
-.logo:hover {
+.linkLogo:hover {
     opacity: 0.8;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }

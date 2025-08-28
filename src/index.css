@@ -53,6 +53,7 @@
   --hover-white-btn-background: #d9d9d9;
   /* Error color */
   --error-color: #c80000;
+  --light-gray--light-gray: #d9d9d9;
   --light-gray: #d9d9d9;
   /* Input placeholder text */
   --gray-placeholder-text: #9f9f9f;
@@ -75,7 +76,7 @@
   --text-size: 16px;
   --text-s-size: 12px;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     --h1-size: 48px;
     --h2-size: 40px;
     --h3-size: 24px;
@@ -107,7 +108,12 @@ ol {
 body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
+}
+
+div#root {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 h1 {

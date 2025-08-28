@@ -41,8 +41,7 @@
     color: var(--white-text-color);
     text-decoration: inherit;
     transition: opacity 0.3s ease;
-
-    /* плавний ефект прозорості */
+  
     &::after {
         content: "";
         position: absolute;
