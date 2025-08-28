@@ -19,7 +19,7 @@ export default function RecipesList() {
 
       {recipes?.length ? (
         <ul className={css.list}>
-          {recipes.map(r => (
+          {recipes.map((r) => (
             <li className={css.item} key={r._id || r.id}>
               <RecipesCard recipe={r} />
             </li>
