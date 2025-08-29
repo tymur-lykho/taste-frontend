@@ -3,6 +3,7 @@ import { Button } from "../Button/Button";
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
+import Icon from "../../reuseable/Icon/Icon";
 
 export default function RecipesCard({ recipe }) {
   return (
@@ -16,7 +17,7 @@ export default function RecipesCard({ recipe }) {
       </div>
       <div className={css["card-header"]}>
         <h3 className={css["card-title"]}>{recipe.title}</h3>
-        <Time time={recipe.time} />
+        <Time className={css.time} time={recipe.time} />
       </div>
       <div className={css["card-info"]}>
         <p className={css["card-desc"]}>{recipe.description}</p>
@@ -31,9 +32,10 @@ export default function RecipesCard({ recipe }) {
           Learn more
         </Button>
         <Button className="white" title="Add to favorite" aria-label="Add to favorite">
-          icon
+        <Icon className={css["save-icon"]} iconName="save-icon" />
         </Button>
       </div>
     </div>
   );
 }
+
