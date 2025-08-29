@@ -7,5 +7,5 @@ export default function RegistrationPage() {
     <Container className={css.containerRegister}>
       <RegistrationForm />
     </Container>
-  );
+  )
 }
