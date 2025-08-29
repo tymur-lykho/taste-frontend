@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes } from "./operations";
+import { fetchOwnRecipes, fetchRecipes } from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -26,7 +26,16 @@ const slice = createSlice({
         state.error = null;
         state.items = action.payload.data;
       })
-      .addCase(fetchRecipes.rejected, handleRejected);
+      .addCase(fetchRecipes.rejected, handleRejected)
+      .addCase(fetchOwnRecipes.pending, handlePending)
+      .addCase(fetchOwnRecipes.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.items = state.items.filter((item) => item.owner === action.payload.owner);
+        state.items = action.payload;
+        console.log("OwnRecipes:", action.payload)
+      })
+      .addCase(fetchOwnRecipes.rejected, handleRejected);
   },
 });
 

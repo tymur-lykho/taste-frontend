@@ -9,7 +9,7 @@ import css from "./Footer.module.css";
 import Container from "../../reuseable/Container/Container";
 
 export default function Footer() {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
   const currentYear = new Date().getFullYear();
 
   return (

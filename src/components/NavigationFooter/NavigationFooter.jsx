@@ -12,7 +12,7 @@ export default function NavigationFooter() {
   };
   return (
     <nav className={css.nav}>
-      <NavLink to="/recipes" className={isActiveClass}>
+      <NavLink to="/" className={isActiveClass}>
         Recipes
       </NavLink>
       <NavLink to="/user" className={isActiveClass}>
