@@ -33,7 +33,7 @@
 }
 
 .loadMore {
-  width: 372px;
+  max-width: 361px;
   height: 40px;
   margin: 24px auto;
 }
