@@ -1,7 +1,24 @@
-export const selectSearch = (state) => state.filters.filters.search;
+import { createSelector } from "@reduxjs/toolkit";
 
-export const selectCategory = (state) => state.filters.filters.category;
+export const selectSearch = (state) => state.filters.selectedFilters.search;
 
-export const selectIngredients = (state) => state.filters.filters.ingredients;
+export const selectSelectedCategories = (state) =>
+  state.filters.selectedFilters.categories;
 
-export const selectArea = (state) => state.filters.filters.area;
+export const selectSelectedIngredients = (state) =>
+  state.filters.selectedFilters.ingredients;
+
+export const selectSelectedArea = (state) => state.filters.selectedFilters.area;
+
+export const selectFilterData = createSelector(
+  [
+    (state) => state.filters.categories,
+    (state) => state.filters.ingredients,
+    (state) => state.filters.areas,
+  ],
+  (categories, ingredients, areas) => ({
+    categories,
+    ingredients,
+    areas,
+  })
+);

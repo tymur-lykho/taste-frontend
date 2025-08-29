@@ -12,10 +12,11 @@ export const fetchFilteredRecipes = createAsyncThunk(
       const { selectedFilters } = state.filters;
       const {
         search = "",
-        categories = "",
+        categories,
         ingredients = [],
         area,
       } = selectedFilters;
+        console.log("🚀 ~ categories:", categories)
 
       const filterParams = Array.isArray(ingredients)
         ? ingredients.join(",")
@@ -25,7 +26,7 @@ export const fetchFilteredRecipes = createAsyncThunk(
         page: pagination.page,
         perPage: pagination.perPage,
         search: search || undefined,
-        categories: categories || undefined,
+        category: categories || undefined,
         ingredients: filterParams,
         area: area || undefined,
       };

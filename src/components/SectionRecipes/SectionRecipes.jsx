@@ -3,6 +3,7 @@ import css from "./SectionRecipes.module.css";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
 import Container from "../../reuseable/Container/Container.jsx";
+import Filters from "../Filters/Filters.jsx";
 
 export default function SectionRecipes({ type }) {
   const isAuthenticated = useSelector(selectIsLoggedIn);
@@ -20,8 +21,8 @@ export default function SectionRecipes({ type }) {
   return (
     <Container>
       <h2 className={css.title}>{title}</h2>
-      {/* <Filters filters={filters} /> */}
-      <RecipesList  />
+      <Filters />
+      <RecipesList />
       <RecipesList type="profile" userId={userId} />
     </Container>
   );

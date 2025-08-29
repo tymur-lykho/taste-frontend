@@ -18,13 +18,24 @@ import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
 
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
+import { selectFilterData } from "../../redux/filters/selectors.js";
+import {
+  fetchArea,
+  fetchCategories,
+  fetchIngredients,
+} from "../../redux/filters/operations.js";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const filterData = useSelector(selectFilterData);
+  console.log("🚀 ~ App ~ filterData:", filterData);
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(fetchCategories());
+    dispatch(fetchIngredients());
+    //dispatch(fetchArea);
   }, [dispatch]);
 
   return isRefreshing ? (

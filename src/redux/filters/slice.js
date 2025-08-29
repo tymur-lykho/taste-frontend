@@ -52,14 +52,14 @@ const filterSlice = createSlice({
     builder
       .addCase(fetchCategories.pending, handlePending)
       .addCase(fetchCategories.fulfilled, (state, { payload }) => {
-        state.categories = payload;
+        state.categories = payload.data;
         state.isLoading = false;
         state.error = null;
       })
       .addCase(fetchCategories.rejected, handleRejected)
       .addCase(fetchIngredients.pending, handlePending)
       .addCase(fetchIngredients.fulfilled, (state, { payload }) => {
-        state.ingredients = payload;
+        state.ingredients = payload.data;
         state.isLoading = false;
         state.error = null;
       })
