@@ -4,6 +4,7 @@ const initialState = {
   items: {
     categories: [],
     ingredients: [],
+    recipes: [], // залишаємо для результатів пошуку
   },
   selectedFilters: {
     category: "",
@@ -18,7 +19,6 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    // Універсальний редюсер для будь-якого фільтра
     setFilter(state, action) {
       const { key, value } = action.payload;
       if (key in state.selectedFilters) {
@@ -27,10 +27,9 @@ const filtersSlice = createSlice({
     },
     resetFilters(state) {
       Object.keys(state.selectedFilters).forEach((key) => {
-        state.selectedFilters[key] = key === "ingredients" ? [] : "";
+        state.selectedFilters[key] = key === "ingredient" ? "" : "";
       });
     },
-    // Універсальний редюсер для items
     setItem(state, action) {
       const { key, value } = action.payload;
       if (key in state.items) {
@@ -48,5 +47,4 @@ const filtersSlice = createSlice({
 
 export const { setFilter, resetFilters, setItem, setLoading, setError } =
   filtersSlice.actions;
-
 export default filtersSlice.reducer;

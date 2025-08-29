@@ -82,7 +82,7 @@
 }
 
 .heroButton:hover {
-  background-color: #6d554b;
+  background-color: #9f7563;
 }
 
 .heroButton:focus {
@@ -150,6 +150,10 @@
       background-image: linear-gradient(to right, #000000e6, #0000004d),
         url("/src/images/main-desk@2x.webp");
     }
+  }
+
+  .heroForm {
+    gap: 12px;
   }
 
   .heroOverlay {

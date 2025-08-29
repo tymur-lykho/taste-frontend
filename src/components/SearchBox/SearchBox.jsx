@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import {} from "../../redux/filters/slice";
+import { useSelector, useDispatch } from "react-redux";
 import css from "../SearchBox/SearchBox.module.css";
+import { setFilter } from "../../redux/filters/slice";
 import { selectActiveSearchValue } from "../../redux/filters/selectors";
 
 export default function SearchBox() {
-  //   const dispatch = useDispatch();
-  const selectSearch = useSelector(selectActiveSearchValue);
-  const [inputValue, setInputValue] = useState(selectSearch);
+  const dispatch = useDispatch();
+  const selectedQuery = useSelector(selectActiveSearchValue); // поточний query зі стора
+  const [inputValue, setInputValue] = useState(selectedQuery);
 
-  //   const handleChange = () => {
-  //     dispatch(selectSearch);
-  //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     handleSearch();
-  //   };
+    // Диспатчимо action з redux
+    dispatch(setFilter({ key: "query", value: inputValue }));
+    setInputValue(""); // якщо хочеш очищати інпут після пошуку
+  };
 
   return (
     <div className={css.heroSection}>
@@ -26,7 +26,7 @@ export default function SearchBox() {
           <br />
           Share Your Flavors
         </h1>
-        <form className={css.heroForm}>
+        <form onSubmit={handleSubmit} className={css.heroForm}>
           <input
             type="text"
             placeholder="Search recipes"
