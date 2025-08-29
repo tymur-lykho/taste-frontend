@@ -12,7 +12,8 @@
   width: 100%;
   border: 1px solid var(--light-gray);
   background-color: var(--white-text-color);
-  transition: all 300ms ease-in-out;
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out,
+    border-color 300ms ease-in-out;
   border-radius: 8px;
   padding: 8px;
   font-size: 16px;
@@ -26,7 +27,6 @@
 .helperText {
   font-size: 12px;
   padding: 0 12px;
-  text-transform: capitalize;
 }
 
 .error {
@@ -40,11 +40,15 @@
 }
 
 .button {
+  width: unset;
+  height: unset;
   color: var(--black-text-color);
   padding: 0;
   border: unset;
   background: none;
   transition: var(--base-transition);
+  position: absolute;
+  right: 8px;
 }
 
 .passwordCont {
@@ -54,8 +58,6 @@
 }
 
 .passwordIcon {
-  position: absolute;
-  right: 0;
   width: 24px;
   height: 24px;
   fill: none;

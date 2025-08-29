@@ -1,10 +1,72 @@
-.formBody {
+.form {
   border-radius: 32px;
   padding: 48px 32px;
   background-color: var(--light-beige-background);
 }
 
+@media screen and (min-width: 768px) {
+  .form {
+    width: 520px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .form {
+    width: 420px;
+  }
+}
+
 .title {
+  font-size: 32px;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.formBody > div:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+
+.formBody > div:last-of-type {
+  margin-bottom: 27px;
+}
+
+.btn {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white-text-color);
+  background-color: var(--btn-background);
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: var(--base-transition);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--hover-btn-background);
+}
+.btn:active {
+  box-shadow: var(--box-shadow-active-btn);
+}
+.btn:disabled {
+  background-color: var(--disabled-background-btn);
+}
+
+.authPrompt {
+  text-align: center;
+  line-height: 1.55;
+}
+.authLink {
+  display: inline-block;
+  line-height: normal;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: var(--base-transition);
+}
+
+.authLink:hover {
+  transform: translateY(-2px);
 }

@@ -13,9 +13,8 @@ export default function Input({
   error,
   touched,
 }) {
-  console.log(error, touched);
-
   const [isShow, setIsShow] = useState(false);
+
   return (
     <div className={css.body}>
       <label className={css.label} htmlFor={name}>
