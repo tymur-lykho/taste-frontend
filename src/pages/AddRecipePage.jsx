@@ -51,11 +51,11 @@ export default function AddRecipePage() {
               <option>Carrot</option>
             </select>
             <input type="text" placeholder="100g" />
-</div>
-            <button type="button" className={styles["add-btn"]}>
-              Add new ingredient
-            </button>
-          
+          </div>
+          <button type="button" className={styles["add-btn"]}>
+            Add new ingredient
+          </button>
+
           <p>
             <b>Name:</b> <span></span> <b>Amount:</b> <span></span>
           </p>

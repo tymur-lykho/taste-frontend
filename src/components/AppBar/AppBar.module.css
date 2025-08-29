@@ -1,6 +1,20 @@
 .header {
-  background-color: var(--darck-brown);
+  background-color: var(--dark-brown-background);
   height: 74px;
-  flex-shrink: 0;
   padding: 14px 0;
+}
+
+
+@media (min-width: 768px) {
+  .header {
+    padding: 15px 0;
+  }
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
 }
