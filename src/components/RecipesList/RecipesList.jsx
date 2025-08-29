@@ -16,10 +16,8 @@ export default function RecipesList() {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    if (!recipes.length) {
-      dispatch(fetchRecipes());
-    }
-  }, [dispatch, recipes]);
+    dispatch(fetchRecipes());
+  }, [dispatch]);
 
   return (
     <div>

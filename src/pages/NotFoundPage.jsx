@@ -13,7 +13,9 @@ export default function NotFoundPage() {
         <h1 className={css.title}>404</h1>
         <p className={css.text}>Recipe not found</p>
       </div>
-      <Button onClick={() => navigate("/")}>Back to Home</Button>
+      <Button size="large" onClick={() => navigate("/")}>
+        Back to Home
+      </Button>
     </div>
   );
 }
