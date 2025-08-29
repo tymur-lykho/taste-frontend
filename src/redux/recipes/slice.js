@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes } from "./operations";
-import { fetchFiltersRecipes } from "../filters/operations";
+import { fetchFilteredRecipes } from "../filters/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -10,6 +10,36 @@ const handlePending = (state) => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload || action.error.message;
+};
+
+const handleFulfilled = (state, action) => {
+  const payloadData = action.payload.data;
+  const {
+    data: recipesArray,
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasNextPage,
+    hasPreviousPage,
+  } = payloadData;
+
+  if (state.pagination.page === 1) {
+    state.items = recipesArray;
+  } else {
+    state.items = [...state.items, ...recipesArray];
+  }
+
+  state.pagination = {
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasNextPage,
+    hasPreviousPage,
+  };
+  state.isLoading = false;
+  state.error = null;
 };
 
 const slice = createSlice({
@@ -56,37 +86,12 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFiltersRecipes.pending, handlePending)
-      .addCase(fetchFiltersRecipes.fulfilled, (state, action) => {
-        const payloadData = action.payload.data;
-        const {
-          data: recipesArray,
-          page,
-          perPage,
-          totalPages,
-          totalItems,
-          hasNextPage,
-          hasPreviousPage,
-        } = payloadData;
-
-        if (state.pagination.page === 1) {
-          state.items = recipesArray;
-        } else {
-          state.items = [...state.items, ...recipesArray];
-        }
-
-        state.pagination = {
-          page,
-          perPage,
-          totalPages,
-          totalItems,
-          hasNextPage,
-          hasPreviousPage,
-        };
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(fetchFiltersRecipes.rejected, handleRejected);
+      .addCase(fetchRecipes.pending, handlePending)
+      .addCase(fetchRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchRecipes.rejected, handleRejected)
+      .addCase(fetchFilteredRecipes.pending, handlePending)
+      .addCase(fetchFilteredRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchFilteredRecipes.rejected, handleRejected);
   },
 });
 

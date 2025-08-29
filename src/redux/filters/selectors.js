@@ -1,7 +1,7 @@
-export const selectSearch = (state) => state.filters.search;
+export const selectSearch = (state) => state.filters.filters.search;
 
-export const selectCategory = (state) => state.filters.category;
+export const selectCategory = (state) => state.filters.filters.category;
 
-export const selectIngredients = (state) => state.filters.ingredients;
+export const selectIngredients = (state) => state.filters.filters.ingredients;
 
-export const selectArea = (state) => state.filters.area;
+export const selectArea = (state) => state.filters.filters.area;

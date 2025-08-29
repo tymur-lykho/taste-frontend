@@ -8,7 +8,7 @@ import {
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
 import { useEffect } from "react";
-import { fetchFiltersRecipes } from "../../redux/filters/operations";
+import { fetchFilteredRecipes } from "../../redux/filters/operations";
 import { nextPage } from "../../redux/recipes/slice";
 import { Button } from "../Button/Button";
 import clsx from "clsx";
@@ -21,7 +21,7 @@ export default function RecipesList({ type, userId }) {
   const pagination = useSelector(selectPagination);
 
   useEffect(() => {
-    dispatch(fetchFiltersRecipes({ type, userId }));
+    dispatch(fetchFilteredRecipes({ type, userId }));
   }, [dispatch, type, userId]);
 
   const handleLoadMore = () => {
@@ -29,7 +29,7 @@ export default function RecipesList({ type, userId }) {
       return;
     }
     dispatch(nextPage());
-    dispatch(fetchFiltersRecipes({ type, userId }));
+    dispatch(fetchFilteredRecipes({ type, userId }));
   };
 
   return (
