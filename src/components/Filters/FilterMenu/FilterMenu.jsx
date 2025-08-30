@@ -4,7 +4,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import Icon from "../../../reuseable/Icon/Icon";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
-import IngredientsFilter from "../IngredientsFilter/IngredientsFilter";
+// import IngredientsFilter from "../IngredientsFilter/IngredientsFilter";
 
 export default function FilterMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function FilterMenu() {
 
       <div className={clsx(css.wrapFilters, { [css.open]: isOpen })}>
         <CategoryFilter className={css.field} />
-        <IngredientsFilter className={css.field} />
+        {/* <IngredientsFilter className={css.field} /> */}
         <ResetFiltersLink className={css.resetLink} />
       </div>
     </div>
