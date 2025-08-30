@@ -16,7 +16,7 @@ export const fetchFilteredRecipes = createAsyncThunk(
         ingredients = [],
         area,
       } = selectedFilters;
-      console.log("🚀 ~ categories:", categories);
+
 
       const ingredientsParams = Array.isArray(ingredients)
         ? ingredients.join(",")

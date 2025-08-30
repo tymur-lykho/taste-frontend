@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes } from "./operations";
+import {
+  fetchFavoritesId,
+  fetchFavoritesRecipes,
+  fetchOwnRecipes,
+  fetchRecipes,
+} from "./operations";
 import { fetchFilteredRecipes } from "../filters/operations";
 
 const handlePending = (state) => {
@@ -42,10 +47,21 @@ const handleFulfilled = (state, action) => {
   state.error = null;
 };
 
+const handleFavoritesIdFulfilled = (state, action) => {
+  state.favoritesId = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+
+
+
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    own: [],
+    favorites: [],
+    favoritesId: [],
     pagination: {
       page: 1,
       perPage: 12,
@@ -91,7 +107,16 @@ const slice = createSlice({
       .addCase(fetchRecipes.rejected, handleRejected)
       .addCase(fetchFilteredRecipes.pending, handlePending)
       .addCase(fetchFilteredRecipes.fulfilled, handleFulfilled)
-      .addCase(fetchFilteredRecipes.rejected, handleRejected);
+      .addCase(fetchFilteredRecipes.rejected, handleRejected)
+      .addCase(fetchOwnRecipes.pending, handlePending)
+      .addCase(fetchOwnRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchOwnRecipes.rejected, handleRejected)
+      .addCase(fetchFavoritesRecipes.pending, handlePending)
+      .addCase(fetchFavoritesRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchFavoritesRecipes.rejected, handleRejected)
+      .addCase(fetchFavoritesId.pending, handlePending)
+      .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
+      .addCase(fetchFavoritesId.rejected, handleRejected);
   },
 });
 

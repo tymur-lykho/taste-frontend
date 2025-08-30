@@ -17,7 +17,7 @@
 }
 
 p {
-  write-space: nowrap;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 

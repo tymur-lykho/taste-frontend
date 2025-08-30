@@ -26,6 +26,10 @@ import {
   setIngredients,
   setSearch,
 } from "../../redux/filters/slice.js";
+import {
+  fetchFavoritesRecipes,
+  fetchOwnRecipes,
+} from "../../redux/recipes/operations.js";
 
 export default function SectionRecipes() {
   const isAuthenticated = useSelector(selectIsLoggedIn);
@@ -82,9 +86,9 @@ export default function SectionRecipes() {
 
   useEffect(() => {
     if (type === "own" && isAuthenticated) {
-      // dispatch(fetchOwnRecipes(userId));
+      dispatch(fetchOwnRecipes(userId));
     } else if (type === "favorites" && isAuthenticated) {
-      // dispatch(fetchFavoriteRecipes());
+      dispatch(fetchFavoritesRecipes());
     } else {
       dispatch(fetchFilteredRecipes());
     }

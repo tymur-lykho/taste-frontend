@@ -14,3 +14,83 @@ export const fetchRecipes = createAsyncThunk(
     }
   }
 );
+
+export const fetchFavoritesRecipes = createAsyncThunk(
+  "recipes/fetchFavoritesRecipes",
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const { pagination } = state.recipes;
+      const { selectedFilters } = state.filters;
+      const {
+        search = "",
+        categories,
+        ingredients = [],
+        area,
+      } = selectedFilters;
+
+      const ingredientsParams = Array.isArray(ingredients)
+        ? ingredients.join(",")
+        : undefined;
+
+      const params = {
+        page: pagination.page,
+        perPage: pagination.perPage,
+        search: search || undefined,
+        category: categories || undefined,
+        ingredients: ingredientsParams,
+        area: area || undefined,
+      };
+      const response = await axios.get("recipes/favorites", { params });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchOwnRecipes = createAsyncThunk(
+  "recipes/fetchOwnRecipes",
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const { pagination } = state.recipes;
+      const { selectedFilters } = state.filters;
+      const {
+        search = "",
+        categories,
+        ingredients = [],
+        area,
+      } = selectedFilters;
+
+      const ingredientsParams = Array.isArray(ingredients)
+        ? ingredients.join(",")
+        : undefined;
+
+      const params = {
+        page: pagination.page,
+        perPage: pagination.perPage,
+        search: search || undefined,
+        category: categories || undefined,
+        ingredients: ingredientsParams,
+        area: area || undefined,
+      };
+      const response = await axios.get("recipes/my", { params });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchFavoritesId = createAsyncThunk(
+  "recipes/fetchFavoritesId",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("users/current");
+      return response.data.data.favoriteRecipes;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

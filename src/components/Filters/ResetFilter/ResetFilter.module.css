@@ -2,4 +2,5 @@
   text-decoration: underline;
   font-size: var(--text-s-size);
   font-weight: 600;
+  white-space: nowrap;
 }
