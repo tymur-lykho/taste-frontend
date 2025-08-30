@@ -1,0 +1,17 @@
+.btnShow {
+  position: absolute;
+  top: 27px;
+  right: 5.25px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+
+.iconEye {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  stroke: var(--black-text-color);
+  fill: none;
+}

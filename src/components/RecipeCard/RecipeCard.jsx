@@ -8,6 +8,7 @@ import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
+import Icon from "../../reuseable/Icon/Icon";
 
 export default function RecipesCard({ recipe }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -38,7 +39,7 @@ export default function RecipesCard({ recipe }) {
       </div>
       <div className={css["card-header"]}>
         <h3 className={css["card-title"]}>{recipe.title}</h3>
-        <Time time={recipe.time} />
+        <Time className={css.time} time={recipe.time} />
       </div>
       <div className={css["card-info"]}>
         <p className={css["card-desc"]}>{recipe.description}</p>
@@ -56,9 +57,8 @@ export default function RecipesCard({ recipe }) {
           className="white"
           title="Add to favorite"
           aria-label="Add to favorite"
-          onClick={handleClickAddFavorite}
         >
-          icon
+          <Icon className={css["save-icon"]} iconName="save-icon" />
         </Button>
       </div>
       {isOpenModal && (

@@ -69,6 +69,17 @@ const SvgSprite = () => (
         d="M7 7l9 9M16 16l-9 9M16 16l9 9M16 16l9-9"
       ></path>
     </symbol>
+    <symbol id="icon-left-short" viewBox="0 0 35 32">
+      <path
+        fill="none"
+        stroke="var(--color1, #fff)"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        strokeMiterlimit="4"
+        strokeWidth="3.2"
+        d="M32 16.007l-28.8-0M3.2 16.007l12.921 12.925M3.2 16.007l12.921-12.925"
+      />
+    </symbol>
   </svg>
 );
 
