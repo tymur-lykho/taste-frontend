@@ -16,7 +16,7 @@
   height: 222px;
 }
 
-p {
+.filterPanel p {
   white-space: nowrap;
   flex-shrink: 0;
 }

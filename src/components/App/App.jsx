@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо підключити тут
 
 import { refreshUser } from "../../redux/auth/operations.js";
-import { selectIsRefreshing } from "../../redux/auth/selectors.js";
+import {
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from "../../redux/auth/selectors.js";
 
 import HomePage from "../../pages/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
@@ -24,12 +27,13 @@ import {
   fetchCategories,
   fetchIngredients,
 } from "../../redux/filters/operations.js";
+import { fetchFavoritesId } from "../../redux/recipes/operations.js";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const filterData = useSelector(selectFilterData);
-  
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -37,6 +41,12 @@ function App() {
     dispatch(fetchIngredients());
     //dispatch(fetchArea);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchFavoritesId());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
