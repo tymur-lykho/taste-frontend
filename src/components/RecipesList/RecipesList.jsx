@@ -7,29 +7,29 @@ import {
 } from "../../redux/recipes/selectors";
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
-import { useEffect } from "react";
-import { fetchFilteredRecipes } from "../../redux/filters/operations";
 import { nextPage } from "../../redux/recipes/slice";
 import { Button } from "../Button/Button";
 import clsx from "clsx";
+import { useSearchParams } from "react-router-dom";
 
-export default function RecipesList({ type, userId }) {
+
+export default function RecipesList() {
   const dispatch = useDispatch();
   const recipes = useSelector(selectRecipes);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const pagination = useSelector(selectPagination);
-
-  useEffect(() => {
-    dispatch(fetchFilteredRecipes({ type, userId }));
-  }, [dispatch, type, userId]);
+  const [searchParams, setSearchParams] = useSearchParams();
+ 
 
   const handleLoadMore = () => {
     if (!pagination.hasNextPage || isLoading) {
       return;
     }
+    // const newUrl = new URLSearchParams(searchParams);
+    // newUrl.set("page", pagination.page);
+    // setSearchParams(newUrl);
     dispatch(nextPage());
-    dispatch(fetchFilteredRecipes({ type, userId }));
   };
 
   return (

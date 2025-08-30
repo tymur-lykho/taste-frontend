@@ -29,7 +29,7 @@ function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const filterData = useSelector(selectFilterData);
-  console.log("🚀 ~ App ~ filterData:", filterData);
+  
 
   useEffect(() => {
     dispatch(refreshUser());

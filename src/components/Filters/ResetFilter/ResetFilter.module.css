@@ -1,0 +1,5 @@
+.resetLink {
+  text-decoration: underline;
+  font-size: var(--text-s-size);
+  font-weight: 600;
+}

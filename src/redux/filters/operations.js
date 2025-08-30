@@ -16,9 +16,9 @@ export const fetchFilteredRecipes = createAsyncThunk(
         ingredients = [],
         area,
       } = selectedFilters;
-        console.log("🚀 ~ categories:", categories)
+      console.log("🚀 ~ categories:", categories);
 
-      const filterParams = Array.isArray(ingredients)
+      const ingredientsParams = Array.isArray(ingredients)
         ? ingredients.join(",")
         : undefined;
 
@@ -27,7 +27,7 @@ export const fetchFilteredRecipes = createAsyncThunk(
         perPage: pagination.perPage,
         search: search || undefined,
         category: categories || undefined,
-        ingredients: filterParams,
+        ingredients: ingredientsParams,
         area: area || undefined,
       };
       const response = await axios.get("/recipes", { params });

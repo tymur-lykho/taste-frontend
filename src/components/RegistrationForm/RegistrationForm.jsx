@@ -153,10 +153,9 @@ export default function RegistrationForm() {
                     aria-invalid={meta.touched && meta.error ? "true" : "false"}
                   />
                   <span
-                    className={clsx(css.error, {
+                    className={clsx(css.error, css.noError, {
                       [css.errorLarge]:
                         meta.touched && meta.error === messagePass,
-                      [css.noError]: !meta.error || !meta.touched,
                     })}
                   >
                     {meta.touched && meta.error ? meta.error : "\u00A0"}

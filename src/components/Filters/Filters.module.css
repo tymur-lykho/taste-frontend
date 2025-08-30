@@ -1,3 +1,26 @@
+.filterPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
 .catSelect {
   width: 50px;
+}
+
+.wrapFilters {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  height: 222px;
+}
+
+p {
+  write-space: nowrap;
+  flex-shrink: 0;
+}
+
+.menu {
+  position: relative;
 }
