@@ -30,6 +30,11 @@ export default function SectionRecipes() {
     dispatch(fetchRecipes({ page: page + 1 }));
     setClicks((c) => c + 1);
   };
+  // if (type === "profile" && isAuthenticated) {
+  //   title = "My profile";
+  // } else {
+  //   title = "Recipes";
+  // }
 
   return (
     <Container>

@@ -4,7 +4,7 @@ import Icon from "../../reuseable/Icon/Icon";
 export default function Time({ time }) {
   return (
     <span className={css["card-time"]}>
-      {/* <Icon className={css["time-icon"]} iconName="icon-time" /> */}
+      <Icon className={css["time-icon"]} iconName="time-icon" />
       {time}
     </span>
   );
