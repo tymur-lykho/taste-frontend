@@ -7,6 +7,7 @@ import { Button } from "../Button/Button";
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
+import Icon from "../../reuseable/Icon/Icon";
 import ModalWindow from "../ModalWindow/ModalWindow";
 
 export default function RecipesCard({ recipe }) {
@@ -38,7 +39,7 @@ export default function RecipesCard({ recipe }) {
       </div>
       <div className={css["card-header"]}>
         <h3 className={css["card-title"]}>{recipe.title}</h3>
-        <Time time={recipe.time} />
+        <Time className={css.time} time={recipe.time} />
       </div>
       <div className={css["card-info"]}>
         <p className={css["card-desc"]}>{recipe.description}</p>
@@ -58,7 +59,7 @@ export default function RecipesCard({ recipe }) {
           aria-label="Add to favorite"
           onClick={handleClickAddFavorite}
         >
-          icon
+          <Icon className={css["save-icon"]} iconName="save-icon" />
         </Button>
       </div>
       {isOpenModal && (

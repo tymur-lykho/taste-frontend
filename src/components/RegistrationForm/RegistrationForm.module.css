@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: var(--light-beige, #faf3e0);
   gap: 20px;
@@ -11,7 +11,7 @@
   border-radius: 32px;
   padding-top: 48px;
   padding-left: 32px;
-  padding-right: 48px;
+  padding-right: 32px;
   text-align: center;
 
   @media (min-width: 768px) {
@@ -43,6 +43,24 @@
   gap: 4px;
   font-size: var(--text-s-size);
   text-align: left;
+  transition: margin-bottom 0.5s ease-in-out;
+}
+
+.labelLarge {
+  margin-bottom: 52px;
+  transition: margin-bottom 0.5s ease-in-out;
+
+  @media (min-width: 321px) {
+    margin-bottom: 42px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 30px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-bottom: 40px;
+  }
 }
 
 .containerField {
@@ -50,11 +68,13 @@
   flex-direction: column;
   /* gap: 16px; */
   padding-bottom: 7px;
+  width: 100%;
 }
 
 .field {
+  position: relative;
   padding: 8px;
-  width: 298px;
+  width: 100%;
   height: 41px;
   border: 1px solid var(--light-gray, #d9d9d9);
   border-radius: var(--radius-i-sm);
@@ -120,6 +140,36 @@
   line-height: 1;
 }
 
+.noError {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  transform-origin: top center;
+  width: 100%;
+  text-align: center;
+  min-height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-50%) scaleY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease, min-height 0.5s ease;
+}
+
+.errorLarge {
+  padding: 2px;
+  margin-top: 4px;
+  min-height: 48px;
+  /* background: var(--light-gray, #faf3e0); */
+  /* border: 1.5px solid var(--active-background-btn); */
+  border-radius: var(--radius-i-sm);
+  font-size: var(--text-s-size);
+  font-weight: var(--weight-regular);
+  opacity: 1;
+  text-align: left;
+  overflow: visible;
+  transform: translateY(0) scaleY(1);
+  transition: transform 0.5s ease, opacity 0.5s ease, min-height 0.5s ease;
+}
+
 .checkboxLabel {
   display: flex;
   gap: 8px;
@@ -139,9 +189,14 @@
   }
 }
 
+.pass {
+  padding-right: 30px;
+}
+
 .btnReg {
   width: 298px;
   height: 36px;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 458px;
