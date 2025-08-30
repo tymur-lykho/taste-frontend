@@ -10,8 +10,7 @@ export default function UserMenu({ toggleMenu }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
-  const userName = user.name;
-  const userInitial = userName[0]; // перша літера
+
   const getActiveLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -49,8 +48,8 @@ export default function UserMenu({ toggleMenu }) {
         <li className={css.order3}>
           <div className={css.userBox}>
             <div className={css.divider}>
-              <span className={css.avatar}>{userInitial}</span>
-              <span className={css.username}>{userName}</span>
+              <span className={css.avatar}>{user.name[0]}</span>
+              <span className={css.username}>{user.name}</span>
             </div>
             <Icon name="Line" width={1} height={39} />
             <button
