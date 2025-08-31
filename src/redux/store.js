@@ -12,9 +12,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./auth/slice";
 import RecipesReducer from "./recipes/slice";
-
-// import filtersReducer from "./filters/slice";
-
+import filtersReducer from "./filters/slice";
 // import your reducers
 
 const persistConfig = {
@@ -27,7 +25,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    // filters: filtersReducer,
+    filters: filtersReducer,
     auth: persistedAuthReducer,
     recipes: RecipesReducer,
   },

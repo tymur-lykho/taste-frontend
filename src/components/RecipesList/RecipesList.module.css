@@ -30,3 +30,20 @@
     height: 431px;
   }
 }
+
+.loadMore {
+  width: 100%;
+  height: 40px;
+  margin: 24px auto;
+
+
+  @media (min-width: 768px) {
+    width: 344px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 289px;
+
+  }
+
+}
