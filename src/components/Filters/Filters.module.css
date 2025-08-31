@@ -16,9 +16,12 @@
   height: 222px;
 }
 
-.filterPanel p {
-  white-space: nowrap;
-  flex-shrink: 0;
+.total {
+  display: none;
+  font-weight: var(--weight-semibold);
+  @media (min-width: 768px) {
+    display: inline-block;
+  }
 }
 
 .menu {

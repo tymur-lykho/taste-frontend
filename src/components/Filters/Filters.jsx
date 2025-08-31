@@ -8,10 +8,10 @@ export default function Filters() {
 
   return (
     <div className={css.filterPanel}>
-      <p>
-        {totalItems} {totalItems > 1 ? "reсipes" : "recipe"}{" "}
+      <p className={css.total} >
+        {totalItems} {totalItems > 1 ? "reсipes" : "recipe"}
       </p>
-      <FilterMenu className={css.menu}/>
+      <FilterMenu className={css.menu} />
     </div>
   );
 }

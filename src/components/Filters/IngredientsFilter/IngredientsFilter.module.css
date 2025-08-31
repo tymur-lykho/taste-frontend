@@ -2,10 +2,12 @@
   width: 100%;
   text-align: left;
   border: 1px solid var(--light-gray, #d9d9d9);
+  height: 33px;
+
 }
 
-.react-select__placeholder {
-    white-space: nowrap;   
+  .react-select__placeholder {
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
