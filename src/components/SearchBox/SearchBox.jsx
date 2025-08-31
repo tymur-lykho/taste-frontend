@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter } from "../../redux/filters/slice";
-import { selectNameFilter } from "../../redux/filters/selectors";
+import { setSearch } from "../../redux/filters/slice";
+import { selectSearch } from "../../redux/filters/selectors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import css from "../SearchBox/SearchBox.module.css";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-  const nameFilter = useSelector(selectNameFilter);
+  const nameFilter = useSelector(selectSearch);
 
   const [titleInput, setTitleInput] = useState(nameFilter);
 
@@ -33,7 +33,7 @@ export default function SearchBox() {
       return;
     }
 
-    dispatch(setFilter({ key: "name", value: titleInput }));
+    dispatch(setSearch(titleInput));
     toast.success("Search submitted!");
   };
 
