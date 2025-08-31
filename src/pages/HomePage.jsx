@@ -1,10 +1,10 @@
-import Hero from "../components/Hero/Hero";
+import SearchBox from "../components/SearchBox/SearchBox";
 import SectionRecipes from "../components/SectionRecipes/SectionRecipes";
 
 export default function HomePage() {
   return (
     <div>
-      {/* <Hero /> */}
+      <SearchBox />
       <SectionRecipes />
     </div>
   );

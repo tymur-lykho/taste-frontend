@@ -14,6 +14,7 @@ import authReducer from "./auth/slice";
 import RecipesReducer from "./recipes/slice";
 
 // import filtersReducer from "./filters/slice";
+
 // import your reducers
 
 const persistConfig = {
