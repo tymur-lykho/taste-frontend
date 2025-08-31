@@ -1,19 +1,18 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectError,
-  selectIsLoading,
   selectRecipes,
+  selectIsLoading,
 } from "../../redux/recipes/selectors";
-import css from "./RecipesList.module.css";
-import RecipesCard from "../RecipeCard/RecipeCard";
-import { useEffect } from "react";
 import { fetchRecipes } from "../../redux/recipes/operations";
+import RecipesCard from "../RecipeCard/RecipeCard";
+import css from "./RecipesList.module.css";
 
 export default function RecipesList() {
   const dispatch = useDispatch();
   const recipes = useSelector(selectRecipes);
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+
 
   useEffect(() => {
     dispatch(fetchRecipes());
@@ -21,18 +20,18 @@ export default function RecipesList() {
 
   return (
     <div>
-      {isLoading && <p>Please wait, loading...</p>}
-      {error && <p>error</p>}
-      {recipes ? (
+      {isLoading && <p>Loading...</p>}
+
+      {recipes && recipes.length ? (
         <ul className={css.list}>
           {recipes.map((recipe) => (
-            <li className={css.item} key={recipe._id}>
+            <li className={css.item} key={recipe._id || recipe.id}>
               <RecipesCard recipe={recipe} />
             </li>
           ))}
         </ul>
       ) : (
-        <p>No found recipe</p>
+        !isLoading && <p>No found recipe</p>
       )}
     </div>
   );

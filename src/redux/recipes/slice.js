@@ -1,5 +1,14 @@
+// src/redux/recipes/slice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchRecipes } from "./operations";
+
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+  page: 0,        
+  hasNext: true,  
+};
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -8,23 +17,26 @@ const handlePending = (state) => {
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  state.error = action.payload || action.error.message;
+  state.error = action.payload || action.error?.message || "Request failed";
 };
 
 const slice = createSlice({
   name: "recipes",
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipes.pending, handlePending)
       .addCase(fetchRecipes.fulfilled, (state, action) => {
+        const { list = [], page = 1, hasNext = false } = action.payload || {};
+
+        if (page === 1) state.items = list;
+        else state.items.push(...list);
+
+        state.page = page;
+        state.hasNext = !!hasNext;
         state.isLoading = false;
         state.error = null;
-        state.items = action.payload.data;
       })
       .addCase(fetchRecipes.rejected, handleRejected);
   },

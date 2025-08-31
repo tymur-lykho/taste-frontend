@@ -1,0 +1,32 @@
+.btn {
+  display: block;
+  margin: 24px auto 48px;     
+  width: 372px;             
+  height: 54px;              
+
+  border-radius: 8px;
+  padding: 16px;
+
+  background: #8B5E3C;
+  color: #ffffff;
+
+  font-family: var(--font-family, inherit);
+  font-weight: 600;
+  font-size: 18px;
+
+  border: none;
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .btn {
+    width: 338px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .btn {
+    width: 289px;
+  }
+}
