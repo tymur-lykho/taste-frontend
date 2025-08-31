@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
-axios.defaults.baseURL = "http://localhost:8080/api/";
+axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
+// axios.defaults.baseURL = "http://localhost:3000/api/";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -27,12 +27,14 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk("auth/login", async (data, thunkAPI) => {
   try {
     const res = await axios.post("/auth/login", data);
-    setAuthHeader(res.data.token);
-    return res.data;
+    setAuthHeader(res.data.data.accessToken);
+    await thunkAPI.dispatch(fetchCurrentUser());
+    return res.data.data.accessToken;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
@@ -55,6 +57,19 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const res = await axios.get("/users/current");
+      return res.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/fetchCurrentUser",
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get("/users/current");
+      console.log("fetchUser ", res.data.data);
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -52,7 +52,7 @@
         padding: 0 16px;
         display: flex;
         flex-direction: column;
-        z-index: 1000;
+
         align-items: center;
         padding-top: 32px;
     }
