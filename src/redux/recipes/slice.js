@@ -24,16 +24,16 @@ const slice = createSlice({
     myRecipes: [],
     favoriteRecipes: [],
     isLoading: false,
+    isMyRecipesLoaded: false,
+    isFavoritesLoaded: false,
     error: null,
   },
   reducers: {
-    clearError: (state) => {
-      state.error = null;
-    },
-    clearRecipes: (state) => {
-      state.items = [];
+    clearRecipesState: (state) => {
       state.myRecipes = [];
       state.favoriteRecipes = [];
+      state.isMyRecipesLoaded = false;
+      state.isFavoritesLoaded = false;
     },
   },
   extraReducers: (builder) => {
@@ -49,29 +49,53 @@ const slice = createSlice({
       .addCase(fetchOwnRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // state.items = state.items.filter((item) => item.owner === action.payload.owner);
-        state.myRecipes = action.payload.data.data;
-        console.log("OwnRecipes:", action.payload.data.data);
+        state.myRecipes = action.payload.data;
+        state.isMyRecipesLoaded = true;
       })
       .addCase(fetchOwnRecipes.rejected, handleRejected)
       .addCase(fetchFavoritesRecipes.pending, handlePending)
       .addCase(fetchFavoritesRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.favoriteRecipes = action.payload.data.data;
-        console.log("FavoritesRecipes:", action.payload);
+        state.favoriteRecipes = action.payload.data;
+        state.isFavoritesLoaded = true;
+        console.log("FavoritesRecipes:", action.payload.data); //
       })
       .addCase(fetchFavoritesRecipes.rejected, handleRejected)
+      .addCase(addFavoritesRecipe.pending, handlePending)
       .addCase(addFavoritesRecipe.fulfilled, (state, action) => {
-        state.favoriteRecipes.push(action.payload.data.data);
-      })
-      .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.favoriteRecipes = state.favoriteRecipes.filter(
-          (recipe) => recipe._id !== action.payload.data.data
+        state.isLoading = false;
+        state.error = null;
+
+        const addRecipeToFavorites = action.payload.data;
+        state.favoriteRecipes.push(addRecipeToFavorites);
+        state.items = state.items.map(recipe =>
+          recipe._id === addRecipeToFavorites._id
+            ? { ...recipe, isFavorite: true }
+            : recipe
         );
-      });
+        console.log("ADD-Recipes:", addRecipeToFavorites); //
+      })
+      .addCase(addFavoritesRecipe.rejected, handleRejected)
+      .addCase(removeFromFavorites.pending, handlePending)
+      .addCase(removeFromFavorites.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+      
+        const recipeId = action.payload;
+        state.favoriteRecipes = state.favoriteRecipes.filter(
+        (recipe) => recipe._id !== recipeId
+        );
+        state.items = state.items.map(recipe =>
+        recipe._id === recipeId 
+          ? { ...recipe, isFavorite: false } 
+          : recipe
+        );
+        console.log("DELETE:", recipeId); //
+      })
+      .addCase(removeFromFavorites.rejected, handleRejected);
   },
 });
 
-export const { clearError, clearRecipes } = slice.actions;
+export const { clearRecipesState } = slice.actions;
 export default slice.reducer;

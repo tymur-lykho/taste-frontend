@@ -3,6 +3,7 @@ import {
   selectError,
   selectIsLoading,
   selectRecipes,
+  selectRecipesCount,
 } from "../../redux/recipes/selectors";
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
@@ -12,6 +13,7 @@ import { fetchRecipes } from "../../redux/recipes/operations";
 export default function RecipesList() {
   const dispatch = useDispatch();
   const recipes = useSelector(selectRecipes);
+  const recipesCount = useSelector(selectRecipesCount);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
@@ -21,6 +23,7 @@ export default function RecipesList() {
 
   return (
     <div>
+      <p className={css.count}>{recipesCount} recipes</p>
       {isLoading && <p>Please wait, loading...</p>}
       {error && <p>error</p>}
       {recipes ? (

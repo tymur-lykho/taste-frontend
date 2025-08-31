@@ -1,5 +1,4 @@
 // import { useEffect } from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchOwnRecipes, fetchFavoritesRecipes } from "../redux/recipes/operations";
 // // import { selectMyRecipes, selectFavoriteRecipes } from "../redux/recipes/selectors";
@@ -28,7 +27,7 @@ import MyRecipes from "../components/MyRecipes/MyRecipes";
 //           <Route path="/own" element={<SectionRecipes />} />
 //           <Route path="/favorite" element={<FavoriteRecipes />} />
 //       </Routes>
-      
+
 //       {recipes.length > 0 ? (
 //         <ul>
 //           {recipes.map((recipe) => (
@@ -45,16 +44,17 @@ import MyRecipes from "../components/MyRecipes/MyRecipes";
 // };
 
 import SectionRecipes from "../components/SectionRecipes/SectionRecipes";
+import { Outlet } from "react-router-dom";
 import NavigationProfile from "../components/NavigationProfile/NavigationProfile";
+import Container from "../reuseable/Container/Container";
 
 export default function UserPage() {
   return (
-    <div>
+    <Container>
       <NavigationProfile />
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
-    </div>
+    </Container>
   );
-};
-
+}

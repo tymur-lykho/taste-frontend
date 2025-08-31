@@ -1,5 +1,4 @@
 import RecipesList from "../RecipesList/RecipesList";
-import MyRecipes from "../MyRecipes/MyRecipes.jsx";
 import css from "./SectionRecipes.module.css";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
@@ -20,7 +19,6 @@ export default function SectionRecipes({ type }) {
       <h2 className={css.title}>{title}</h2>
       {/* <Filters filters={filters} /> */}
       <RecipesList />
-      <MyRecipes/>
     </Container>
   );
 }

@@ -115,3 +115,7 @@
   fill: none;
   flex-shrink: 0;
 }
+
+.active {
+  border-color: var(--light-brown-background);
+}

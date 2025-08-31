@@ -1,11 +1,12 @@
 import { Toaster } from "react-hot-toast";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useEffect, lazy, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо підключити тут
 
 import { refreshUser } from "../../redux/auth/operations.js";
-import { selectIsRefreshing } from "../../redux/auth/selectors.js";
+import { selectIsRefreshing, selectUser } from "../../redux/auth/selectors.js";
+import { clearRecipesState } from "../../redux/recipes/slice.js";
 
 import HomePage from "../../pages/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
@@ -24,10 +25,17 @@ import NotFoundPage from "../../pages/NotFoundPage.jsx";
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user) {
+      dispatch(clearRecipesState());
+    }
+  }, [user, dispatch]);
 
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
@@ -59,6 +67,7 @@ function App() {
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
               }>
+                <Route index element={<Navigate to="own" replace />} />
                 <Route path="own" element={<MyRecipes/>} />
                 <Route path="favorites" element={<FavoriteRecipes/>} />
             </Route>

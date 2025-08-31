@@ -30,3 +30,11 @@
     height: 431px;
   }
 }
+
+.count {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--black-text-color);
+  margin: 16px 0;
+}
