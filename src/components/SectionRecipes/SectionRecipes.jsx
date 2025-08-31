@@ -12,7 +12,7 @@ export default function SectionRecipes({ type }) {
   if (type === "profile" && isAuthenticated) {
     title = "My profile";
   } else {
-    title = "Recepies";
+    title = "Recipes";
   }
 
   return (

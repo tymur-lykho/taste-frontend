@@ -5,8 +5,6 @@
   align-items: center;
   justify-content: center;
   padding: 79px 0;
-  max-width: 393px;
-  margin: 0 auto;
 }
 @media only screen and (min-width: 768px) {
   .container {
@@ -25,24 +23,67 @@
 }
 @media (max-width: 768px) {
   .img {
-    width: 361px;
+    max-width: 361px;
     height: 267px;
+  }
+}
+@media (max-width: 345px) {
+  .img {
+    max-width: 100%;
+    height: auto;
   }
 }
 .box {
   text-align: center;
-  margin-bottom: 16px;
 }
 .title {
-  margin: 0;
   font-weight: 600;
   font-size: 48px;
-  line-height: 110%;
-  color: black;
+  line-height: 1.1;
+  color: var(--black-text-color);
 }
 .text {
-  margin: 0;
   font-weight: 400;
   font-size: 24px;
-  color: black;
+  color: var(--black-text-color);
+}
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  max-width: 361px;
+  height: 56px;
+
+  object-fit: contain;
+  color: var(--white-text-color);
+  background: var(--light-brown-background);
+  font-weight: 600;
+  font-size: 18px;
+}
+@media (max-width: 345px) {
+  .link {
+    font-size: 16px;
+    gap: 8px;
+    padding: 12px;
+    height: auto;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .link {
+    width: 340px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .link {
+    width: 288px;
+  }
+}
+
+.link:hover {
+  background-color: #7b5433;
+  transition: background-color 250ms ease-in;
 }

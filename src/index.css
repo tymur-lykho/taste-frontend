@@ -46,7 +46,7 @@
   --btn-text-color: var(--white-text-color);
   --hover-btn-background: #6d554b;
   --box-shadow-active-btn: 0 0 0 6px rgba(78, 70, 180, 0.12),
-    0 0 0 2px var(--white);
+    0 0 0 2px var(--white-text-color);
   --active-background-btn: var(--light-brown-background);
   --disabled-background-btn: #9b6c43;
   /* Button var white(Outline)*/
@@ -85,6 +85,7 @@
     --text-s-size: 12px;
   }
 }
+
 
 h1,
 h2,
