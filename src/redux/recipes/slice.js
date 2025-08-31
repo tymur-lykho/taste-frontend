@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchOwnRecipes, fetchRecipes } from "./operations";
+import {
+  fetchRecipes,
+  fetchOwnRecipes,
+  fetchFavoritesRecipes,
+  addFavoritesRecipe,
+  removeFromFavorites,
+} from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -15,8 +21,20 @@ const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    myRecipes: [],
+    favoriteRecipes: [],
     isLoading: false,
     error: null,
+  },
+  reducers: {
+    clearError: (state) => {
+      state.error = null;
+    },
+    clearRecipes: (state) => {
+      state.items = [];
+      state.myRecipes = [];
+      state.favoriteRecipes = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -32,11 +50,28 @@ const slice = createSlice({
         state.isLoading = false;
         state.error = null;
         // state.items = state.items.filter((item) => item.owner === action.payload.owner);
-        state.items = action.payload;
-        console.log("OwnRecipes:", action.payload)
+        state.myRecipes = action.payload.data.data;
+        console.log("OwnRecipes:", action.payload.data.data);
       })
-      .addCase(fetchOwnRecipes.rejected, handleRejected);
+      .addCase(fetchOwnRecipes.rejected, handleRejected)
+      .addCase(fetchFavoritesRecipes.pending, handlePending)
+      .addCase(fetchFavoritesRecipes.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.favoriteRecipes = action.payload.data.data;
+        console.log("FavoritesRecipes:", action.payload);
+      })
+      .addCase(fetchFavoritesRecipes.rejected, handleRejected)
+      .addCase(addFavoritesRecipe.fulfilled, (state, action) => {
+        state.favoriteRecipes.push(action.payload.data.data);
+      })
+      .addCase(removeFromFavorites.fulfilled, (state, action) => {
+        state.favoriteRecipes = state.favoriteRecipes.filter(
+          (recipe) => recipe._id !== action.payload.data.data
+        );
+      });
   },
 });
 
+export const { clearError, clearRecipes } = slice.actions;
 export default slice.reducer;

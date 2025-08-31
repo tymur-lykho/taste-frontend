@@ -13,6 +13,8 @@ import LoginPage from "../../pages/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage.jsx";
 import UserPage from "../../pages/UserPage.jsx";
 import AddRecipePage from "../../pages/AddRecipePage.jsx";
+import MyRecipes from "../MyRecipes/MyRecipes.jsx";
+import FavoriteRecipes from "../FavoriteRecipes/FavoriteRecipes.jsx";
 
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
@@ -53,12 +55,13 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/profile"
+            <Route path="/profile"
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
-              }
-            />
+              }>
+                <Route path="own" element={<MyRecipes/>} />
+                <Route path="favorites" element={<FavoriteRecipes/>} />
+            </Route>
             <Route
               path="/add-recipe"
               element={
