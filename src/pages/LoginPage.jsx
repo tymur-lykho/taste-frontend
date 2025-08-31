@@ -1,3 +1,10 @@
+import LoginForm from "../components/LoginForm/LoginForm";
+import Container from "../reuseable/Container/Container";
+
 export default function LoginPage() {
-  return <h1>Login Page</h1>;
+  return (
+    <Container>
+      <LoginForm />
+    </Container>
+  );
 }
