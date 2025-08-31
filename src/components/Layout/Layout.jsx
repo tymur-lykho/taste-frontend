@@ -1,5 +1,6 @@
 import AppBar from "../AppBar/AppBar";
 import Footer from "../Footer/Footer";
+import css from "./Layout.module.css";
 // import { useEffect } from "react";
 // import { fetchRecipes } from "../../redux/recipes/operations";
 // import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +19,7 @@ export default function Layout({ children }) {
   return (
     <>
       <AppBar />
-      <main>{children}</main>
+      <main className={css.main}>{children}</main>
       <Footer />
     </>
   );
