@@ -5,11 +5,11 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     user: {
-      name: null,
+      name: "Yurii",
       email: null,
     },
     token: null,
-    isLoggedIn: false,
+    isLoggedIn: true,
     isRefreshing: false,
   },
   extraReducers: (builder) => {

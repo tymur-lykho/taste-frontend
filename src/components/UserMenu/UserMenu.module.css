@@ -178,18 +178,21 @@
     justify-content: space-between;
     gap: 16px;
     width: 314px;
+
 }
 
 .confirmBtn {
     border-radius: 8px;
     padding: 8px;
-    width: 314px;
+    width: 100%;
+    max-width: 314px;
     height: 54px;
     font-size: var(--text-size);
     font-weight: var(--weight-semibold);
     color: var(--white-text-color);
-    background: #ff4d4d;
-    order: 2
+    background: var(--error-color);
+    box-sizing: border-box;
+    order: 2;
 }
 
 .confirmBtn:hover {
@@ -251,31 +254,7 @@
     }
 }
 
-@media (min-width: 768px) {
-    .actions {
-        flex-direction: row;
-        align-items: center;
-        gap: 27px;
-    }
-}
 
-@media (min-width: 768px) {
-    .confirmBtn {
-        width: 164px;
-        height: 44px;
-        padding: 8px 16px;
-        order: initial;
-    }
-}
-
-@media (min-width: 768px) {
-    .cancelBtn {
-        width: 164px;
-        height: 44px;
-        padding: 8px 16px;
-        order: initial;
-    }
-}
 
 /* ================= Великий десктоп ================= */
 

@@ -57,6 +57,7 @@ export default function RecipesCard({ recipe }) {
           className="white"
           title="Add to favorite"
           aria-label="Add to favorite"
+          onClick={handleClickAddFavorite}
         >
           <Icon className={css["save-icon"]} iconName="save-icon" />
         </Button>

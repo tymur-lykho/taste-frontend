@@ -6,18 +6,16 @@ import Icon from "../../Icon/Icon";
 import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 
-export default function BurgerMenu({ isLoggedIn }) {
+export default function BurgerMenu({ isLoggedIn, openModal }) {
+  // _отримує openModal_
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
-  const getActiveNavLink = ({ isActive }) => {
-    return clsx(css.mobileNavLink, isActive && css.activeNavLink);
-  };
+  const getActiveNavLink = ({ isActive }) =>
+    clsx(css.mobileNavLink, isActive && css.activeNavLink);
 
   return (
     <div className={css.burgerWrapper}>
-      {/* Кнопка бургер */}
       <button
         className={clsx(css.burgerBtn)}
         onClick={toggleMenu}
@@ -30,8 +28,6 @@ export default function BurgerMenu({ isLoggedIn }) {
         )}
       </button>
 
-      {/* Випадаюче меню */}
-
       {isOpen && (
         <nav className={css.mobileNav}>
           <ul className={css.mobileNavList}>
@@ -42,7 +38,7 @@ export default function BurgerMenu({ isLoggedIn }) {
             </li>
             <li className={css.mobileNavItem}>
               {isLoggedIn ? (
-                <UserMenu toggleMenu={toggleMenu} />
+                <UserMenu toggleMenu={toggleMenu} openModal={openModal} /> // _UserMenu отримує openModal_
               ) : (
                 <AuthNav toggleMenu={toggleMenu} />
               )}

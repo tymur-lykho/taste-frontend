@@ -20,15 +20,15 @@
     gap: 20px;
     border-radius: 32px;
     padding: 56px 24px 32px 24px;
-
-    width: 362px;
+    width: 100%;
+    max-width: 362px;
     /* height: 316px; */
     background: var(--light-beige-background);
 }
 
 @media (min-width: 768px) {
     .modal {
-        width: 420px;
+        min-width: 420px;
         /* height: 236px; */
         padding: 56px 32px 32px 32px;
     }
