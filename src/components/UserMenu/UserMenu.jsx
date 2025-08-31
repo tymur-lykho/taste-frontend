@@ -11,10 +11,12 @@ export default function UserMenu({ toggleMenu, openModal }) {
   const userName = user.name;
   const userInitial = userName[0];
 
-  const getActiveLinkClass = ({ isActive }) =>
-    clsx(css.link, isActive && css.active);
-  const getActiveLinkaddRecipe = ({ isActive }) =>
-    clsx(css.addRecipe, isActive && css.addRecipeActive);
+  const getActiveLinkClass = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
+  const getActiveLinkaddRecipe = ({ isActive }) => {
+    return clsx(css.addRecipe, isActive && css.addRecipeActive);
+  };
 
   const handleLogoutClick = () => {
     toggleMenu?.(); // _закриває бургер-меню на мобілці_
