@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import css from "./UserMenu.module.css";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
@@ -6,13 +7,18 @@ import { selectUser } from "../../redux/auth/selectors";
 import Icon from "../../Icon/Icon";
 
 export default function UserMenu({ toggleMenu, openModal }) {
+  const location = useLocation();
   // _отримує openModal від Navigation/AppBar_
   const user = useSelector(selectUser);
   const userName = user.name;
   const userInitial = userName[0];
 
-  const getActiveLinkClass = ({ isActive }) =>
-    clsx(css.link, isActive && css.active);
+  const getActiveLinkClass = () => {
+    // лінк активний, якщо поточний шлях починається з /profile
+    const isActive = location.pathname.startsWith("/profile");
+    return clsx(css.link, isActive && css.active);
+  };
+
   const getActiveLinkaddRecipe = ({ isActive }) =>
     clsx(css.addRecipe, isActive && css.addRecipeActive);
 
@@ -25,7 +31,7 @@ export default function UserMenu({ toggleMenu, openModal }) {
     <ul className={css.navLinks}>
       <li className={css.order1}>
         <NavLink
-          to="/profile"
+          to="/profile/own"
           className={getActiveLinkClass}
           onClick={toggleMenu}
         >

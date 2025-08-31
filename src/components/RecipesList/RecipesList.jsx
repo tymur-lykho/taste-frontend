@@ -7,32 +7,44 @@ import {
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
 import { useEffect } from "react";
-import { fetchRecipes } from "../../redux/recipes/operations";
+import {
+  fetchRecipes,
+  fetchFavoritesRecipes,
+  fetchOwnRecipes,
+} from "../../redux/recipes/operations";
+import { resetRecipes } from "../../redux/recipes/slice";
 
-export default function RecipesList() {
+export default function RecipesList({ type }) {
   const dispatch = useDispatch();
   const recipes = useSelector(selectRecipes);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchRecipes());
-  }, [dispatch]);
+    dispatch(resetRecipes()); // очистити старі
+    if (type === "favorites") {
+      dispatch(fetchFavoritesRecipes());
+    } else if (type === "own") {
+      dispatch(fetchOwnRecipes());
+    } else {
+      dispatch(fetchRecipes());
+    }
+  }, [dispatch, type]);
 
   return (
     <div>
       {isLoading && <p>Please wait, loading...</p>}
-      {error && <p>error</p>}
-      {recipes ? (
+      {error && <p>{error}</p>}
+      {recipes?.length ? (
         <ul className={css.list}>
           {recipes.map((recipe) => (
             <li className={css.item} key={recipe._id}>
-              <RecipesCard recipe={recipe} />
+              <RecipesCard recipe={recipe} type={type} />
             </li>
           ))}
         </ul>
       ) : (
-        <p>No found recipe</p>
+        !isLoading && <p> No found recipe</p>
       )}
     </div>
   );

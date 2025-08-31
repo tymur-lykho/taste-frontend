@@ -10,7 +10,7 @@ import css from "./RecipeCard.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import Icon from "../../reuseable/Icon/Icon";
 
-export default function RecipesCard({ recipe }) {
+export default function RecipesCard({ recipe, type }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -53,14 +53,16 @@ export default function RecipesCard({ recipe }) {
         >
           Learn more
         </Button>
-        <Button
-          className="white"
-          title="Add to favorite"
-          aria-label="Add to favorite"
-          onClick={handleClickAddFavorite}
-        >
-          <Icon className={css["save-icon"]} iconName="save-icon" />
-        </Button>
+        {type !== "own" && (
+          <Button
+            className="white"
+            title="Add to favorite"
+            aria-label="Add to favorite"
+            onClick={handleClickAddFavorite}
+          >
+            <Icon className={css["save-icon"]} iconName="save-icon" />
+          </Button>
+        )}
       </div>
       {isOpenModal && (
         <ModalWindow onClose={closeModal}>

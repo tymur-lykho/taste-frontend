@@ -7,17 +7,17 @@ import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо п
 import { refreshUser } from "../../redux/auth/operations.js";
 import { selectIsRefreshing } from "../../redux/auth/selectors.js";
 
-import HomePage from "../../pages/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
-import LoginPage from "../../pages/LoginPage.jsx";
-import RegistrationPage from "../../pages/RegistrationPage.jsx";
-import UserPage from "../../pages/UserPage.jsx";
-import AddRecipePage from "../../pages/AddRecipePage.jsx";
-
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
 
-import NotFoundPage from "../../pages/NotFoundPage.jsx";
+// 👇 lazy-імпорти сторінок
+const HomePage = lazy(() => import("../../pages/HomePage.jsx"));
+const LoginPage = lazy(() => import("../../pages/LoginPage.jsx"));
+const RegistrationPage = lazy(() => import("../../pages/RegistrationPage.jsx"));
+const ProfilePage = lazy(() => import("../../pages/ProfilePage.jsx"));
+const AddRecipePage = lazy(() => import("../../pages/AddRecipePage.jsx"));
+const NotFoundPage = lazy(() => import("../../pages/NotFoundPage.jsx"));
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +31,6 @@ function App() {
     <strong>Refreshing user...</strong>
   ) : (
     <>
-      {" "}
       <SvgSprite /> {/* 👈 важливо підключити тут */}
       <Toaster />
       <Layout>
@@ -54,9 +53,9 @@ function App() {
               }
             />
             <Route
-              path="/profile"
+              path="/profile/:recipeType"
               element={
-                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+                <PrivateRoute redirectTo="/login" component={<ProfilePage />} />
               }
             />
             <Route
@@ -69,7 +68,6 @@ function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
-            {/* Other routes */}
           </Routes>
         </Suspense>
       </Layout>
