@@ -24,7 +24,7 @@ const fields = [
     name: "password",
     placeholder: "*********",
     type: "password",
-    icon: "pswd-icon",
+    icon: { show: "icon-eye", hide: "pswd-icon" },
   },
 ];
 
