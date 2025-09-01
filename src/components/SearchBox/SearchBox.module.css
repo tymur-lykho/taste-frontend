@@ -8,7 +8,7 @@
   padding: 128px 32px 98px;
   color: var(--white-text-color);
   background-image: linear-gradient(to right, #000000e6, #0000004d),
-    url("/src/images/main-mob.webp");
+    url("/images/main-mob.webp");
   background-size: cover;
   background-position: center 25%;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .heroSection {
     background-image: linear-gradient(to right, #000000e6, #0000004d),
-      url("/src/images/main-mob@2x.webp");
+      url("/images/main-mob@2x.webp");
   }
 }
 
@@ -118,13 +118,13 @@
   .heroSection {
     padding: 128px 0;
     background-image: linear-gradient(to right, #000000e6, #0000004d),
-      url("/src/images/main-tab.webp");
+      url("/images/main-tab.webp");
   }
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .heroSection {
       background-image: linear-gradient(to right, #000000e6, #0000004d),
-        url("/src/images/main-tab@2x.webp");
+        url("/images/main-tab@2x.webp");
     }
   }
 
@@ -160,13 +160,13 @@
 @media screen and (min-width: 1440px) {
   .heroSection {
     background-image: linear-gradient(to right, #000000e6, #0000004d),
-      url("/src/images/main-desk.webp");
+      url("/images/main-desk.webp");
   }
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .heroSection {
       background-image: linear-gradient(to right, #000000e6, #0000004d),
-        url("/src/images/main-desk@2x.webp");
+        url("/images/main-desk@2x.webp");
     }
   }
 
