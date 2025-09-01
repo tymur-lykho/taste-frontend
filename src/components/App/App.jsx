@@ -75,7 +75,7 @@ function App() {
               }
             />
             <Route
-              path="/profile"
+              path="/profile/:recipeType"
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
               }

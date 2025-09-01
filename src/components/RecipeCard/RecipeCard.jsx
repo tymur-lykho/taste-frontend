@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 import clsx from "clsx";
@@ -9,8 +9,10 @@ import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import Icon from "../../reuseable/Icon/Icon";
+import { addToFavoritesRecipes } from "../../redux/recipes/operations";
 
-export default function RecipesCard({ recipe }) {
+export default function RecipesCard({ recipe, type }) {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -27,6 +29,7 @@ export default function RecipesCard({ recipe }) {
       return;
     }
     // Logic to add recipe to favorites !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    dispatch(addToFavoritesRecipes(recipe._id));
   };
   return (
     <div className={css["card"]}>
@@ -53,14 +56,16 @@ export default function RecipesCard({ recipe }) {
         >
           Learn more
         </Button>
-        <Button
-          className="white"
-          title="Add to favorite"
-          aria-label="Add to favorite"
-          onClick={handleClickAddFavorite}
-        >
-          <Icon className={css["save-icon"]} iconName="save-icon" />
-        </Button>
+        {type !== "own" && (
+          <Button
+            className="white"
+            title="Add to favorite"
+            aria-label="Add to favorite"
+            onClick={handleClickAddFavorite}
+          >
+            <Icon className={css["save-icon"]} iconName="save-icon" />
+          </Button>
+        )}
       </div>
       {isOpenModal && (
         <ModalWindow onClose={closeModal}>

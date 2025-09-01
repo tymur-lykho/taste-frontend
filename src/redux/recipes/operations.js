@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
+// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
 
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchAll",
@@ -42,6 +42,7 @@ export const fetchFavoritesRecipes = createAsyncThunk(
         area: area || undefined,
       };
       const response = await axios.get("recipes/favorites", { params });
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -89,6 +90,19 @@ export const fetchFavoritesId = createAsyncThunk(
     try {
       const response = await axios.get("users/current");
       return response.data.data.favoriteRecipes;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addToFavoritesRecipes = createAsyncThunk(
+  "recipes/addToFavoritesRecipes",
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await axios.post(`/recipes/favorites/${recipeId}`);
+      console.log(response.data);
+      return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -4,8 +4,10 @@ import {
   fetchFavoritesRecipes,
   fetchOwnRecipes,
   fetchRecipes,
+  addToFavoritesRecipes,
 } from "./operations";
 import { fetchFilteredRecipes } from "../filters/operations";
+import { logout } from "../auth/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -52,8 +54,80 @@ const handleFavoritesIdFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
+const handleFavoritesRecipesFulfilled = (state, action) => {
+  const payloadData = action.payload.data;
+  const {
+    data: recipesArray,
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasNextPage,
+    hasPreviousPage,
+  } = payloadData;
 
+  if (state.pagination.page === 1) {
+    state.favorites = recipesArray;
+  } else {
+    state.favorites = [...state.favorites, ...recipesArray];
+  }
 
+  state.pagination = {
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasPreviousPage,
+    hasNextPage,
+  };
+  state.isLoading = false;
+  state.error = null;
+};
+const resetRecipesState = (state) => {
+  state.items = [];
+  state.own = [];
+  state.favorites = [];
+  state.favoritesId = [];
+  state.pagination = {
+    page: 1,
+    perPage: 12,
+    totalPages: 0,
+    totalItems: 0,
+    hasPreviousPage: false,
+    hasNextPage: false,
+  };
+  state.isLoading = false;
+  state.error = null;
+};
+const handleOwnRecipesFulfilled = (state, action) => {
+  const payloadData = action.payload.data;
+  const {
+    data: recipesArray,
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasNextPage,
+    hasPreviousPage,
+  } = payloadData;
+
+  if (state.pagination.page === 1) {
+    state.own = recipesArray;
+  } else {
+    state.own = [...state.own, ...recipesArray];
+  }
+
+  state.pagination = {
+    page,
+    perPage,
+    totalPages,
+    totalItems,
+    hasPreviousPage,
+    hasNextPage,
+  };
+  state.isLoading = false;
+  state.error = null;
+};
 
 const slice = createSlice({
   name: "recipes",
@@ -109,14 +183,20 @@ const slice = createSlice({
       .addCase(fetchFilteredRecipes.fulfilled, handleFulfilled)
       .addCase(fetchFilteredRecipes.rejected, handleRejected)
       .addCase(fetchOwnRecipes.pending, handlePending)
-      .addCase(fetchOwnRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchOwnRecipes.fulfilled, handleOwnRecipesFulfilled)
       .addCase(fetchOwnRecipes.rejected, handleRejected)
       .addCase(fetchFavoritesRecipes.pending, handlePending)
-      .addCase(fetchFavoritesRecipes.fulfilled, handleFulfilled)
+      .addCase(fetchFavoritesRecipes.fulfilled, handleFavoritesRecipesFulfilled)
       .addCase(fetchFavoritesRecipes.rejected, handleRejected)
       .addCase(fetchFavoritesId.pending, handlePending)
       .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
-      .addCase(fetchFavoritesId.rejected, handleRejected);
+      .addCase(fetchFavoritesId.rejected, handleRejected)
+      .addCase(logout.fulfilled, resetRecipesState)
+      .addCase(addToFavoritesRecipes.rejected, handleRejected)
+      .addCase(addToFavoritesRecipes.pending, handlePending)
+      .addCase(addToFavoritesRecipes.fulfilled, (state, action) => {
+        state.favorites.push(action.payload);
+      });
   },
 });
 

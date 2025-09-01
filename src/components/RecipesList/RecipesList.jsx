@@ -4,6 +4,8 @@ import {
   selectIsLoading,
   selectPagination,
   selectRecipes,
+  selectOwn,
+  selectFavorites,
 } from "../../redux/recipes/selectors";
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
@@ -12,15 +14,24 @@ import { Button } from "../Button/Button";
 import clsx from "clsx";
 import { useSearchParams } from "react-router-dom";
 
-
-export default function RecipesList() {
+export default function RecipesList({ type }) {
   const dispatch = useDispatch();
-  const recipes = useSelector(selectRecipes);
+  const recipesAll = useSelector(selectRecipes);
+  const recipesOwn = useSelector(selectOwn);
+  const recipesFavorites = useSelector(selectFavorites);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const pagination = useSelector(selectPagination);
   const [searchParams, setSearchParams] = useSearchParams();
- 
+
+  let recipes = [];
+  if (type === "own") {
+    recipes = recipesOwn;
+  } else if (type === "favorites") {
+    recipes = recipesFavorites;
+  } else {
+    recipes = recipesAll;
+  }
 
   const handleLoadMore = () => {
     if (!pagination.hasNextPage || isLoading) {
@@ -31,7 +42,6 @@ export default function RecipesList() {
     // setSearchParams(newUrl);
     dispatch(nextPage());
   };
-
   return (
     <div>
       {isLoading && <p>Please wait, loading...</p>}

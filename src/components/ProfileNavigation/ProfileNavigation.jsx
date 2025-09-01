@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
-import css from "./UserBar.module.css";
+import css from "./ProfileNavigation.module.css";
 import clsx from "clsx";
 
-export default function UserBar() {
+export default function ProfileNavigation() {
   const getActiveLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
   return (
-    <nav className={css.userBar}>
+    <nav className={css.navProfile}>
       <NavLink to="/profile/own" className={getActiveLinkClass}>
         My Recipes
       </NavLink>

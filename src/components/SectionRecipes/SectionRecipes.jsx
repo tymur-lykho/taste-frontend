@@ -67,7 +67,7 @@ export default function SectionRecipes() {
     dispatch(setCategories(categoriesFromUrl));
     dispatch(setIngredients(ingredientsFromUrl));
     dispatch(setArea(areaFromUrl));
-  }, []);
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     dispatch(resetRecipes());
@@ -86,7 +86,7 @@ export default function SectionRecipes() {
 
   useEffect(() => {
     if (type === "own" && isAuthenticated) {
-      dispatch(fetchOwnRecipes(userId));
+      dispatch(fetchOwnRecipes());
     } else if (type === "favorites" && isAuthenticated) {
       dispatch(fetchFavoritesRecipes());
     } else {
