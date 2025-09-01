@@ -116,7 +116,7 @@ export default function SectionRecipes() {
   const title = isProfile && isAuthenticated ? "My profile" : "Recipes";
 
   return (
-    <Container>
+    <Container className={css.recipes}>
       <h2 className={css.title}>{title}</h2>
       {isProfile && <UserBar />}
       <Filters />

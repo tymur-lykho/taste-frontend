@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <div>
       {/* <Hero /> */}
-      <SectionRecipes className={css["section - recipes"]} />
+      <SectionRecipes className={css["section-recipes"]} />
     </div>
   );
 }

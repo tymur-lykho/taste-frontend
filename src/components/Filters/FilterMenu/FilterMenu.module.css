@@ -95,7 +95,7 @@
     position: static;
     display: flex;
     flex-direction: row-reverse;
-    align-items: center;
+    align-items: baseline;
     width: 480px;
     height: 33px;
     gap: 24px;

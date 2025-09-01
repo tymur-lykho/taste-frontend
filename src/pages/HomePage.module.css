@@ -1,5 +1,6 @@
 .section-recipes {
   display: flex;
   justify-content: center;
+  gap: 16px;
   padding-block: 48px;
 }

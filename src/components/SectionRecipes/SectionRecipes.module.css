@@ -1,3 +1,11 @@
+.recipes {
+    padding-top: 48px;
+    flex-direction: column;
+    display: flex;
+    gap: 16px;
+}
+
+
 .title {
     text-align: start;
 }

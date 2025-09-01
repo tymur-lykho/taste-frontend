@@ -28,6 +28,7 @@ import {
   fetchIngredients,
 } from "../../redux/filters/operations.js";
 import { fetchFavoritesId } from "../../redux/recipes/operations.js";
+import RecipePage from "../../pages/RecipePage/RecipePage.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -89,6 +90,7 @@ function App() {
                 />
               }
             />
+            <Route path="/recipes/:id" element={<RecipePage />} />
             <Route path="*" element={<NotFoundPage />} />
             {/* Other routes */}
           </Routes>

@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  deleteFavoritesId,
   fetchFavoritesId,
   fetchFavoritesRecipes,
   fetchOwnRecipes,
   fetchRecipes,
+  postFavoritesId,
 } from "./operations";
 import { fetchFilteredRecipes } from "../filters/operations";
 
@@ -53,14 +55,13 @@ const handleFavoritesIdFulfilled = (state, action) => {
   state.error = null;
 };
 
-
-
 const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
     own: [],
     favorites: [],
+    ownId: [],
     favoritesId: [],
     pagination: {
       page: 1,
@@ -88,6 +89,7 @@ const slice = createSlice({
         state.pagination.page -= 1;
       }
     },
+
     resetRecipes(state) {
       state.items = [];
       state.pagination = {
@@ -98,6 +100,16 @@ const slice = createSlice({
         hasPreviousPage: false,
         hasNextPage: false,
       };
+    },
+    addFavoriteLocally(state, action) {
+      if (!state.favoritesId.includes(action.payload)) {
+        state.favoritesId.push(action.payload);
+      }
+    },
+    removeFavoriteLocally(state, action) {
+      state.favoritesId = state.favoritesId.filter(
+        (id) => id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -116,11 +128,33 @@ const slice = createSlice({
       .addCase(fetchFavoritesRecipes.rejected, handleRejected)
       .addCase(fetchFavoritesId.pending, handlePending)
       .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
-      .addCase(fetchFavoritesId.rejected, handleRejected);
+      .addCase(fetchFavoritesId.rejected, handleRejected)
+      .addCase(postFavoritesId.pending, handlePending)
+      .addCase(postFavoritesId.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(postFavoritesId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || action.error.message;
+      })
+      .addCase(deleteFavoritesId.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteFavoritesId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload || action.error.message;
+      });
   },
 });
 
-export const { setPage, setPerPage, nextPage, prevPage, resetRecipes } =
-  slice.actions;
+export const {
+  setPage,
+  setPerPage,
+  nextPage,
+  prevPage,
+  resetRecipes,
+  addFavoriteLocally,
+  removeFavoriteLocally,
+} = slice.actions;
 
 export default slice.reducer;

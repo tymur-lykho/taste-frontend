@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
 import clsx from "clsx";
@@ -9,25 +9,72 @@ import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import Icon from "../../reuseable/Icon/Icon";
+import { selectFavoritesId } from "../../redux/recipes/selectors";
+import {
+  deleteFavoritesId,
+  fetchFavoritesId,
+  postFavoritesId,
+} from "../../redux/recipes/operations";
+import { useNavigate } from "react-router-dom";
+import {
+  addFavoriteLocally,
+  removeFavoriteLocally,
+} from "../../redux/recipes/slice";
 
 export default function RecipesCard({ recipe }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const isFavorites = useSelector(selectFavoritesId);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isProcessing, setIsProcessing] = useState(false);
+  const id = recipe._id;
 
-  const closeModal = () => {
+  const isFavorite = isFavorites.includes(id);
+  console.log("🚀 ~ RecipesCard ~ isFavorites:", isFavorites);
+
+  const closeModal = useCallback(() => {
     setIsOpenModal(false);
-  };
+  }, []);
+
   const openModal = () => {
     setIsOpenModal(true);
   };
 
-  const handleClickAddFavorite = () => {
+  const handleClickAddFavorite = useCallback(async () => {
     if (!isLoggedIn) {
       openModal();
       return;
     }
-    // Logic to add recipe to favorites !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    if (isProcessing) return; 
+    setIsProcessing(true);
+
+    try {
+      if (isFavorite) {
+        dispatch(removeFavoriteLocally(id));
+        await dispatch(deleteFavoritesId(id)).unwrap();
+      } else {
+        dispatch(addFavoriteLocally(id));
+        await dispatch(postFavoritesId(id)).unwrap();
+      }
+    } catch (error) {
+  
+      if (isFavorite) {
+        dispatch(addFavoriteLocally(id)); 
+      } else {
+        dispatch(removeFavoriteLocally(id)); 
+      }
+      
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [isLoggedIn, isFavorite, isProcessing, dispatch, id, openModal]);
+
+  const handleClickLearnMore = () => {
+    navigate(`/recipes/${id}`);
   };
+
   return (
     <div className={css["card"]}>
       <div className={css.tumb}>
@@ -50,16 +97,21 @@ export default function RecipesCard({ recipe }) {
           className={clsx("white", css.md289)}
           title="Learn more"
           aria-label="Learn more"
+          onClick={handleClickLearnMore}
         >
           Learn more
         </Button>
         <Button
-          className="white"
+          className={isFavorite ? "fill" : "white"}
           title="Add to favorite"
           aria-label="Add to favorite"
           onClick={handleClickAddFavorite}
+          disabled={isProcessing}
         >
-          <Icon className={css["save-icon"]} iconName="save-icon" />
+          <Icon
+            className={isFavorite ? css.saveFill : css.saveWhite}
+            iconName="save-icon"
+          />
         </Button>
       </div>
       {isOpenModal && (

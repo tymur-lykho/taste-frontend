@@ -82,7 +82,8 @@
   -webkit-box-orient: vertical;
 }
 
-.card-cal {}
+.card-cal {
+}
 
 .card-btn {
   display: flex;
@@ -106,7 +107,6 @@
   @media (min-width: 1440px) {
     width: 216px;
   }
-
 }
 
 .title {
@@ -156,8 +156,6 @@
   height: 54px;
   font-size: var(--text-l-size);
   font-weight: var(--weight-semibold);
-
-
 }
 
 .loginBtn:hover,
@@ -165,9 +163,7 @@
   text-decoration: none;
 }
 
-
 @media (min-width: 768px) {
-
   .loginBtn,
   .registerBtn {
     padding: 8px;
@@ -177,10 +173,15 @@
   }
 }
 
-.save-icon {
+.saveWhite {
   width: 24px;
   height: 24px;
   stroke: var(--black-text-color);
   fill: none;
   flex-shrink: 0;
+}
+
+.saveFill {
+  stroke: var(--white-text-color);
+ fill: var(--light-brown-background);
 }
