@@ -1,4 +1,5 @@
 import Icon from "../../reuseable/Icon/Icon";
+
 import css from "./EyeButton.module.css";
 
 export default function EyeButton({ show, setShow }) {

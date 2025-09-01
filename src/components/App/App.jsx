@@ -1,34 +1,49 @@
 import { Toaster } from "react-hot-toast";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо підключити тут
 
+import SvgSprite from "../../SvgSprite/SvgSprite.jsx";
+
+import {
+  selectIsLoggedIn,
+  selectIsRefreshing,
+  selectUser,
+} from "../../redux/auth/selectors.js";
+
+import {
+  fetchCategories,
+  fetchIngredients,
+} from "../../redux/filters/operations.js";
 import { refreshUser } from "../../redux/auth/operations.js";
-import { selectIsRefreshing, selectUser } from "../../redux/auth/selectors.js";
 import { clearRecipesState } from "../../redux/recipes/slice.js";
+import { fetchFavoritesId } from "../../redux/recipes/operations.js";
+
+import Layout from "../Layout/Layout.jsx";
 
 import HomePage from "../../pages/HomePage.jsx";
-import Layout from "../Layout/Layout.jsx";
-import LoginPage from "../../pages/LoginPage.jsx";
-import RegistrationPage from "../../pages/RegistrationPage.jsx";
 import UserPage from "../../pages/UserPage.jsx";
-import AddRecipePage from "../../pages/AddRecipePage.jsx";
 import MyRecipes from "../MyRecipes/MyRecipes.jsx";
 import FavoriteRecipes from "../FavoriteRecipes/FavoriteRecipes.jsx";
-
-import { RestrictedRoute } from "../RestrictedRoute.jsx";
-import { PrivateRoute } from "../PrivateRoute.jsx";
-
+import AddRecipePage from "../../pages/AddRecipePage.jsx";
+import LoginPage from "../../pages/LoginPage.jsx";
+import RegistrationPage from "../../pages/RegistrationPage.jsx";
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
+
+import { PrivateRoute } from "../PrivateRoute.jsx";
+import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(fetchCategories());
+    dispatch(fetchIngredients());
+    //dispatch(fetchArea);
   }, [dispatch]);
 
   useEffect(() => {
@@ -37,12 +52,17 @@ function App() {
     }
   }, [user, dispatch]);
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchFavoritesId());
+    }
+  }, [dispatch, isLoggedIn]);
+
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
   ) : (
     <>
-      {" "}
-      <SvgSprite /> {/* 👈 важливо підключити тут */}
+      <SvgSprite />
       <Toaster />
       <Layout>
         <Suspense fallback={null}>
@@ -63,13 +83,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile"
+            <Route
+              path="/profile"
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />
-              }>
-                <Route index element={<Navigate to="own" replace />} />
-                <Route path="own" element={<MyRecipes/>} />
-                <Route path="favorites" element={<FavoriteRecipes/>} />
+              }
+            >
+              <Route index element={<Navigate to="own" replace />} />
+              <Route path="own" element={<MyRecipes />} />
+              <Route path="favorites" element={<FavoriteRecipes />} />
             </Route>
             <Route
               path="/add-recipe"
@@ -81,7 +103,6 @@ function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
-            {/* Other routes */}
           </Routes>
         </Suspense>
       </Layout>

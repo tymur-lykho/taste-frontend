@@ -1,14 +1,22 @@
 import clsx from "clsx";
-import { Button } from "../Button/Button";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+// import { selectIsLoggedIn } from "../../redux/auth/selectors";
+
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
-import css from "./RecipeCard.module.css";
+import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
 import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { addFavoritesRecipe, removeFromFavorites } from "../../redux/recipes/operations";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+  addFavoritesRecipe,
+  removeFromFavorites,
+} from "../../redux/recipes/operations";
 import { selectFavoriteRecipes } from "../../redux/recipes/selectors";
+
+import css from "./RecipeCard.module.css";
 
 export default function RecipesCard({ recipe }) {
   const dispatch = useDispatch();
@@ -17,11 +25,11 @@ export default function RecipesCard({ recipe }) {
 
   const [isFavorite, setIsFavorite] = useState(recipe.isFavorite || false);
 
-  const isOwnRecipesRoute = location.pathname.includes('/profile/own');
+  const isOwnRecipesRoute = location.pathname.includes("/profile/own");
   // const isFavoritesRecipesRoute = location.pathname.includes('/profile/favorites');
 
   useEffect(() => {
-    const favorite = favoriteRecipes.some(fav => fav._id === recipe._id);
+    const favorite = favoriteRecipes.some((fav) => fav._id === recipe._id);
     setIsFavorite(favorite);
   }, [recipe._id, favoriteRecipes]);
 
@@ -74,19 +82,19 @@ export default function RecipesCard({ recipe }) {
         </Button>
 
         {!isOwnRecipesRoute && (
-          <Button 
+          <Button
             className={clsx("white", {
-              [css.favoriteActive]: isFavorite
-            })} 
-            title={isFavorite ? "Remove from favorite" : "Add to favorite"} 
+              [css.favoriteActive]: isFavorite,
+            })}
+            title={isFavorite ? "Remove from favorite" : "Add to favorite"}
             aria-label={isFavorite ? "Remove from favorite" : "Add to favorite"}
             onClick={handleToggleFavorite}
           >
-            <Icon 
+            <Icon
               className={clsx(css["save-icon"], {
-                [css.active]: isFavorite
-              })} 
-              iconName="save-icon" 
+                [css.active]: isFavorite,
+              })}
+              iconName="save-icon"
             />
           </Button>
         )}
@@ -110,7 +118,6 @@ export default function RecipesCard({ recipe }) {
           </Button>
         )} */}
 
-
         {/* {!isOwnRecipesRoute && (
           {recipe.isFavorite ? (
         <button 
@@ -131,7 +138,31 @@ export default function RecipesCard({ recipe }) {
         <Icon className={css["save-icon"]} iconName="save-icon" />
         </Button>)} */}
       </div>
+      {/* {isOpenModal && (
+        <ModalWindow onClose={closeModal}>
+          <h3 className={css.title}>Error while saving</h3>
+          <p className={css.message}>
+            To save this recipe, you need to <br />
+            authorizate first
+          </p>
+          <div className={css.actions}>
+            <Button
+              type="link"
+              to="/login"
+              className={clsx(css.loginBtn, "white")}
+            >
+              Log in
+            </Button>
+            <Button
+              type="link"
+              to="/register"
+              className={clsx(css.registerBtn, "fill")}
+            >
+              Register
+            </Button>
+          </div>
+        </ModalWindow>
+      )} */}
     </div>
   );
 }
-

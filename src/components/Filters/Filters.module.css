@@ -1,0 +1,29 @@
+.filterPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.catSelect {
+  width: 50px;
+}
+
+.wrapFilters {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  height: 222px;
+}
+
+.total {
+  display: none;
+  font-weight: var(--weight-semibold);
+  @media (min-width: 768px) {
+    display: inline-block;
+  }
+}
+
+.menu {
+  position: relative;
+}

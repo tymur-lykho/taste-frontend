@@ -1,11 +1,16 @@
-import { Form, Formik } from "formik";
-import Input from "../../reuseable/Input/Input";
 import * as Yup from "yup";
-import css from "./LoginForm.module.css";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { Form, Formik } from "formik";
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import Input from "../../reuseable/Input/Input";
+
 import { login } from "../../redux/auth/operations";
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+
+import css from "./LoginForm.module.css";
 
 const initialValues = {
   email: "",
@@ -24,7 +29,7 @@ const fields = [
     name: "password",
     placeholder: "*********",
     type: "password",
-    icon: "pswd-icon",
+    icon: { show: "icon-eye", hide: "pswd-icon" },
   },
 ];
 
@@ -35,6 +40,8 @@ const loginValidationSchema = Yup.object({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
 
   const onSubmit = async (values, actions) => {
     try {
@@ -46,6 +53,13 @@ export default function LoginForm() {
       toast.error("Something went wrong", { id: "login" });
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className={css.form}>
       <h2 className={css.title}>Login</h2>
