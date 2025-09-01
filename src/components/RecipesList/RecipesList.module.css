@@ -38,3 +38,36 @@
   color: var(--black-text-color);
   margin: 16px 0;
 }
+
+.btn {
+  color: var(--white-text-color);
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  height: unset;
+  background-color: var(--light-brown-background);
+  transition: var(--base-transition), box-shadow 300ms ease-in-out;
+  margin-top: 24px;
+
+  @media (min-width: 768px) {
+     padding: 16px 123px;
+     width: auto;
+     margin: 24px auto 0;
+  }
+  @media (min-width: 1440px) {
+       padding: 16px 95.5px;
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--hover-btn-background);
+  }
+  &:active {
+    box-shadow: var(--box-shadow-active-btn)
+  }
+}
+
+.wrapper {
+  margin-bottom: 48px;
+}

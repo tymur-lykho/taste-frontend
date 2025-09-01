@@ -1,39 +1,33 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectError,
   selectIsLoading,
-  selectRecipes,
-  selectRecipesCount,
 } from "../../redux/recipes/selectors";
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
-import { useEffect } from "react";
-import { fetchRecipes } from "../../redux/recipes/operations";
+import Loader from "../Loader/Loader";
 
-export default function RecipesList() {
-  const dispatch = useDispatch();
-  const recipes = useSelector(selectRecipes);
-  const recipesCount = useSelector(selectRecipesCount);
+export default function RecipesList({hasNextPage, totalItems, data, setPage}) {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchRecipes());
-  }, [dispatch]);
-
   return (
-    <div>
-      <p className={css.count}>{recipesCount} recipes</p>
-      {isLoading && <p>Please wait, loading...</p>}
+    <div className={css.wrapper}>
+      <p className={css.count}>{totalItems} recipes</p>
+     
       {error && <p>error</p>}
-      {recipes ? (
-        <ul className={css.list}>
-          {recipes.map((recipe) => (
-            <li className={css.item} key={recipe._id}>
-              <RecipesCard recipe={recipe} />
-            </li>
-          ))}
-        </ul>
+      {data ? (
+        <>
+          <ul className={css.list}>
+            {data.map((recipe) => (
+              <li className={css.item} key={recipe._id}>
+                <RecipesCard recipe={recipe} />
+              </li>
+            ))}
+          </ul>
+           {isLoading && <Loader/>}
+          {hasNextPage && !isLoading && <button className={css.btn} onClick={() => {setPage(number => number +1)}}>Load More</button>}
+        </>
       ) : (
         <p>No found recipe</p>
       )}

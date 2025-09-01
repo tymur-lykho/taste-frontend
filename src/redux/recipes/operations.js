@@ -5,10 +5,10 @@ axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
 
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchAll",
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await axios.get("/recipes");
-      return response.data.data;
+      const response = await axios.get("/recipes", {params:{page}});
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -17,10 +17,11 @@ export const fetchRecipes = createAsyncThunk(
 
 export const fetchOwnRecipes = createAsyncThunk(
   "recipes/fetchOwn",
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await axios.get("/recipes/my");
-      return response.data.data;
+      const response = await axios.get("/recipes/my", {params:{page}});
+      console.log("OWN:", response.data)
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -29,10 +30,23 @@ export const fetchOwnRecipes = createAsyncThunk(
 
 export const fetchFavoritesRecipes = createAsyncThunk(
   "recipes/fetchFavorites",
+  async (page, thunkAPI) => {
+    try {
+      const response = await axios.get("/recipes/favorites", { params: { page } });
+      console.log("FAVOR:", response.data)
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchFavoritesId = createAsyncThunk(
+  "recipes/fetchFavoritesId",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/recipes/favorites");
-      return response.data.data;
+      const {data} = await axios.get("/users/current");
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -43,9 +57,9 @@ export const addFavoritesRecipe = createAsyncThunk(
   "recipes/addFavoritesRecipe",
   async (recipeId, thunkAPI) => {
     try {
-      const response = await axios.post(`/recipes/favorites/${recipeId}`);
-      console.log("RES.ADD DATA:", response.data);
-      return response.data;
+      await axios.post(`/recipes/favorites/${recipeId}`);
+      console.log("RES.ADD DATA:", recipeId);
+      return recipeId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -56,9 +70,8 @@ export const removeFromFavorites = createAsyncThunk(
   "recipes/removeFromFavorites",
   async (recipeId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/recipes/favorites/${recipeId}`);
-      console.log("RES.DELETE FULL:", response);
-      console.log("RES.DELETE DATA:", response.data);
+      await axios.delete(`/recipes/favorites/${recipeId}`);
+      console.log("RES.DELETE DATA:", recipeId);
       return recipeId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -8,7 +8,7 @@ import { refreshUser } from "../../redux/auth/operations.js";
 import { selectIsRefreshing, selectUser } from "../../redux/auth/selectors.js";
 import { clearRecipesState } from "../../redux/recipes/slice.js";
 
-import HomePage from "../../pages/HomePage.jsx";
+import HomePage from "../../pages/HomePage/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
 import LoginPage from "../../pages/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage.jsx";
@@ -16,6 +16,7 @@ import UserPage from "../../pages/UserPage.jsx";
 import AddRecipePage from "../../pages/AddRecipePage.jsx";
 import MyRecipes from "../MyRecipes/MyRecipes.jsx";
 import FavoriteRecipes from "../FavoriteRecipes/FavoriteRecipes.jsx";
+import { fetchFavoritesId } from "../../redux/recipes/operations.js";
 
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
@@ -33,7 +34,8 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      dispatch(clearRecipesState());
+      dispatch(clearRecipesState())
+      dispatch(fetchFavoritesId());
     }
   }, [user, dispatch]);
 

@@ -7,6 +7,10 @@ export const selectRecipes = createSelector([selectRecipesState], (recipes) => r
 export const selectMyRecipes = createSelector([selectRecipesState], (recipes) => recipes.myRecipes); // (state) => state.recipes.myRecipes;
 export const selectFavoriteRecipes = createSelector([selectRecipesState], (recipes) => recipes.favoriteRecipes); //(state) => state.recipes.favoriteRecipes;
 
+export const selectPage = createSelector([selectRecipesState], (recipes) => recipes.page);
+export const selectHasNextPage = createSelector([selectRecipesState], (recipes) => recipes.hasNextPage);
+export const selectTotalItems = createSelector([selectRecipesState], (recipes) => recipes.totalItems);
+
 export const selectIsLoading = createSelector([selectRecipesState], (recipes) => recipes.isLoading); // (state) => state.recipes.isLoading;
 
 export const selectError = createSelector([selectRecipesState], (recipes) => recipes.error); // (state) => state.recipes.error;
