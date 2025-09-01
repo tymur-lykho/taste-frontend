@@ -95,7 +95,7 @@
   /* flex-grow: 0; */
   height: 40px;
   flex: 1 1 auto;
-  width: auto;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 267px;
@@ -242,4 +242,9 @@
       opacity: 0.3;
       box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
     }
+}
+
+.card-link-btn {
+  display: block;
+  width: 100%;
 }

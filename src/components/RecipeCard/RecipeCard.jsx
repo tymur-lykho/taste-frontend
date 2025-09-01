@@ -7,7 +7,7 @@ import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -73,13 +73,16 @@ export default function RecipesCard({ recipe }) {
         <Cal cal={recipe.calories} />
       </div>
       <div className={css["card-btn"]}>
-        <Button
-          className={clsx("white", css.md289)}
-          title="Learn more"
-          aria-label="Learn more"
-        >
-          Learn more
-        </Button>
+        <Link className={css["card-link-btn"]} to={`/recipe/${recipe._id}`} >
+          <Button
+            title="Learn more"
+            aria-label="Learn more"
+            className={clsx("white", css.md289)}
+          >
+            Learn more
+          </Button>
+        </Link>
+
 
         {!isOwnRecipesRoute && (
           <Button
