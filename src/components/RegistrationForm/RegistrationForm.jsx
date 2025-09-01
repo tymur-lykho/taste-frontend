@@ -10,6 +10,7 @@ import EyeButton from "../EyeButton/EyeButton";
 import { register } from "../../redux/auth/operations";
 
 import css from "./RegistrationForm.module.css";
+import { Link } from "react-router-dom";
 
 export default function RegistrationForm() {
   const [showPass, setShowPass] = useState(false);
