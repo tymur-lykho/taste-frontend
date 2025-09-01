@@ -20,5 +20,7 @@ export const selectMyRecipesCount = createSelector([selectMyRecipes], (myRecipes
 export const selectFavoriteRecipesCount = createSelector([selectFavoriteRecipes], (favoriteRecipes) => favoriteRecipes.length); // (state) => state.recipes.favoriteRecipes.length;
 
 // Перевірка чи рецепт в улюблених
-// export const selectIsRecipeFavorite = (state, recipeId) => 
-//   state.recipes.favoriteRecipes.some(recipe => recipe.id === recipeId);
+export const selectIsRecipeFavorite = createSelector(
+  [selectFavoritesId, (state, recipeId) => recipeId],
+  (favoritesId, recipeId) => favoritesId.includes(recipeId)
+);

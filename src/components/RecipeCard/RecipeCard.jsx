@@ -1,13 +1,18 @@
 import clsx from "clsx";
-import { Button } from "../Button/Button";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+// import { selectIsLoggedIn } from "../../redux/auth/selectors";
+
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
-import css from "./RecipeCard.module.css";
+import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavoritesRecipe, removeFromFavorites } from "../../redux/recipes/operations";
 import { selectFavoriteRecipes } from "../../redux/recipes/selectors";
+
+import css from "./RecipeCard.module.css";
 
 export default function RecipesCard({ recipe }) {
   const dispatch = useDispatch();
@@ -56,7 +61,7 @@ export default function RecipesCard({ recipe }) {
         </Button>
 
         {!isOwnRecipesRoute && (
-          <Button 
+          <Button
             className={clsx("white", {
               [css.favoriteActive]: favorite
             })} 
@@ -64,7 +69,7 @@ export default function RecipesCard({ recipe }) {
             aria-label={favorite ? "Remove from favorite" : "Add to favorite"}
             onClick={handleToggleFavorite}
           >
-            <Icon 
+            <Icon
               className={clsx(css["save-icon"], {
                 [css.active]: favorite
               })} 
@@ -76,4 +81,3 @@ export default function RecipesCard({ recipe }) {
     </div>
   );
 }
-
