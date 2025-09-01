@@ -29,6 +29,7 @@ import AddRecipePage from "../../pages/AddRecipePage.jsx";
 import LoginPage from "../../pages/LoginPage.jsx";
 import RegistrationPage from "../../pages/RegistrationPage.jsx";
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
+import RecipePage from "../../pages/RecipePage.jsx";
 
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
@@ -102,6 +103,7 @@ function App() {
                 />
               }
             />
+              <Route path="/recipe/:id" element={<RecipePage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
