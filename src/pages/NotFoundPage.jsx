@@ -1,5 +1,5 @@
 import css from "./NotFoundPage.module.css";
-import notFoundImg from "../images/not-found.png";
+import notFoundImg from "../images/not-found.webp";
 import Container from "../reuseable/Container/Container";
 import { Link } from "react-router-dom";
 import Icon from "../Icon/Icon";
