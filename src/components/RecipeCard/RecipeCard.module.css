@@ -177,3 +177,69 @@
   fill: none;
   flex-shrink: 0;
 }
+
+.save-icon.active {
+  stroke: var(--white-text-color);
+  fill: var(--light-brown-background);
+
+  /* &:hover,
+    &:focus,
+    &:focus-visible {
+      fill: var(--hover-btn-background);
+    }
+  
+    &:active {
+      fill: var(--active-background-btn);
+    }
+  
+    &:disabled {
+      fill: var(--disabled-background-btn);
+      opacity: 0.3;
+      box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+    } */
+}
+
+.favoriteActive {
+  border-color: var(--light-brown-background);
+  background-color: var(--light-brown-background);
+
+  /* &:hover,
+  &:focus,
+  &:focus-visible {
+    background-color: var(--hover-btn-background);
+    border-color: var(--hover-btn-background);
+  }
+  &:active {
+    background-color: var(--active-background-btn);
+    box-shadow: --box-shadow-active-btn;
+  }
+  &:disabled {
+    background-color: var(--disabled-background-btn);
+    opacity: 0.3;
+    box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+  } */
+}
+
+.save-icon.active,
+.favoriteActive {
+  &:hover,
+    &:focus,
+    &:focus-visible {
+      background-color: var(--hover-btn-background);
+      border-color: var(--hover-btn-background);
+      fill: var(--hover-btn-background);
+    }
+  
+    &:active {
+      background-color: var(--active-background-btn);
+      box-shadow: --box-shadow-active-btn;
+      fill: var(--active-background-btn);
+    }
+  
+    &:disabled {
+      background-color: var(--disabled-background-btn);
+      fill: var(--disabled-background-btn);
+      opacity: 0.3;
+      box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+    }
+}

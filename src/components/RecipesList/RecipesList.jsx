@@ -9,6 +9,7 @@ import {
   selectIsLoading,
   selectPagination,
   selectRecipes,
+  selectRecipesCount,
 } from "../../redux/recipes/selectors";
 import { nextPage } from "../../redux/recipes/slice";
 
@@ -19,6 +20,7 @@ export default function RecipesList() {
 
   const error = useSelector(selectError);
   const recipes = useSelector(selectRecipes);
+  const recipesCount = useSelector(selectRecipesCount);
   const isLoading = useSelector(selectIsLoading);
   const pagination = useSelector(selectPagination);
 
@@ -36,6 +38,7 @@ export default function RecipesList() {
 
   return (
     <div>
+      <p className={css.count}>{recipesCount} recipes</p>
       {isLoading && <p>Please wait, loading...</p>}
       {error && <p>{error}</p>}
       {recipes ? (
