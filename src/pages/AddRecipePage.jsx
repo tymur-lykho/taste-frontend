@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -42,6 +43,7 @@ const validationSchema = Yup.object({
 export default function AddRecipePage() {
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  const [status, setStatus] = useState(null); // для повідомлення про успіх/помилку
 
   useEffect(() => {
     async function fetchData() {
@@ -69,12 +71,45 @@ export default function AddRecipePage() {
         cookingTime: "",
         calories: "",
         category: "",
-        ingredients: [{ name: "", amount: "" }],
+        ingredients: [],
         instructions: "",
+        currentIngredientName: "",
+        currentIngredientAmount: "",
       }}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log("Form data:", values);
+      onSubmit={async (values, { resetForm }) => {
+        try {
+          const payload = {
+            title: values.title,
+            description: values.description,
+            cookingTime: values.cookingTime,
+            calories: values.calories,
+            category: values.category,
+            instructions: values.instructions,
+            ingredients: values.ingredients,
+          };
+
+          const res = await fetch("/api/recipes", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!res.ok) {
+            throw new Error("Failed to submit recipe");
+          }
+
+          const data = await res.json();
+          console.log("Recipe saved:", data);
+
+          setStatus({ success: "Recipe successfully published!" });
+          resetForm();
+        } catch (error) {
+          console.error(error);
+          setStatus({ error: "Something went wrong. Try again." });
+        }
       }}
     >
       {({ values }) => (
@@ -160,84 +195,79 @@ export default function AddRecipePage() {
           <div className={styles.ingredients}>
             <h2 className={styles["title-inf"]}>Ingredients</h2>
             <FieldArray name="ingredients">
-              {({ push, remove, form: { values } }) => (
+              {({ push, remove }) => (
                 <div>
-                  {values.ingredients.map((ingredient, index) => (
-                    <div key={index} className={styles["ingredient-row"]}>
-                      <div className={styles["ingredient-col"]}>
-                        <label>Name</label>
-                        <Field as="select" name={`ingredients[${index}].name`}>
-                          <option value="">Select...</option>
-                          {ingredients.map((ing) => (
-                            <option key={ing.id} value={ing.name}>
-                              {ing.name}
-                            </option>
-                          ))}
-                        </Field>
-                        <ErrorMessage
-                          name={`ingredients[${index}].name`}
-                          component="div"
-                          className={styles.error}
-                        />
-                      </div>
-                      <div className={styles["ingredient-col-amount"]}>
-                        <label>Amount</label>
-                        <Field
-                          name={`ingredients[${index}].amount`}
-                          type="text"
-                          placeholder="100g"
-                        />
-                        <ErrorMessage
-                          name={`ingredients[${index}].amount`}
-                          component="div"
-                          className={styles.error}
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => remove(index)}
-                        className={styles["remove-btn"]}
-                      >
-                        Remove
-                      </button>
+                  <div className={styles["ingredient-row"]}>
+                    <div className={styles["ingredient-col"]}>
+                      <label>Name</label>
+                      <Field as="select" name="currentIngredientName">
+                        <option value="">Select...</option>
+                        {ingredients.map((ing) => (
+                          <option key={ing.id} value={ing.name}>
+                            {ing.name}
+                          </option>
+                        ))}
+                      </Field>
                     </div>
-                  ))}
 
-                  <button
-                    type="button"
-                    className={styles["add-btn"]}
-                    onClick={() => push({ name: "", amount: "" })}
-                  >
-                    Add new Ingredient
-                  </button>
+                    <div className={styles["ingredient-col-amount"]}>
+                      <label>Amount</label>
+                      <Field
+                        name="currentIngredientAmount"
+                        type="text"
+                        placeholder="100g"
+                      />
+                    </div>
+                  </div>
 
-                  {/* Таблиця інгредієнтів */}
-                  <table className={styles["ingredient-table"]}>
-                    <thead>
-                      <tr>
-                        <th>Name:</th>
-                        <th>Amount:</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {values.ingredients.map((ingredient, index) => (
-                        <tr key={index}>
-                          <td>{ingredient.name}</td>
-                          <td>{ingredient.amount}</td>
-                          <td>
-                            <button
-                              type="button"
-                              onClick={() => remove(index)}
-                              className={styles["remove-btn"]}
-                            >
-                              🗑
-                            </button>
-                          </td>
+                  <div className={styles["ingredient-actions"]}>
+                    <button
+                      type="button"
+                      className={styles["add-btn"]}
+                      onClick={() => {
+                        if (
+                          values.currentIngredientName &&
+                          values.currentIngredientAmount
+                        ) {
+                          push({
+                            name: values.currentIngredientName,
+                            amount: values.currentIngredientAmount,
+                          });
+                        }
+                      }}
+                    >
+                      Add new Ingredient
+                    </button>
+                  </div>
+
+                  {values.ingredients.length > 0 && (
+                    <table className={styles["ingredient-table"]}>
+                      <thead>
+                        <tr>
+                          <th>Name:</th>
+                          <th>Amount:</th>
+                          <th></th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {values.ingredients.map((ingredient, index) => (
+                          <tr key={index}>
+                            <td>{ingredient.name}</td>
+                            <td>{ingredient.amount}</td>
+                            <td>
+                              <button
+                                type="button"
+                                onClick={() => remove(index)}
+                                className={styles["remove-btn"]}
+                              >
+                                🗑
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
                 </div>
               )}
             </FieldArray>
@@ -261,6 +291,12 @@ export default function AddRecipePage() {
           <button type="submit" className={styles["submit-btn"]}>
             Publish Recipe
           </button>
+
+          {/* повідомлення про результат */}
+          {status?.success && (
+            <div className={styles.success}>{status.success}</div>
+          )}
+          {status?.error && <div className={styles.error}>{status.error}</div>}
         </Form>
       )}
     </Formik>
