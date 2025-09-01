@@ -1,0 +1,154 @@
+.recipePage {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 32px;
+  width: 100%;
+}
+
+.tumbImg {
+  width: 100%;
+  height: 276px;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    height: 624px;
+  }
+}
+
+.cardRecipe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  order: 1;
+}
+.wrapRecipe {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .titleProduct {
+    order: 0;
+  }
+  .tumbImg {
+    order: 2;
+  }
+  .cardRecipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    order: 3;
+  }
+
+  .right {
+    flex-direction: row;
+    order: 1;
+    width: 704px;
+  }
+
+  .wrapRecipe {
+    order: 2;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cardRecipe {
+    display: flex;
+    flex-wrap: nowrap;
+
+    /* gap: 32px; */
+    align-items: start;
+  }
+
+  .wrapRecipe {
+    grid-column: 1;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 393px;
+    grid-column: 2;
+  }
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.generalInfo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: var(--radius-i-sm);
+  background-color: var(--card-background);
+
+  @media (min-width: 768px) {
+    width: 431px;
+  }
+  @media (min-width: 1440px) {
+    width: 393px;
+  }
+}
+
+.wrapRecipe {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 21.5px;
+}
+
+.list {
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stepsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  line-height: 1.55;
+}
+
+
+.btnSav {
+  width: 100%;
+max-width: 393px;
+height: 56px;
+
+@media (min-width: 768px) {
+width: 249px;
+}
+}

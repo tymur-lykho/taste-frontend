@@ -31,7 +31,6 @@ export default function RecipesCard({ recipe }) {
   const id = recipe._id;
 
   const isFavorite = isFavorites.includes(id);
-  console.log("🚀 ~ RecipesCard ~ isFavorites:", isFavorites);
 
   const closeModal = useCallback(() => {
     setIsOpenModal(false);
@@ -47,7 +46,7 @@ export default function RecipesCard({ recipe }) {
       return;
     }
 
-    if (isProcessing) return; 
+    if (isProcessing) return;
     setIsProcessing(true);
 
     try {
@@ -59,20 +58,18 @@ export default function RecipesCard({ recipe }) {
         await dispatch(postFavoritesId(id)).unwrap();
       }
     } catch (error) {
-  
       if (isFavorite) {
-        dispatch(addFavoriteLocally(id)); 
+        dispatch(addFavoriteLocally(id));
       } else {
-        dispatch(removeFavoriteLocally(id)); 
+        dispatch(removeFavoriteLocally(id));
       }
-      
     } finally {
       setIsProcessing(false);
     }
   }, [isLoggedIn, isFavorite, isProcessing, dispatch, id, openModal]);
 
   const handleClickLearnMore = () => {
-    navigate(`/recipes/${id}`);
+    navigate(`/recipes/${id}`, { state: recipe });
   };
 
   return (
