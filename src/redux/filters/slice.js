@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchArea, fetchCategories, fetchIngredients } from "./operations";
+import { fetchCategories, fetchIngredients } from "./operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -64,13 +64,6 @@ const filterSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchIngredients.rejected, handleRejected);
-    // .addCase(fetchArea.pending, handlePending)
-    // .addCase(fetchArea.fulfilled , (state, { payload }) => {
-    //   state.area = action.payload;
-    //   state.isLoading = false;
-    //   state.error = null;
-    // })
-    // .addCase(fetchArea.rejected, handleRejected);
   },
 });
 

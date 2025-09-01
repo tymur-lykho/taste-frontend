@@ -1,38 +1,40 @@
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SvgSprite from "../../SvgSprite/SvgSprite.jsx"; // 👈 важливо підключити тут
 
-import { refreshUser } from "../../redux/auth/operations.js";
+import SvgSprite from "../../SvgSprite/SvgSprite.jsx";
+
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
 } from "../../redux/auth/selectors.js";
+// import { selectFilterData } from "../../redux/filters/selectors.js";
 
-import HomePage from "../../pages/HomePage.jsx";
-import Layout from "../Layout/Layout.jsx";
-import LoginPage from "../../pages/LoginPage.jsx";
-import RegistrationPage from "../../pages/RegistrationPage.jsx";
-import UserPage from "../../pages/UserPage.jsx";
-import AddRecipePage from "../../pages/AddRecipePage.jsx";
-
-import { RestrictedRoute } from "../RestrictedRoute.jsx";
-import { PrivateRoute } from "../PrivateRoute.jsx";
-
-import NotFoundPage from "../../pages/NotFoundPage.jsx";
-import { selectFilterData } from "../../redux/filters/selectors.js";
 import {
-  fetchArea,
+  // fetchArea,
   fetchCategories,
   fetchIngredients,
 } from "../../redux/filters/operations.js";
+import { refreshUser } from "../../redux/auth/operations.js";
 import { fetchFavoritesId } from "../../redux/recipes/operations.js";
+
+import Layout from "../Layout/Layout.jsx";
+
+import HomePage from "../../pages/HomePage.jsx";
+import UserPage from "../../pages/UserPage.jsx";
+import LoginPage from "../../pages/LoginPage.jsx";
+import NotFoundPage from "../../pages/NotFoundPage.jsx";
+import AddRecipePage from "../../pages/AddRecipePage.jsx";
+import RegistrationPage from "../../pages/RegistrationPage.jsx";
+
+import { PrivateRoute } from "../PrivateRoute.jsx";
+import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const filterData = useSelector(selectFilterData);
+  // const filterData = useSelector(selectFilterData);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
@@ -52,7 +54,6 @@ function App() {
     <strong>Refreshing user...</strong>
   ) : (
     <>
-      {" "}
       <SvgSprite /> {/* 👈 важливо підключити тут */}
       <Toaster />
       <Layout>
@@ -90,7 +91,6 @@ function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
-            {/* Other routes */}
           </Routes>
         </Suspense>
       </Layout>

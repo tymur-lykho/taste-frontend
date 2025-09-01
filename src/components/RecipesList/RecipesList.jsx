@@ -1,26 +1,28 @@
+import clsx from "clsx";
+// import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import RecipesCard from "../RecipeCard/RecipeCard";
+
 import {
   selectError,
   selectIsLoading,
   selectPagination,
   selectRecipes,
 } from "../../redux/recipes/selectors";
-import css from "./RecipesList.module.css";
-import RecipesCard from "../RecipeCard/RecipeCard";
 import { nextPage } from "../../redux/recipes/slice";
-import { Button } from "../Button/Button";
-import clsx from "clsx";
-import { useSearchParams } from "react-router-dom";
 
+import css from "./RecipesList.module.css";
 
 export default function RecipesList() {
   const dispatch = useDispatch();
+
+  const error = useSelector(selectError);
   const recipes = useSelector(selectRecipes);
   const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const pagination = useSelector(selectPagination);
-  const [searchParams, setSearchParams] = useSearchParams();
- 
+
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   const handleLoadMore = () => {
     if (!pagination.hasNextPage || isLoading) {
@@ -51,7 +53,7 @@ export default function RecipesList() {
               onClick={handleLoadMore}
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Load More"}{" "}
+              {isLoading ? "Loading..." : "Load More"}
             </button>
           )}
         </div>

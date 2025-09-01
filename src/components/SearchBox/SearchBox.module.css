@@ -1,4 +1,3 @@
-/* === Mobile === */
 .heroSection {
   position: relative;
   width: 100vw;
@@ -100,20 +99,17 @@
   flex-direction: column;
 }
 
-/* красная рамка у инпута */
 .inputError {
   border: 2px solid red !important;
   box-shadow: 0 0 6px rgba(255, 0, 0, 0.3);
 }
 
-/* сообщение об ошибке */
 .errorMessage {
   color: red;
   font-size: 14px;
   margin-top: 4px;
 }
 
-/* === Tablet === */
 @media screen and (min-width: 768px) {
   .heroSection {
     padding: 128px 0;
@@ -156,7 +152,6 @@
   }
 }
 
-/* === Desktop === */
 @media screen and (min-width: 1440px) {
   .heroSection {
     background-image: linear-gradient(to right, #000000e6, #0000004d),

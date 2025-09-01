@@ -10,10 +10,10 @@ import {
 } from "redux-persist";
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+
 import authReducer from "./auth/slice";
 import RecipesReducer from "./recipes/slice";
 import filtersReducer from "./filters/slice";
-// import your reducers
 
 const persistConfig = {
   key: "auth",

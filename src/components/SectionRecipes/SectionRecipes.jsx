@@ -1,25 +1,14 @@
-import RecipesList from "../RecipesList/RecipesList";
-import css from "./SectionRecipes.module.css";
-import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+
 import Container from "../../reuseable/Container/Container.jsx";
 import Filters from "../Filters/Filters.jsx";
 import UserBar from "../UserBar/UserBar.jsx";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import { fetchFilteredRecipes } from "../../redux/filters/operations.js";
-import {
-  resetRecipes,
-  setPage,
-  setPerPage,
-} from "../../redux/recipes/slice.js";
-import {
-  selectSearch,
-  selectSelectedArea,
-  selectSelectedCategories,
-  selectSelectedIngredients,
-} from "../../redux/filters/selectors.js";
-import { selectPagination } from "../../redux/recipes/selectors.js";
+import RecipesList from "../RecipesList/RecipesList";
+
+import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
+
 import {
   setArea,
   setCategories,
@@ -27,22 +16,40 @@ import {
   setSearch,
 } from "../../redux/filters/slice.js";
 import {
+  selectSearch,
+  selectSelectedArea,
+  selectSelectedCategories,
+  selectSelectedIngredients,
+} from "../../redux/filters/selectors.js";
+import { fetchFilteredRecipes } from "../../redux/filters/operations.js";
+
+import {
+  resetRecipes,
+  setPage,
+  setPerPage,
+} from "../../redux/recipes/slice.js";
+import { selectPagination } from "../../redux/recipes/selectors.js";
+import {
   fetchFavoritesRecipes,
   fetchOwnRecipes,
 } from "../../redux/recipes/operations.js";
 
+import css from "./SectionRecipes.module.css";
+
 export default function SectionRecipes() {
-  const isAuthenticated = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-  const search = useSelector(selectSearch);
-  const categories = useSelector(selectSelectedCategories);
-  const ingredients = useSelector(selectSelectedIngredients);
-  const area = useSelector(selectSelectedArea);
   const [searchParams, setSearchParams] = useSearchParams();
   const { page, perPage } = useSelector(selectPagination);
+
+  const user = useSelector(selectUser);
+  const search = useSelector(selectSearch);
+  const isAuthenticated = useSelector(selectIsLoggedIn);
+
+  const area = useSelector(selectSelectedArea);
+  const categories = useSelector(selectSelectedCategories);
+  const ingredients = useSelector(selectSelectedIngredients);
 
   const userId = isAuthenticated ? user.id : null;
   let type = "home";
