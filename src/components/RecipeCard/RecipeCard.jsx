@@ -1,14 +1,15 @@
+import clsx from "clsx";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 
-import clsx from "clsx";
-import { Button } from "../Button/Button";
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
-import css from "./RecipeCard.module.css";
-import ModalWindow from "../ModalWindow/ModalWindow";
+import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
+import ModalWindow from "../ModalWindow/ModalWindow";
+
+import css from "./RecipeCard.module.css";
 
 export default function RecipesCard({ recipe }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -26,7 +27,6 @@ export default function RecipesCard({ recipe }) {
       openModal();
       return;
     }
-    // Logic to add recipe to favorites !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   };
   return (
     <div className={css["card"]}>

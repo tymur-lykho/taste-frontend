@@ -1,8 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
-
 export const fetchFilteredRecipes = createAsyncThunk(
   "recipes/fetchFiltered",
   async (_, thunkAPI) => {
@@ -16,7 +14,6 @@ export const fetchFilteredRecipes = createAsyncThunk(
         ingredients = [],
         area,
       } = selectedFilters;
-
 
       const ingredientsParams = Array.isArray(ingredients)
         ? ingredients.join(",")

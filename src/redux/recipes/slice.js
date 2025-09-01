@@ -53,8 +53,6 @@ const handleFavoritesIdFulfilled = (state, action) => {
   state.error = null;
 };
 
-
-
 const slice = createSlice({
   name: "recipes",
   initialState: {
@@ -105,15 +103,19 @@ const slice = createSlice({
       .addCase(fetchRecipes.pending, handlePending)
       .addCase(fetchRecipes.fulfilled, handleFulfilled)
       .addCase(fetchRecipes.rejected, handleRejected)
+
       .addCase(fetchFilteredRecipes.pending, handlePending)
       .addCase(fetchFilteredRecipes.fulfilled, handleFulfilled)
       .addCase(fetchFilteredRecipes.rejected, handleRejected)
+
       .addCase(fetchOwnRecipes.pending, handlePending)
       .addCase(fetchOwnRecipes.fulfilled, handleFulfilled)
       .addCase(fetchOwnRecipes.rejected, handleRejected)
+
       .addCase(fetchFavoritesRecipes.pending, handlePending)
       .addCase(fetchFavoritesRecipes.fulfilled, handleFulfilled)
       .addCase(fetchFavoritesRecipes.rejected, handleRejected)
+
       .addCase(fetchFavoritesId.pending, handlePending)
       .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
       .addCase(fetchFavoritesId.rejected, handleRejected);

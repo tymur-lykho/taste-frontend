@@ -1,20 +1,22 @@
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operations";
-import toast from "react-hot-toast";
-import * as Yup from "yup";
-import css from "./RegistrationForm.module.css";
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import clsx from "clsx";
+import * as Yup from "yup";
 import { useState } from "react";
-import { Button } from "../Button/Button";
-import Icon from "../../reuseable/Icon/Icon";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import EyeButton from "../EyeButton/EyeButton";
+
+import { register } from "../../redux/auth/operations";
+
+import css from "./RegistrationForm.module.css";
 
 export default function RegistrationForm() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
   const dispatch = useDispatch();
+
   const initialValues = {
     name: "",
     email: "",
@@ -203,7 +205,7 @@ export default function RegistrationForm() {
             {isSubmitting ? "Registering..." : "Register"}
           </button>
           <p className={css.loginText}>
-            Already have an account? <a href="/login">Log in</a>
+            Already have an account? <Link href="/login">Log in</Link>
           </p>
         </Form>
       )}

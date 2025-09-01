@@ -1,13 +1,14 @@
+import clsx from "clsx";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import css from "./BurgerMenu.module.css";
-import clsx from "clsx";
+
 import Icon from "../../Icon/Icon";
 import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 
+import css from "./BurgerMenu.module.css";
+
 export default function BurgerMenu({ isLoggedIn, openModal }) {
-  // _отримує openModal_
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -38,7 +39,7 @@ export default function BurgerMenu({ isLoggedIn, openModal }) {
             </li>
             <li className={css.mobileNavItem}>
               {isLoggedIn ? (
-                <UserMenu toggleMenu={toggleMenu} openModal={openModal} /> // _UserMenu отримує openModal_
+                <UserMenu toggleMenu={toggleMenu} openModal={openModal} />
               ) : (
                 <AuthNav toggleMenu={toggleMenu} />
               )}

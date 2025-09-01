@@ -1,12 +1,14 @@
-import { NavLink } from "react-router-dom";
-import css from "./UserMenu.module.css";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/auth/selectors";
+import { NavLink } from "react-router-dom";
+
 import Icon from "../../Icon/Icon";
 
+import { selectUser } from "../../redux/auth/selectors";
+
+import css from "./UserMenu.module.css";
+
 export default function UserMenu({ toggleMenu, openModal }) {
-  // _отримує openModal від Navigation/AppBar_
   const user = useSelector(selectUser);
   const userName = user.name;
   const userInitial = userName[0];
@@ -19,8 +21,8 @@ export default function UserMenu({ toggleMenu, openModal }) {
   };
 
   const handleLogoutClick = () => {
-    toggleMenu?.(); // _закриває бургер-меню на мобілці_
-    openModal(); // _відкриває глобальну модалку_
+    toggleMenu?.();
+    openModal();
   };
 
   return (
