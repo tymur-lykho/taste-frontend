@@ -4,27 +4,9 @@ body {
   color: #222;
 }
 
-/* h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  h2 {
-    font-size: 1.25rem;
-    margin: 1.5rem 0 0.75rem;
-  }
-   */
-
 form {
   padding: 0px 16px;
 }
-
-/* .general-info {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  align-items: start;
-} */
 
 label {
   display: block;
@@ -134,11 +116,33 @@ margin-bottom: 32px;
   display: flex;
   flex-direction: column-reverse;
 }
-
+.title-inf-gen{
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+.title-inf{
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
 
 @media only screen and (min-width: 768px) {
+  
+  .title-inf-gen{
+    margin-bottom: 32px;
+  }
+
   .ingredient-row {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: auto;
+  }
+
+  .ingredient-col {
+    display: flex;
+    flex-direction: column;
+    width: auto;
   }
   .uploadphoto-title{
     margin-top: 0px;
@@ -152,6 +156,14 @@ margin-bottom: 32px;
 
 
 @media only screen and (min-width: 1440px) {
+
+  .title-inf{
+    margin-top: 40px;
+  }
+  .title-inf-gen{
+    margin-top: 40px;
+  }
+
   .form {
     padding: 0px;
     max-width: 1226px;
@@ -202,19 +214,10 @@ margin-bottom: 32px;
   }
   
   .ingredient-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 1rem;
-    margin-bottom: 1rem;
+    width: 809px;
   }
-  
-  .ingredient-col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  
+   
+ 
   .add-btn {
     margin-top: 0.5rem;
     border-radius: 8px;
@@ -222,7 +225,16 @@ margin-bottom: 32px;
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
+  } 
+
+  .ingredient-columns {
+    display: flex;
+    gap: 20px; /* відстань між колонками */
+  }
+  .ingredient-col,
+  .ingredient-col-amount {
+    display: flex;
+    flex-direction: column;
   }
   
-  
-}
+} 
