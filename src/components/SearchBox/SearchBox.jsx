@@ -23,20 +23,22 @@ export default function SearchBox() {
     const value = titleInput.trim();
 
     if (!value) {
-      toast.error("Please enter a recipe name");
+      toast.error("Please enter a recipe name", { toastId: "empty-input" });
       return;
     }
     if (value.length < 3) {
-      toast.error("Recipe name must be at least 3 characters");
+      toast.error("Recipe name must be at least 3 characters", {
+        toastId: "too-short",
+      });
       return;
     }
     if (!isValidText(value)) {
-      toast.error("Only letters are allowed");
+      toast.error("Only letters are allowed", { toastId: "only-letters" });
       return;
     }
 
     dispatch(setSearch(titleInput));
-    toast.success("Search submitted!");
+    toast.success("Search submitted!", { toastId: "success-search" });
   };
 
   const handleChange = (e) => {
@@ -44,7 +46,7 @@ export default function SearchBox() {
     setTitleInput(value);
 
     if (!isValidText(value)) {
-      toast.error("Only letters are allowed");
+      toast.error("Only letters are allowed", { toastId: "only-letters" });
     }
   };
 
