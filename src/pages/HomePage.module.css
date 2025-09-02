@@ -1,0 +1,5 @@
+.section-recipes {
+  display: flex;
+  justify-content: center;
+  padding-block: 48px;
+}

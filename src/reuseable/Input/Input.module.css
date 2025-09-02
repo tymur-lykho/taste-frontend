@@ -1,0 +1,68 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 12px;
+}
+.field {
+  outline: none;
+  width: 100%;
+  border: 1px solid var(--light-gray);
+  background-color: var(--white-text-color);
+  transition: color 300ms ease-in-out, box-shadow 300ms ease-in-out,
+    border-color 300ms ease-in-out;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.field.error {
+  border: 1.5px solid var(--error-color);
+}
+
+.helperText {
+  font-size: 12px;
+  padding: 0 12px;
+}
+
+.error {
+  color: var(--error-color);
+}
+.field:focus-visible {
+  box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+}
+.field::placeholder {
+  color: var(--gray-placeholder-text);
+}
+
+.button {
+  width: unset;
+  height: unset;
+  color: var(--black-text-color);
+  padding: 0;
+  border: unset;
+  background: none;
+  transition: var(--base-transition);
+  position: absolute;
+  right: 8px;
+}
+
+.passwordCont {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordIcon {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+}
+.show {
+  color: var(--gray-select-placeholder-text);
+}

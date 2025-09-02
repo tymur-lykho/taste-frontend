@@ -1,0 +1,6 @@
+.select {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--light-gray, #D9D9D9);
+  
+}

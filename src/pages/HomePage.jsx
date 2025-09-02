@@ -1,12 +1,14 @@
-import Hero from "../components/Hero/Hero";
+import SearchBox from "../components/SearchBox/SearchBox";
 import SectionRecipes from "../components/SectionRecipes/SectionRecipes";
+
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
   return (
-    <div>
-      {/* <Hero /> */}
-      <SectionRecipes />
-    </div>
+    <>
+      <SearchBox />
+      <SectionRecipes className={css["section-recipes"]} />
+    </>
   );
 }
 

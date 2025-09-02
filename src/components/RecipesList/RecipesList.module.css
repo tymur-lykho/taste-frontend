@@ -3,8 +3,6 @@
   gap: 24px;
   max-width: 1440px;
   grid-template-columns: 1fr;
-  padding-left: 1px;
-  padding-right: 1px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -29,5 +27,27 @@
   @media (min-width: 1440px) {
     width: 288px;
     height: 431px;
+  }
+}
+
+.count {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--black-text-color);
+  margin: 16px 0;
+}
+
+.loadMore {
+  width: 100%;
+  height: 40px;
+  margin: 24px auto;
+
+  @media (min-width: 768px) {
+    width: 344px;
+  }
+
+  @media (min-width: 1440px) {
+    width: 289px;
   }
 }
