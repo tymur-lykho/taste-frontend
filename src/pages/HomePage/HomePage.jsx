@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecipes } from "../../redux/recipes/operations";
 import SearchBox from "../../components/SearchBox/SearchBox";
+import Filters from "../../components/Filters/Filters";
 import {
   selectHasNextPage,
   selectRecipes,
   selectTotalItems,
 } from "../../redux/recipes/selectors";
+import { selectSearch, selectSelectedCategories, selectSelectedIngredients } from "../../redux/filters/selectors";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -19,18 +21,25 @@ export default function HomePage() {
 
   const [page, setPage] = useState(1);
 
+  const search = useSelector(selectSearch);
+  const categories = useSelector(selectSelectedCategories);
+  const ingredients = useSelector(selectSelectedIngredients);
+
   useEffect(() => {
-    dispatch(fetchRecipes(page));
-  }, [dispatch, page]);
+    setPage(1)
+  }, [search, categories, ingredients]);
+
+  useEffect(() => {
+    dispatch(fetchRecipes({page, filters:{search, categories, ingredients}}));
+  }, [dispatch, page, search, categories, ingredients]);
 
   return (
-    <div>
+    <section className={css.wrapper}>
       <Container>
         <SearchBox/>
         <h2 className={css.subtitle}>Recipes</h2>
-        {/* <Filters filters={filters} /> */}
-        <RecipesList hasNextPage={nextPage} totalItems={totalItems} data={recipes} setPage={setPage} />
+        <RecipesList children={<Filters/>} hasNextPage={nextPage} totalItems={totalItems} data={recipes} setPage={setPage} />
       </Container>
-    </div>
+    </section>
   );
 }

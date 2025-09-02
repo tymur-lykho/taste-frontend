@@ -1,10 +1,10 @@
 import css from "./Filters.module.css";
 import FilterMenu from "./FilterMenu/FilterMenu";
 import { useSelector } from "react-redux";
-import { selectPagination } from "../../redux/recipes/selectors";
+import { selectTotalItems } from "../../redux/recipes/selectors";
 
 export default function Filters() {
-  const { totalItems } = useSelector(selectPagination);
+  const totalItems = useSelector(selectTotalItems);
 
   return (
     <div className={css.filterPanel}>

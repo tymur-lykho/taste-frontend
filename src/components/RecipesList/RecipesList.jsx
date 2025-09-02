@@ -8,14 +8,13 @@ import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
 import Loader from "../Loader/Loader";
 
-export default function RecipesList({hasNextPage, totalItems, data, setPage}) {
+export default function RecipesList({children, hasNextPage, totalItems, data, setPage}) {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   return (
     <div className={css.wrapper}>
-      <p className={css.count}>{totalItems} recipes</p>
-     
+      {children ? children : <p className={css.count}>{totalItems} recipes</p>}
       {error && <p>error</p>}
       {data ? (
         <>

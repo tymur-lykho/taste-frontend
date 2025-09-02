@@ -14,11 +14,16 @@ export default function FavoriteRecipes() {
   const hasNext = useSelector(selectHasNextPage);
   const totalItems = useSelector(selectTotalItems);
 
-      const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
-      useEffect(() => {
-        dispatch(fetchFavoritesRecipes(page));
-    }, [dispatch, page]);
+   useEffect(() => {
+     dispatch(fetchFavoritesRecipes(1));
+     setPage(1)
+  }, [dispatch, totalItems]);
+
+  useEffect(() => {
+    dispatch(fetchFavoritesRecipes(page));
+  }, [dispatch, page]);
 
   return (
     <>
