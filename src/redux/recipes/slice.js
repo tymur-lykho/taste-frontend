@@ -7,7 +7,6 @@ import {
   removeFromFavorites,
   fetchFavoritesId,
 } from "./operations";
-// import { fetchFilteredRecipes } from "../filters/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -22,6 +21,8 @@ const handleRejected = (state, action) => {
 const handleRecipesFulfild = (state, action) => {
   state.isLoading = false;
   state.error = null;
+  console.log("HHS", action.payload.data.data);
+
   if (action.payload.data.page === 1) {
     state.items = action.payload.data.data;
   } else {

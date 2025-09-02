@@ -3,7 +3,7 @@
   padding: 40px 24px;
   max-width: 361px;
   background-color: #faf3e0;
-  margin: 0 auto;
+  margin: 48px auto 0;
 
   @media only screen and (min-width: 768px) {
     max-width: none;

@@ -1,22 +1,26 @@
 import { useSelector } from "react-redux";
-import {
-  selectError,
-  selectIsLoading,
-} from "../../redux/recipes/selectors";
+import { selectError, selectIsLoading } from "../../redux/recipes/selectors";
 
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";
 import Loader from "../Loader/Loader";
 
-export default function RecipesList({children, hasNextPage, totalItems, data, setPage}) {
+export default function RecipesList({
+  fillters,
+  hasNextPage,
+  totalItems,
+  data,
+  setPage,
+  notFound,
+}) {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   return (
     <div className={css.wrapper}>
-      {children ? children : <p className={css.count}>{totalItems} recipes</p>}
+      {fillters ? fillters : <p className={css.count}>{totalItems} recipes</p>}
       {error && <p>error</p>}
-      {data ? (
+      {data.length > 0 ? (
         <>
           <ul className={css.list}>
             {data.map((recipe) => (
@@ -25,12 +29,21 @@ export default function RecipesList({children, hasNextPage, totalItems, data, se
               </li>
             ))}
           </ul>
-           {isLoading && <Loader/>}
-          {hasNextPage && !isLoading && <button className={css.btn} onClick={() => {setPage(number => number +1)}}>Load More</button>}
+          {hasNextPage && !isLoading && (
+            <button
+              className={css.btn}
+              onClick={() => {
+                setPage((number) => number + 1);
+              }}
+            >
+              Load More
+            </button>
+          )}
         </>
       ) : (
-        <p>No found recipe</p>
+        notFound
       )}
+      {isLoading && <Loader />}
     </div>
   );
 }
