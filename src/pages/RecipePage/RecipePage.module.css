@@ -4,21 +4,22 @@
   text-align: left;
   gap: 32px;
   width: 100%;
+  padding-block: 48px;
 }
 
 .tumbImg {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 276px;
   overflow: hidden;
- border-radius: var(--radius-i-sm);
+  border-radius: var(--radius-i-sm);
   @media (min-width: 768px) {
     height: 624px;
   }
 
   @media (min-width: 1440px) {
-    background: #2B2D30;
+    background: #2b2d30;
   }
 }
 
@@ -36,7 +37,7 @@
   width: 100%;
 }
 .wrapRecipe {
-    width: 100%;
+  width: 100%;
   order: 2;
 }
 
@@ -48,7 +49,6 @@
   .tumbImg {
     order: 2;
   }
-
 
   .cardRecipe {
     display: flex;
@@ -95,7 +95,7 @@
   object-fit: cover;
 
   @media (min-width: 1440px) {
-  width: 50%;
+    width: 50%;
   }
 }
 
@@ -170,7 +170,6 @@
   @media (min-width: 1440px) {
     width: 100%;
   }
-
 }
 
 .saveWhite {
@@ -187,7 +186,6 @@
   stroke: var(--white-text-color);
   fill: var(--btn-text-color);
 }
-
 
 .message {
   font-size: var(--text-size);
@@ -245,5 +243,3 @@
     font-size: var(--text-size);
   }
 }
-
-

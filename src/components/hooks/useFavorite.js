@@ -9,6 +9,7 @@ import {
 import {
   addFavoriteLocally,
   removeFavoriteLocally,
+  removeFavoriteRecipe,
 } from "../../redux/recipes/slice";
 
 export function useFavorite(recipeId) {
@@ -36,6 +37,7 @@ export function useFavorite(recipeId) {
       if (isFavorite) {
         dispatch(removeFavoriteLocally(recipeId));
         await dispatch(deleteFavoritesId(recipeId)).unwrap();
+         dispatch(removeFavoriteRecipe(recipeId));
       } else {
         dispatch(addFavoriteLocally(recipeId));
         await dispatch(postFavoritesId(recipeId)).unwrap();

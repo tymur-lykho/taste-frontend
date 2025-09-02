@@ -1,27 +1,52 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./RecipePage.module.css";
 import { useLocation, useParams } from "react-router-dom";
-import { selectRecipes } from "../../redux/recipes/selectors";
-import { useState } from "react";
+console.log("🚀 ~ Location:", Location);
+import { selectRecipes, selectRecipesId } from "../../redux/recipes/selectors";
+import { useEffect, useState } from "react";
 import Container from "../../reuseable/Container/Container";
 import clsx from "clsx";
 import { useFavorite } from "../../components/hooks/useFavorite.js";
 import { Button } from "../../components/Button/Button.jsx";
 import Icon from "../../reuseable/Icon/Icon.jsx";
 import ModalWindow from "../../components/ModalWindow/ModalWindow.jsx";
+import FavoriteAuthModal from "../../reuseable/FavoriteAuthModal/FavoriteAuthModal.jsx";
+import { fetchRecipesId } from "../../redux/recipes/operations.js";
+import { resetCurrentRecipe } from "../../redux/recipes/slice.js";
 
 export default function RecipePage() {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const location = useLocation();
-
   const recipesFromStore = useSelector(selectRecipes);
+
+
   const recipeFromStore = recipesFromStore.find(
     (recipe) => String(recipe._id) === String(id)
   );
+  const recipeCurrent = useSelector(selectRecipesId);
+  const [recipe, setRecipe] = useState(location.state || recipeFromStore || recipeCurrent);
 
-  const [recipe, setRecipe] = useState(location.state || recipeFromStore);
+  useEffect(() => {
+    if (recipe) {
+      setRecipe(recipe);
+    } else {
+      dispatch(fetchRecipesId(id));
+    }
+  }, [dispatch, recipe, id]);
 
-  if (!recipe) return <div>Loading...</div>;
+  useEffect(() => {
+    return () => {
+      dispatch(resetCurrentRecipe());
+    };
+  }, [dispatch]);
+
+  if (!recipe) {
+    return;
+  }
+  const normalizedUrl = recipe?.thumb?.includes("preview")
+    ? recipe.thumb.replace("preview", "preview/large")
+    : recipe.thumb;
 
   const {
     isFavorite,
@@ -29,11 +54,7 @@ export default function RecipePage() {
     isOpenModal,
     closeModal,
     handleToggleFavorite,
-  } = useFavorite(recipe._id);
-
-  const normalizedUrl = recipe.thumb?.includes("preview")
-    ? recipe.thumb.replace("preview", "preview/large")
-    : recipe.thumb;
+  } = useFavorite(id);
 
   return (
     <Container className={css.recipePage}>
@@ -109,6 +130,7 @@ export default function RecipePage() {
           </Button>
         </div>
       </div>
+      {isOpenModal && <FavoriteAuthModal onClose={closeModal} />}
     </Container>
   );
 }

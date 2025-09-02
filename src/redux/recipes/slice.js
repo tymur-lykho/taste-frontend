@@ -5,6 +5,7 @@ import {
   fetchFavoritesRecipes,
   fetchOwnRecipes,
   fetchRecipes,
+  fetchRecipesId,
   postFavoritesId,
 } from "./operations";
 import { fetchFilteredRecipes } from "../filters/operations";
@@ -59,6 +60,7 @@ const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    current: null,
     own: [],
     favorites: [],
     ownId: [],
@@ -89,7 +91,9 @@ const slice = createSlice({
         state.pagination.page -= 1;
       }
     },
-
+    resetCurrentRecipe(state) {
+      state.current = null;
+    },
     resetRecipes(state) {
       state.items = [];
       state.pagination = {
@@ -112,10 +116,10 @@ const slice = createSlice({
       );
     },
     removeFavoriteRecipe(state, action) {
-      state.favorites = state.favorites.filter(
+      state.items = state.items.filter(
         (recipe) => recipe._id !== action.payload
       );
-    }    
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -145,6 +149,12 @@ const slice = createSlice({
       .addCase(deleteFavoritesId.fulfilled, (state, action) => {
         state.isLoading = false;
       })
+      .addCase(fetchRecipesId.pending, handlePending)
+      .addCase(fetchRecipesId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.current = action.payload;
+      })
+      .addCase(fetchRecipesId.rejected, handleRejected)
       .addCase(deleteFavoritesId.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || action.error.message;
@@ -160,7 +170,8 @@ export const {
   resetRecipes,
   addFavoriteLocally,
   removeFavoriteLocally,
-  removeFavoriteRecipe
+  removeFavoriteRecipe,
+  resetCurrentRecipe,
 } = slice.actions;
 
 export default slice.reducer;

@@ -1,3 +1,5 @@
+import SectionRecipes from "../components/SectionRecipes/SectionRecipes";
+
 export default function UserPage() {
-  return <h1>User Page | My recipes | Favourites</h1>;
+  return <SectionRecipes />;
 }

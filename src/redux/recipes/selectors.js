@@ -11,3 +11,5 @@ export const selectOwn = (state) => state.recipes.own;
 export const selectFavorites = (state) => state.recipes.favorites;
 
 export const selectFavoritesId = (state) => state.recipes.favoritesId;
+
+export const selectRecipesId = (state) => state.recipes.current;
