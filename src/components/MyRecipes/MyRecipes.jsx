@@ -1,49 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectError,
-  selectIsLoading,
-  selectMyRecipes,
-  selectRecipesState,
-  selectMyRecipesCount,
+  selectRecipes,
+  selectHasNextPage,
+  selectTotalItems,
 } from "../../redux/recipes/selectors";
-import css from "./MyRecipes.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchOwnRecipes } from "../../redux/recipes/operations";
-import RecipesCard from "../RecipeCard/RecipeCard";
-import Loader from "../Loader/Loader";
+import RecipesList from "../RecipesList/RecipesList";
 
 export default function MyRecipes() {
   const dispatch = useDispatch();
-  const recipesCount = useSelector(selectMyRecipesCount);
-  const recipes = useSelector(selectMyRecipes);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-  const { isMyRecipesLoaded } = useSelector(selectRecipesState);
+  const recipes = useSelector(selectRecipes);
+  const hasNext = useSelector(selectHasNextPage);
+  const totalItems = useSelector(selectTotalItems);
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (!isMyRecipesLoaded) {
-      dispatch(fetchOwnRecipes());
-    }
-  }, [dispatch, isMyRecipesLoaded]);
-
-  const recipesArray = Array.isArray(recipes) ? recipes : [];
+    dispatch(fetchOwnRecipes(page));
+  }, [dispatch, page]);
 
   return (
-    <div>
-      <p className={css.count}>{recipesCount} recipes</p>
-      {isLoading && <Loader />}
-      {error && <p>error</p>}
-      {recipesArray.length > 0 ? (
-        <ul className={css.list}>
-          {recipesArray.map((recipe) => (
-            <li className={css.item} key={recipe._id}>
-              <RecipesCard recipe={recipe} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        !isLoading && <p>No recipes found</p>
-      )}
-    </div>
+    <>
+      <RecipesList
+        hasNextPage={hasNext}
+        totalItems={totalItems}
+        setPage={setPage}
+        data={recipes}
+      />
+    </>
   );
 }

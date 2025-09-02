@@ -1,50 +1,45 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
+// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
 
 // Всі рецепти
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchAll",
-  async (_, thunkAPI) => {
+  async ({page, filters}, thunkAPI) => {
     try {
-      const response = await axios.get("/recipes");
-      return response.data.data;
+       const {
+        search = "",
+        categories,
+        ingredients = [],
+       } = filters;
+      
+      const ingredientsParams = Array.isArray(ingredients)
+        ? ingredients.join(",")
+        : undefined;
+      
+      const params = {
+        page: page,
+        search: search || undefined,
+        category: categories || undefined,
+        ingredients: ingredientsParams,
+      };
+
+      const response = await axios.get("/recipes", {params});
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Мої рецепти (з пагінацією + фільтрами)
+// Мої рецепти
 export const fetchOwnRecipes = createAsyncThunk(
-  "recipes/fetchOwnRecipes",
-  async (_, thunkAPI) => {
+  "recipes/fetchOwn",
+  async (page, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const { pagination } = state.recipes;
-      const { selectedFilters } = state.filters;
-      const {
-        search = "",
-        categories,
-        ingredients = [],
-        area,
-      } = selectedFilters;
-
-      const ingredientsParams = Array.isArray(ingredients)
-        ? ingredients.join(",")
-        : undefined;
-
-      const params = {
-        page: pagination.page,
-        perPage: pagination.perPage,
-        search: search || undefined,
-        category: categories || undefined,
-        ingredients: ingredientsParams,
-        area: area || undefined,
-      };
-
-      const response = await axios.get("recipes/my", { params });
+      const response = await axios.get("/recipes/my", {params:{page}});
+      console.log("OWN:", response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -52,35 +47,12 @@ export const fetchOwnRecipes = createAsyncThunk(
   }
 );
 
-// Улюблені рецепти (з пагінацією + фільтрами)
 export const fetchFavoritesRecipes = createAsyncThunk(
-  "recipes/fetchFavoritesRecipes",
-  async (_, thunkAPI) => {
+  "recipes/fetchFavorites",
+  async (page, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const { pagination } = state.recipes;
-      const { selectedFilters } = state.filters;
-      const {
-        search = "",
-        categories,
-        ingredients = [],
-        area,
-      } = selectedFilters;
-
-      const ingredientsParams = Array.isArray(ingredients)
-        ? ingredients.join(",")
-        : undefined;
-
-      const params = {
-        page: pagination.page,
-        perPage: pagination.perPage,
-        search: search || undefined,
-        category: categories || undefined,
-        ingredients: ingredientsParams,
-        area: area || undefined,
-      };
-
-      const response = await axios.get("recipes/favorites", { params });
+      const response = await axios.get("/recipes/favorites", { params: { page } });
+      console.log("FAVOR:", response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -88,13 +60,26 @@ export const fetchFavoritesRecipes = createAsyncThunk(
   }
 );
 
-// Додати рецепт у вибране
+export const fetchFavoritesId = createAsyncThunk(
+  "recipes/fetchFavoritesId",
+  async (_, thunkAPI) => {
+    try {
+      const {data} = await axios.get("/users/current");
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//Додавання рецепту
 export const addFavoritesRecipe = createAsyncThunk(
   "recipes/addFavoritesRecipe",
   async (recipeId, thunkAPI) => {
     try {
-      const response = await axios.post(`/recipes/favorites/${recipeId}`);
-      return response.data;
+      await axios.post(`/recipes/favorites/${recipeId}`);
+      console.log("RES.ADD DATA:", recipeId);
+      return recipeId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -107,20 +92,8 @@ export const removeFromFavorites = createAsyncThunk(
   async (recipeId, thunkAPI) => {
     try {
       await axios.delete(`/recipes/favorites/${recipeId}`);
+      console.log("RES.DELETE DATA:", recipeId);
       return recipeId;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Отримати список ID вибраних рецептів користувача
-export const fetchFavoritesId = createAsyncThunk(
-  "recipes/fetchFavoritesId",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get("users/current");
-      return response.data.data.favoriteRecipes;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

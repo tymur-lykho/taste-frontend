@@ -1,65 +1,33 @@
-import clsx from "clsx";
-// import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
-import RecipesCard from "../RecipeCard/RecipeCard";
-
+import { useSelector } from "react-redux";
 import {
   selectError,
   selectIsLoading,
-  selectPagination,
-  selectRecipes,
-  selectRecipesCount,
 } from "../../redux/recipes/selectors";
-import { nextPage } from "../../redux/recipes/slice";
 
 import css from "./RecipesList.module.css";
+import RecipesCard from "../RecipeCard/RecipeCard";
+import Loader from "../Loader/Loader";
 
-export default function RecipesList() {
-  const dispatch = useDispatch();
-
-  const error = useSelector(selectError);
-  const recipes = useSelector(selectRecipes);
-  const recipesCount = useSelector(selectRecipesCount);
+export default function RecipesList({children, hasNextPage, totalItems, data, setPage}) {
   const isLoading = useSelector(selectIsLoading);
-  const pagination = useSelector(selectPagination);
-
-  // const [searchParams, setSearchParams] = useSearchParams();
-
-  const handleLoadMore = () => {
-    if (!pagination.hasNextPage || isLoading) {
-      return;
-    }
-    // const newUrl = new URLSearchParams(searchParams);
-    // newUrl.set("page", pagination.page);
-    // setSearchParams(newUrl);
-    dispatch(nextPage());
-  };
+  const error = useSelector(selectError);
 
   return (
-    <div>
-      <p className={css.count}>{recipesCount} recipes</p>
-      {isLoading && <p>Please wait, loading...</p>}
-      {error && <p>{error}</p>}
-      {recipes ? (
-        <div>
+    <div className={css.wrapper}>
+      {children ? children : <p className={css.count}>{totalItems} recipes</p>}
+      {error && <p>error</p>}
+      {data ? (
+        <>
           <ul className={css.list}>
-            {recipes.map((recipe) => (
+            {data.map((recipe) => (
               <li className={css.item} key={recipe._id}>
                 <RecipesCard recipe={recipe} />
               </li>
             ))}
           </ul>
-          {pagination.hasNextPage && (
-            <button
-              className={clsx(css.loadMore, "fill")}
-              onClick={handleLoadMore}
-              disabled={isLoading}
-            >
-              {isLoading ? "Loading..." : "Load More"}
-            </button>
-          )}
-        </div>
+           {isLoading && <Loader/>}
+          {hasNextPage && !isLoading && <button className={css.btn} onClick={() => {setPage(number => number +1)}}>Load More</button>}
+        </>
       ) : (
         <p>No found recipe</p>
       )}

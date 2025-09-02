@@ -21,17 +21,19 @@ import { fetchFavoritesId } from "../../redux/recipes/operations.js";
 
 import Layout from "../Layout/Layout.jsx";
 
-import HomePage from "../../pages/HomePage.jsx";
+import HomePage from "../../pages/HomePage/HomePage.jsx";
+import LoginPage from "../../pages/LoginPage.jsx";
+import RegistrationPage from "../../pages/RegistrationPage.jsx";
 import UserPage from "../../pages/UserPage.jsx";
 import MyRecipes from "../MyRecipes/MyRecipes.jsx";
 import FavoriteRecipes from "../FavoriteRecipes/FavoriteRecipes.jsx";
 import AddRecipePage from "../../pages/AddRecipePage.jsx";
-import LoginPage from "../../pages/LoginPage.jsx";
-import RegistrationPage from "../../pages/RegistrationPage.jsx";
+
+import { RestrictedRoute } from "../RestrictedRoute.jsx";
+import { PrivateRoute } from "../PrivateRoute.jsx";
+
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
 
-import { PrivateRoute } from "../PrivateRoute.jsx";
-import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,15 +50,11 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      dispatch(clearRecipesState());
+      dispatch(clearRecipesState())
+      dispatch(fetchFavoritesId());
     }
   }, [user, dispatch]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(fetchFavoritesId());
-    }
-  }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
     <strong>Refreshing user...</strong>

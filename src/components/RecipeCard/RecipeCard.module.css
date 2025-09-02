@@ -180,12 +180,12 @@
 
 .save-icon.active {
   stroke: var(--white-text-color);
-  fill: var(--light-brown-background);
+  fill: transparent;
 
   /* &:hover,
     &:focus,
     &:focus-visible {
-      fill: var(--hover-btn-background);
+      fill: transparent;
     }
   
     &:active {
