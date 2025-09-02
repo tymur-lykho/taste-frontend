@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-import { Button } from "../Button/Button";
+import { Button } from "../../Button/Button";
 import css from "../ModalWindow/ModalWindow.module.css";
-import Icon from "../../Icon/Icon";
+import Icon from "../../../Icon/Icon";
 import { useEffect } from "react";
 
 export default function ModalWindow({ children, onClose }) {

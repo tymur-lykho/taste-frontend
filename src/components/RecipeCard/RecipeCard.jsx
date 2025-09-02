@@ -7,15 +7,15 @@ import { Button } from "../Button/Button";
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import css from "./RecipeCard.module.css";
-import ModalWindow from "../ModalWindow/ModalWindow";
+import AuthRequiredModal from "../Modal/AuthRequiredModal/AuthRequiredModal";
 import Icon from "../../reuseable/Icon/Icon";
 import { addToFavoritesRecipes } from "../../redux/recipes/operations";
 
 export default function RecipesCard({ recipe, type }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const closeModal = () => {
     setIsOpenModal(false);
   };
@@ -67,31 +67,7 @@ export default function RecipesCard({ recipe, type }) {
           </Button>
         )}
       </div>
-      {isOpenModal && (
-        <ModalWindow onClose={closeModal}>
-          <h3 className={css.title}>Error while saving</h3>
-          <p className={css.message}>
-            To save this recipe, you need to <br />
-            authorizate first
-          </p>
-          <div className={css.actions}>
-            <Button
-              type="link"
-              to="/login"
-              className={clsx(css.loginBtn, "white")}
-            >
-              Log in
-            </Button>
-            <Button
-              type="link"
-              to="/register"
-              className={clsx(css.registerBtn, "fill")}
-            >
-              Register
-            </Button>
-          </div>
-        </ModalWindow>
-      )}
+      {isOpenModal && <AuthRequiredModal onClose={closeModal} />}
     </div>
   );
 }

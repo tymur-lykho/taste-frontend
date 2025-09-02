@@ -49,10 +49,10 @@
         width: 100%;
         height: calc(100vh - 73px);
         background-color: #3d2218;
-        padding: 0 16px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0 16px;
         padding-top: 32px;
         z-index: 9999;
 
@@ -60,32 +60,35 @@
 
     .mobileNavList {
         display: flex;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
         gap: 32px;
-        padding: 0;
+        padding: 0 16px;
         margin-top: 0;
+        width: 100%;
+        max-width: 393px;
     }
 
     .mobileNavItem {
+
         list-style-type: none;
+        width: 100%;
+        text-align: center;
 
     }
 
     .mobileNavLink {
-        display: flex;
+        display: inline-block;
+        /* display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
-        gap: 4px;
+        gap: 4px; */
         font-size: var(--text-size);
         font-weight: var(--weight-semibold);
-
-        padding-block: 0px 4px;
-        padding-inline: 0px;
         width: 65px;
         height: 24px;
-
         position: relative;
         color: var(--white-text-color);
         text-decoration: inherit;
