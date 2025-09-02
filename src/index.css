@@ -176,10 +176,10 @@ button {
   align-items: center;
   border-radius: var(--radius-i-sm);
   font-family: inherit;
-  width: 40px;
-  height: 40px;
+  /* width: 40px;
+  height: 40px; */
   padding: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: transparent;
   cursor: pointer;
   border: none;
@@ -195,6 +195,7 @@ button {
   &:focus,
   &:focus-visible {
     background: var(--Light-gray, #d9d9d9);
+    border-color: var(--Light-gray, #d9d9d9);
   }
 
   &:active {
