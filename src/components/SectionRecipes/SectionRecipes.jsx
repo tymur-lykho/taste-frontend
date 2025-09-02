@@ -46,7 +46,7 @@ export default function SectionRecipes() {
 
   const userId = isAuthenticated ? user.id : null;
   let type = "home";
-  if (pathname.includes("/profile/favorites")) {
+  if (pathname.includes("/profile")) {
     type = "favorites";
   } else if (pathname.includes("/profile/own")) {
     type = "own";
@@ -89,6 +89,7 @@ export default function SectionRecipes() {
       dispatch(fetchOwnRecipes(userId));
     } else if (type === "favorites" && isAuthenticated) {
       dispatch(fetchFavoritesRecipes());
+      console.log("🚀 ~ SectionRecipes ~ dispatch:", dispatch)
     } else {
       dispatch(fetchFilteredRecipes());
     }
@@ -103,6 +104,7 @@ export default function SectionRecipes() {
     type,
     userId,
     isAuthenticated,
+    pathname,
   ]);
 
   const isProfile = pathname.startsWith("/profile");

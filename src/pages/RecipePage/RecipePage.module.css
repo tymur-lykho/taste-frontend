@@ -7,12 +7,18 @@
 }
 
 .tumbImg {
+    display: flex;
+    justify-content: center;
   width: 100%;
   height: 276px;
   overflow: hidden;
-
+ border-radius: var(--radius-i-sm);
   @media (min-width: 768px) {
     height: 624px;
+  }
+
+  @media (min-width: 1440px) {
+    background: #2B2D30;
   }
 }
 
@@ -27,8 +33,10 @@
   flex-direction: column;
   gap: 24px;
   order: 1;
+  width: 100%;
 }
 .wrapRecipe {
+    width: 100%;
   order: 2;
 }
 
@@ -36,9 +44,12 @@
   .titleProduct {
     order: 0;
   }
+
   .tumbImg {
     order: 2;
   }
+
+
   .cardRecipe {
     display: flex;
     flex-wrap: wrap;
@@ -67,13 +78,14 @@
   }
 
   .wrapRecipe {
-    grid-column: 1;
+    order: 1;
   }
+
   .right {
     display: flex;
     flex-direction: column;
     width: 393px;
-    grid-column: 2;
+    order: 2;
   }
 }
 
@@ -81,6 +93,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  @media (min-width: 1440px) {
+  width: 50%;
+  }
 }
 
 .generalInfo {
@@ -144,7 +160,6 @@
 
 .btnSav {
   width: 100%;
-  max-width: 393px;
   height: 56px;
   display: flex;
   gap: 21.25px;
@@ -152,6 +167,10 @@
   @media (min-width: 768px) {
     width: 249px;
   }
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
+
 }
 
 .saveWhite {

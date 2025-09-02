@@ -36,103 +36,79 @@ export default function RecipePage() {
     : recipe.thumb;
 
   return (
-    <div>
-      <Container className={css.recipePage}>
-        <div className={css.tumbImg}>
-          <img
-            src={normalizedUrl}
-            alt={recipe.description}
-            className={css["cardImg"]}
-          />
-        </div>
-        <h1 className={css.titleProduct}>{recipe.title}</h1>
-        <div className={css.cardRecipe}>
-          <div className={css.wrapRecipe}>
-            <section className={css.about}>
-              <h2>About Recipe</h2>
-              <p>{recipe.description}</p>
-            </section>
-            <section className={css.ingredients}>
-              <h2>Ingredients</h2>
-              <ul className={css.list}>
-                {recipe.ingredients?.map((item) => (
-                  <li key={item._id}>
-                    {item.id?.name || item.name} {item.measure || ""}
-                  </li>
-                ))}
-              </ul>
-            </section>
-            <section className={css.steps}>
-              <h2>Preparation Steps</h2>
-              <ol className={css.stepsWrap}>
-                {recipe.instructions.split(/\r?\n/).map((step, idx) => (
+    <Container className={css.recipePage}>
+      <div className={css.tumbImg}>
+        <img
+          src={normalizedUrl}
+          alt={recipe.description}
+          className={css["cardImg"]}
+        />
+      </div>
+      <h1 className={css.titleProduct}>{recipe.title}</h1>
+      <div className={css.cardRecipe}>
+        <div className={css.wrapRecipe}>
+          <section className={css.about}>
+            <h2>About Recipe</h2>
+            <p>{recipe.description}</p>
+          </section>
+          <section className={css.ingredients}>
+            <h2>Ingredients</h2>
+            <ul className={css.list}>
+              {recipe.ingredients?.map((item) => (
+                <li key={item._id}>
+                  {item.id?.name || item.name} {item.measure || ""}
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className={css.steps}>
+            <h2>Preparation Steps</h2>
+            <ol className={css.stepsWrap}>
+              {recipe.instructions
+                .split(/\r?\n/)
+                .filter((step) => step.trim() !== "")
+                .map((step, idx) => (
                   <li key={idx}>{step}</li>
                 ))}
-              </ol>
-            </section>
-          </div>
-          <div className={css.right}>
-            <section className={css.generalInfo}>
-              <h3 className={css.title}>General informations</h3>
-              <p>
-                <strong>Category:</strong> {recipe.category?.name || "N/A"}
-              </p>
-              {recipe.cuisine && (
-                <p>
-                  <strong>Cuisine:</strong> {recipe.cuisine}
-                </p>
-              )}
-              {recipe.time && (
-                <p>
-                  <strong>Cooking Time:</strong> {recipe.time} min
-                </p>
-              )}
-              {recipe.calories && (
-                <p>
-                  <strong>Calories:</strong> Approximately {recipe.calories}{" "}
-                  kcal per serving
-                </p>
-              )}
-            </section>
-            <Button
-              className={clsx("fill", css.btnSav)}
-              onClick={handleToggleFavorite}
-              disabled={isProcessing}
-            >
-              {isFavorite ? "Unsave" : "Save"}
-              <Icon
-                className={isFavorite ? css.unsave : css.saveWhite}
-                iconName="save-icon"
-              />
-            </Button>
-          </div>
+            </ol>
+          </section>
         </div>
-      </Container>
-      {isOpenModal && (
-        <ModalWindow onClose={closeModal}>
-          <h3 className={css.title}>Error while saving</h3>
-          <p className={css.message}>
-            To save this recipe, you need to <br />
-            authorizate first
-          </p>
-          <div className={css.actions}>
-            <Button
-              type="link"
-              to="/login"
-              className={clsx(css.loginBtn, "white")}
-            >
-              Log in
-            </Button>
-            <Button
-              type="link"
-              to="/register"
-              className={clsx(css.registerBtn, "fill")}
-            >
-              Register
-            </Button>
-          </div>
-        </ModalWindow>
-      )}
-    </div>
+        <div className={css.right}>
+          <section className={css.generalInfo}>
+            <h3 className={css.title}>General informations</h3>
+            <p>
+              <strong>Category:</strong> {recipe.category?.name || "N/A"}
+            </p>
+            {recipe.cuisine && (
+              <p>
+                <strong>Cuisine:</strong> {recipe.cuisine}
+              </p>
+            )}
+            {recipe.time && (
+              <p>
+                <strong>Cooking Time:</strong> {recipe.time} min
+              </p>
+            )}
+            {recipe.calories && (
+              <p>
+                <strong>Calories:</strong> Approximately {recipe.calories} kcal
+                per serving
+              </p>
+            )}
+          </section>
+          <Button
+            className={clsx("fill", css.btnSav)}
+            onClick={handleToggleFavorite}
+            disabled={isProcessing}
+          >
+            {isFavorite ? "Unsave" : "Save"}
+            <Icon
+              className={isFavorite ? css.unsave : css.saveWhite}
+              iconName="save-icon"
+            />
+          </Button>
+        </div>
+      </div>
+    </Container>
   );
 }

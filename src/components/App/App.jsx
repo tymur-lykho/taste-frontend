@@ -76,6 +76,12 @@ function App() {
               }
             />
             <Route
+              path="/profile/favorites"
+              element={
+                <PrivateRoute redirectTo="/login" component={<UserPage />} />
+              }
+            />
+            <Route
               path="/profile"
               element={
                 <PrivateRoute redirectTo="/login" component={<UserPage />} />

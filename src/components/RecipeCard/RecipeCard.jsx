@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import {
   addFavoriteLocally,
   removeFavoriteLocally,
+  removeFavoriteRecipe,
 } from "../../redux/recipes/slice";
 
 export default function RecipesCard({ recipe }) {
@@ -53,6 +54,7 @@ export default function RecipesCard({ recipe }) {
       if (isFavorite) {
         dispatch(removeFavoriteLocally(id));
         await dispatch(deleteFavoritesId(id)).unwrap();
+        dispatch(removeFavoriteRecipe);
       } else {
         dispatch(addFavoriteLocally(id));
         await dispatch(postFavoritesId(id)).unwrap();

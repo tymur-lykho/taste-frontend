@@ -111,6 +111,11 @@ const slice = createSlice({
         (id) => id !== action.payload
       );
     },
+    removeFavoriteRecipe(state, action) {
+      state.favorites = state.favorites.filter(
+        (recipe) => recipe._id !== action.payload
+      );
+    }    
   },
   extraReducers: (builder) => {
     builder
@@ -155,6 +160,7 @@ export const {
   resetRecipes,
   addFavoriteLocally,
   removeFavoriteLocally,
+  removeFavoriteRecipe
 } = slice.actions;
 
 export default slice.reducer;
