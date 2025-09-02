@@ -3,7 +3,6 @@ import {
   selectError,
   selectIsLoading,
 } from "../../redux/recipes/selectors";
-import { nextPage } from "../../redux/recipes/slice";
 
 import css from "./RecipesList.module.css";
 import RecipesCard from "../RecipeCard/RecipeCard";

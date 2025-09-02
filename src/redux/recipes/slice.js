@@ -6,7 +6,6 @@ import {
   addFavoritesRecipe,
   removeFromFavorites,
   fetchFavoritesId,
-  fetchFavoritesId,
 } from "./operations";
 import { fetchFilteredRecipes } from "../filters/operations";
 
@@ -166,22 +165,22 @@ const slice = createSlice({
         hasNextPage: false,
       };
     },
-    clearRecipesState(state) {
-      state.own = [];
-      state.favorites = [];
-      state.favoritesId = [];
-      state.isMyRecipesLoaded = false;
-      state.isFavoritesLoaded = false;
-    },
+    // clearRecipesState(state) {
+    //   state.own = [];
+    //   state.favorites = [];
+    //   state.favoritesId = [];
+    //   state.isMyRecipesLoaded = false;
+    //   state.isFavoritesLoaded = false;
+    // },
     clearRecipesState: (state) => {
       state.items = [];
       state.page = 1;
       state.hasNextPage = false;
       state.totalItems = null;
     },
-    nextPage: (state) => {
-      state.page += 1;
-    },
+    // nextPage: (state) => {
+    //   state.page += 1;
+    // },
     setMode: (state, action) => {
       state.mode = action.payload;
       state.items = [];
@@ -193,7 +192,7 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipes.pending, handlePending)
-      .addCase(fetchRecipes.fulfilled, handleFulfilled)
+      // .addCase(fetchRecipes.fulfilled, handleFulfilled)
       .addCase(fetchRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -212,7 +211,7 @@ const slice = createSlice({
       .addCase(fetchFilteredRecipes.rejected, handleRejected)
 
       .addCase(fetchOwnRecipes.pending, handlePending)
-      .addCase(fetchOwnRecipes.fulfilled, handleOwnRecipesFulfilled)
+      // .addCase(fetchOwnRecipes.fulfilled, handleOwnRecipesFulfilled)
       .addCase(fetchOwnRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -227,7 +226,7 @@ const slice = createSlice({
       .addCase(fetchOwnRecipes.rejected, handleRejected)
 
       .addCase(fetchFavoritesRecipes.pending, handlePending)
-      .addCase(fetchFavoritesRecipes.fulfilled, handleFavoriteRecipesFulfilled)
+      // .addCase(fetchFavoritesRecipes.fulfilled, handleFavoriteRecipesFulfilled)
       .addCase(fetchFavoritesRecipes.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
@@ -242,7 +241,7 @@ const slice = createSlice({
       .addCase(fetchFavoritesRecipes.rejected, handleRejected)
 
       .addCase(fetchFavoritesId.pending, handlePending)
-      .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
+      // .addCase(fetchFavoritesId.fulfilled, handleFavoritesIdFulfilled)
       .addCase(fetchFavoritesId.rejected, handleRejected)
 
       .addCase(fetchFavoritesId.fulfilled, (state, action) => {
@@ -253,26 +252,26 @@ const slice = createSlice({
         state.isLoading = false;
         state.error = null;
 
-        const addedRecipe = action.payload.data;
-        const recipeId = addedRecipe._id;
+        // const addedRecipe = action.payload.data;
+        // const recipeId = addedRecipe._id;
 
-        // Додаємо ID до списку улюблених
-        if (!state.favoritesId.includes(recipeId)) {
-          state.favoritesId.push(recipeId);
-        }
+        // // Додаємо ID до списку улюблених
+        // if (!state.favoritesId.includes(recipeId)) {
+        //   state.favoritesId.push(recipeId);
+        // }
 
-        // Оновлюємо стан рецепта в основному списку
-        state.items = state.items.map((recipe) =>
-          recipe._id === recipeId ? { ...recipe, isFavorite: true } : recipe
-        );
+        // // Оновлюємо стан рецепта в основному списку
+        // state.items = state.items.map((recipe) =>
+        //   recipe._id === recipeId ? { ...recipe, isFavorite: true } : recipe
+        // );
 
-        // Додаємо до списку улюблених рецептів, якщо він завантажений
-        if (
-          state.isFavoritesLoaded &&
-          !state.favorites.some((recipe) => recipe._id === recipeId)
-        ) {
-          state.favorites.push(addedRecipe);
-        }
+        // // Додаємо до списку улюблених рецептів, якщо він завантажений
+        // if (
+        //   state.isFavoritesLoaded &&
+        //   !state.favorites.some((recipe) => recipe._id === recipeId)
+        // ) {
+        //   state.favorites.push(addedRecipe);
+        // }
         const addRecipeToFavorites = action.payload;
         state.favoriteRecipes.push(addRecipeToFavorites);
       })
@@ -318,5 +317,5 @@ export const {
   clearRecipesState,
 } = slice.actions;
 
-export const { clearRecipesState, nextPage, setMode } = slice.actions;
+export const { setMode } = slice.actions;
 export default slice.reducer;

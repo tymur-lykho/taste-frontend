@@ -1,8 +1,4 @@
 import clsx from "clsx";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-// import { selectIsLoggedIn } from "../../redux/auth/selectors";
-
 import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import { Button } from "../Button/Button";

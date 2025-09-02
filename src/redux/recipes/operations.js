@@ -59,8 +59,6 @@ export const addFavoritesRecipe = createAsyncThunk(
   "recipes/addFavoritesRecipe",
   async (recipeId, thunkAPI) => {
     try {
-      const response = await axios.post(`/recipes/favorites/${recipeId}`);
-      return response.data;
       await axios.post(`/recipes/favorites/${recipeId}`);
       console.log("RES.ADD DATA:", recipeId);
       return recipeId;
@@ -76,22 +74,8 @@ export const removeFromFavorites = createAsyncThunk(
   async (recipeId, thunkAPI) => {
     try {
       await axios.delete(`/recipes/favorites/${recipeId}`);
-      await axios.delete(`/recipes/favorites/${recipeId}`);
       console.log("RES.DELETE DATA:", recipeId);
       return recipeId;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Отримати список ID вибраних рецептів користувача
-export const fetchFavoritesId = createAsyncThunk(
-  "recipes/fetchFavoritesId",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get("users/current");
-      return response.data.data.favoriteRecipes;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
