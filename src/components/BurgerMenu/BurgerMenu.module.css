@@ -1,132 +1,131 @@
 .burgerWrapper {
-    display: block;
+  display: block;
 }
 
 @media (min-width: 768px) {
-    .burgerWrapper {
-        display: none;
-    }
+  .burgerWrapper {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
 
-    /* Кнопка бургер */
-    .burgerBtn {
-        width: 32px;
-        height: 32px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
+  /* Кнопка бургер */
+  .burgerBtn {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .closeBtn {
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+
+  .icon {
+    /* розмір кнопки */
+    width: 32px;
+    height: 32px;
+
+  }
+
+  /* Mobile меню */
+  .mobileNav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 73px;
+    width: 100%;
+    height: calc(100vh - 73px);
+    background-color: #3d2218;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px;
+    padding-top: 32px;
+    z-index: 9999;
+
+  }
+
+  .mobileNavList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 16px;
+    margin-top: 0;
+    width: 100%;
+    max-width: 393px;
+  }
+
+  .mobileNavItem {
+
+    list-style-type: none;
+    width: 100%;
+    text-align: center;
+
+  }
+
+  .mobileNavLink {
+    display: inline-block;
+    font-size: var(--text-size);
+    font-weight: var(--weight-semibold);
+    width: 65px;
+    height: 24px;
+    position: relative;
+    color: var(--white-text-color);
+    text-decoration: inherit;
+    transition: opacity 0.3s ease;
+    /* плавний ефект прозорості */
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
     }
 
-    .closeBtn {
-        width: 32px;
-        height: 32px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        position: absolute;
-        top: 20px;
-        right: 20px;
+    &:hover {
+      opacity: 0.5;
+      /* ефект прозорості при ховері */
     }
+  }
 
-
-    .icon {
-        /* розмір кнопки */
-        width: 32px;
-        height: 32px;
-
+  .activeNavLink {
+    &::after {
+      transform: scaleX(1);
+      /* підкреслення для активного посилання */
     }
-
-    /* Mobile меню */
-    .mobileNav {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 73px;
-        width: 100%;
-        height: calc(100vh - 73px);
-        background-color: #3d2218;
-        padding: 0 16px;
-        display: flex;
-        flex-direction: column;
-        z-index: 1000;
-        align-items: center;
-        padding-top: 32px;
-    }
-
-    .mobileNavList {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 32px;
-        padding: 0;
-        margin-top: 0;
-    }
-
-    .mobileNavItem {
-        list-style-type: none;
-
-    }
-
-    .mobileNavLink {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        gap: 4px;
-        font-size: var(--text-size);
-        font-weight: var(--weight-semibold);
-
-        padding-block: 0px 4px;
-        padding-inline: 0px;
-        width: 65px;
-        height: 24px;
-
-        position: relative;
-        color: var(--white-text-color);
-        text-decoration: inherit;
-        transition: opacity 0.3s ease;
-        /* плавний ефект прозорості */
-
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px;
-            width: 100%;
-            height: 1px;
-            background-color: currentColor;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        &:hover {
-            opacity: 0.5;
-            /* ефект прозорості при ховері */
-        }
-    }
-
-    .activeNavLink {
-        &::after {
-            transform: scaleX(1);
-            /* підкреслення для активного посилання */
-        }
-    }
+  }
 
 
 }
 
 /* Desktop > 394px */
 @media (min-width: 768px) {
-    .burgerWrapper {
-        display: none;
-    }
+  .burgerWrapper {
+    display: none;
+  }
 
-    .mobileNav {
-        display: none;
-    }
+  .mobileNav {
+    display: none;
+  }
 }

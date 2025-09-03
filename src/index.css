@@ -46,7 +46,7 @@
   --btn-text-color: var(--white-text-color);
   --hover-btn-background: #6d554b;
   --box-shadow-active-btn: 0 0 0 6px rgba(78, 70, 180, 0.12),
-    0 0 0 2px var(--white);
+    0 0 0 2px var(--white-text-color);
   --active-background-btn: var(--light-brown-background);
   --disabled-background-btn: #9b6c43;
   /* Button var white(Outline)*/
@@ -138,10 +138,10 @@ a {
   color: inherit;
   text-decoration: none;
 
-  &:hover {
+  /* &:hover {
     text-decoration: 1px underline;
     text-underline-offset: 4px;
-  }
+  } */
   /* &:hover {
     color: var(--light-beige);
     text-decoration: none;
@@ -176,10 +176,10 @@ button {
   align-items: center;
   border-radius: var(--radius-i-sm);
   font-family: inherit;
-  width: 40px;
-  height: 40px;
+  /* width: 40px;
+  height: 40px; */
   padding: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: transparent;
   cursor: pointer;
   border: none;
@@ -195,6 +195,7 @@ button {
   &:focus,
   &:focus-visible {
     background: var(--Light-gray, #d9d9d9);
+    border-color: var(--Light-gray, #d9d9d9);
   }
 
   &:active {

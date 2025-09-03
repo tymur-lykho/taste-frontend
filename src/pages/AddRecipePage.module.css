@@ -1,34 +1,37 @@
-body {
-  background: #f8f9f4;
-  font-family: Arial, sans-serif;
-  color: #222;
-}
-
-form {
+.form {
   padding: 0px 16px;
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 32px;
+  }
+
+  .instruction {
+    min-height: 144px;
+  }
 }
 
-label {
+.error {
+  position: relative;
+  top: -30px;
+  left: 14px;
+  color: #c80000;
+}
+
+.select {
+  min-height: 45px;
+}
+
+.label {
   display: block;
   font-weight: 500;
   margin-bottom: 8px;
-}
-
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  /* font-size: 1rem; */
-  margin-bottom: 32px;
-}
-
-textarea {
-  /* min-height: 100px; */
-  height: 144px;
-  resize: vertical;
+  font-size: 18px;
 }
 
 .AddRecipePagetitle {
@@ -90,7 +93,6 @@ textarea {
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
-
 }
 
 .submit-btn {
@@ -151,7 +153,6 @@ textarea {
     padding: 0px 32px;
   }
   .add-btn {
-
     border-radius: 8px;
     padding: 4px 8px;
     height: 23px;
@@ -231,12 +232,12 @@ textarea {
   }
   .ingredient-actions {
     display: flex;
-  align-items: flex-start;
+    align-items: flex-start;
   }
 
   .ingredient-columns {
     display: flex;
-    gap: 20px; 
+    gap: 20px;
   }
   .ingredient-col,
   .ingredient-col-amount {

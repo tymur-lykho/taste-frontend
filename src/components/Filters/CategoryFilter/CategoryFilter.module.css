@@ -1,0 +1,9 @@
+.select {
+  width: 100%;
+  text-align: left;
+
+  @media (min-width: 1440px) {
+    height: 33px;
+    order: 1;
+  }
+}

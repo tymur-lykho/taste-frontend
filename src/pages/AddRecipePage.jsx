@@ -1,10 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./AddRecipePage.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilterData } from "../redux/filters/selectors.js";
+import Select from "react-select";
+import { customStyles } from "../components/Filters/selectStyles.js";
 
-// Validation schema
 const validationSchema = Yup.object({
   title: Yup.string()
     .min(3, "Title must be at least 3 characters long")
@@ -41,9 +43,20 @@ const validationSchema = Yup.object({
 });
 
 export default function AddRecipePage() {
-  const [categories, setCategories] = useState([]);
-  const [ingredients, setIngredients] = useState([]);
-  const [status, setStatus] = useState(null); // для повідомлення про успіх/помилку
+  const [selectedCategories, setCategories] = useState("");
+  // const [ingredients, setIngredients] = useState([]);
+  const [status, setStatus] = useState(null);
+
+  const dispatch = useDispatch();
+  const { categories, ingredients } = useSelector(selectFilterData);
+
+  const selectedCategory = categories.find(
+    (cat) => cat._id === selectedCategories
+  );
+
+  const handleChangeCategory = (selectedOption) => {
+    dispatch(setCategories(selectedOption ? selectedOption.value : undefined));
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -116,12 +129,11 @@ export default function AddRecipePage() {
         <Form className={styles.form}>
           <h1 className={styles.title}>Add Recipe</h1>
 
-          {/* General Info */}
           <div className={styles["general-info"]}>
             <div>
               <h2 className={styles["title-inf-gen"]}>General Information</h2>
 
-              <label>Recipe Title</label>
+              <label className={styles.label}>Recipe Title</label>
               <Field
                 name="title"
                 type="text"
@@ -133,7 +145,7 @@ export default function AddRecipePage() {
                 className={styles.error}
               />
 
-              <label>Recipe Description</label>
+              <label className={styles.label}>Recipe Description</label>
               <Field
                 as="textarea"
                 name="description"
@@ -146,7 +158,7 @@ export default function AddRecipePage() {
               />
 
               <div>
-                <label>Cooking time in minutes</label>
+                <label className={styles.label}>Cooking time in minutes</label>
                 <Field name="cookingTime" type="number" placeholder="10" />
                 <ErrorMessage
                   name="cookingTime"
@@ -157,7 +169,7 @@ export default function AddRecipePage() {
 
               <div className={styles["two-cols"]}>
                 <div>
-                  <label>Calories</label>
+                  <label className={styles.label}>Calories</label>
                   <Field name="calories" type="number" placeholder="150" />
                   <ErrorMessage
                     name="calories"
@@ -167,15 +179,25 @@ export default function AddRecipePage() {
                 </div>
 
                 <div>
-                  <label>Category</label>
-                  <Field as="select" name="category">
-                    <option value="">Select...</option>
-                    {categories.map((cat) => (
-                      <option key={cat.id} value={cat.name}>
-                        {cat.name}
-                      </option>
-                    ))}
-                  </Field>
+                  <label className={styles.label}>Category</label>
+                  <Select
+                    className={styles.select}
+                    options={categories.map((cat) => ({
+                      value: cat._id,
+                      label: cat.name,
+                    }))}
+                    value={
+                      selectedCategory
+                        ? {
+                            value: selectedCategory._id,
+                            label: selectedCategory.name,
+                          }
+                        : null
+                    }
+                    styles={customStyles}
+                    placeholder="Category..."
+                    onChange={handleChangeCategory}
+                  />
                   <ErrorMessage
                     name="category"
                     component="div"
@@ -199,7 +221,7 @@ export default function AddRecipePage() {
                 <div>
                   <div className={styles["ingredient-row"]}>
                     <div className={styles["ingredient-col"]}>
-                      <label>Name</label>
+                      <label className={styles.label}>Name</label>
                       <Field as="select" name="currentIngredientName">
                         <option value="">Select...</option>
                         {ingredients.map((ing) => (
@@ -211,7 +233,7 @@ export default function AddRecipePage() {
                     </div>
 
                     <div className={styles["ingredient-col-amount"]}>
-                      <label>Amount</label>
+                      <label className={styles.label}>Amount</label>
                       <Field
                         name="currentIngredientAmount"
                         type="text"
@@ -280,6 +302,7 @@ export default function AddRecipePage() {
               as="textarea"
               name="instructions"
               placeholder="Enter instructions"
+              className={styles.instruction}
             />
             <ErrorMessage
               name="instructions"

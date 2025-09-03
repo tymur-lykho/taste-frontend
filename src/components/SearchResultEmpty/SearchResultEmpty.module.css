@@ -1,0 +1,36 @@
+.card {
+  border-radius: 16px;
+  padding: 40px 24px;
+  max-width: 361px;
+  background-color: #faf3e0;
+  margin: 48px auto 0;
+
+  @media only screen and (min-width: 768px) {
+    max-width: none;
+    width: 522px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    width: 598px;
+  }
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  margin: 0 auto 15px;
+
+  @media only screen and (min-width: 768px) {
+    max-width: 382px;
+  }
+}
+
+.button {
+  border: 1px solid #000;
+  border-radius: 8px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 16px;
+}
