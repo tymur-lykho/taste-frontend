@@ -1,7 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import css from "./ResetFilter.module.css";
-import { resetFilter } from '../../../redux/filters/slice';
-import { Link } from 'react-router-dom';
+import { resetFilter } from "../../../redux/filters/slice";
 
 const ResetFiltersLink = () => {
   const dispatch = useDispatch();
@@ -11,7 +10,9 @@ const ResetFiltersLink = () => {
   };
 
   return (
-    <Link to="/" onClick={handleReset} className={css.resetLink} >Reset filters</Link>
+    <button onClick={handleReset} className={css.resetLink}>
+      Reset filters
+    </button>
   );
 };
 

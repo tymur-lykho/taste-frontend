@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import Icon from "../../Icon/Icon";
@@ -12,6 +12,19 @@ export default function BurgerMenu({ isLoggedIn, openModal }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  // Блокуємо скрол при відкритому меню
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "visible";
+    }
+    // Очистка при розмонтуванні
+    return () => {
+      document.body.style.overflow = "visible";
+    };
+  }, [isOpen]);
+
   const getActiveNavLink = ({ isActive }) =>
     clsx(css.mobileNavLink, isActive && css.activeNavLink);
 

@@ -12,14 +12,14 @@ import { customStyles } from "../selectStyles";
 export default function IngredientsFilter() {
   const dispatch = useDispatch();
   const { ingredients } = useSelector(selectFilterData);
-  const selectedIngredient = useSelector(selectSelectedIngredients); 
+  const selectedIngredient = useSelector(selectSelectedIngredients);
 
   const options = useMemo(
     () => ingredients.map((ing) => ({ value: ing._id, label: ing.name })),
     [ingredients]
   );
 
-  const value = options.find((opt) => opt.value === selectedIngredient);
+  const value = options.find((opt) => opt.value === selectedIngredient) || null;
 
   const handleChange = (selectedOption) => {
     dispatch(setIngredients(selectedOption?.value || null));

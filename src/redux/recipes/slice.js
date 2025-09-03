@@ -6,8 +6,9 @@ import {
   addFavoritesRecipe,
   removeFromFavorites,
   fetchFavoritesId,
+  fetchRecipesId,
 } from "./operations";
-// import { fetchFilteredRecipes } from "../filters/operations";
+import { logout } from "../auth/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -22,6 +23,8 @@ const handleRejected = (state, action) => {
 const handleRecipesFulfild = (state, action) => {
   state.isLoading = false;
   state.error = null;
+  console.log("HHS", action.payload.data.data);
+
   if (action.payload.data.page === 1) {
     state.items = action.payload.data.data;
   } else {
@@ -40,6 +43,7 @@ const slice = createSlice({
     error: null,
     hasNextPage: false,
     totalItems: null,
+    currentRecipe: null,
   },
   reducers: {
     clearRecipesState: (state) => {
@@ -48,16 +52,15 @@ const slice = createSlice({
       state.hasNextPage = false;
       state.totalItems = null;
     },
+    resetCurrentRecipe: (state) => {
+      state.currentRecipe = null;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipes.pending, handlePending)
       .addCase(fetchRecipes.fulfilled, handleRecipesFulfild)
       .addCase(fetchRecipes.rejected, handleRejected)
-
-      // .addCase(fetchFilteredRecipes.pending, handlePending)
-      // .addCase(fetchFilteredRecipes.fulfilled, handleFulfilled)
-      // .addCase(fetchFilteredRecipes.rejected, handleRejected)
 
       .addCase(fetchOwnRecipes.pending, handlePending)
       .addCase(fetchOwnRecipes.fulfilled, handleRecipesFulfild)
@@ -100,9 +103,21 @@ const slice = createSlice({
           state.totalItems -= 1;
         }
       })
-      .addCase(removeFromFavorites.rejected, handleRejected);
+      .addCase(removeFromFavorites.rejected, handleRejected)
+
+      .addCase(logout.fulfilled, (state) => {
+        state.favoriteRecipes = [];
+      })
+
+      .addCase(fetchRecipesId.pending, handlePending)
+      .addCase(fetchRecipesId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.currentRecipe = action.payload;
+      })
+      .addCase(fetchRecipesId.rejected, handleRejected);
   },
 });
 
-export const { clearRecipesState } = slice.actions;
+export const { clearRecipesState, resetCurrentRecipe } = slice.actions;
 export default slice.reducer;

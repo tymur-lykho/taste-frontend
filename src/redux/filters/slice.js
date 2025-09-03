@@ -17,8 +17,8 @@ const filterSlice = createSlice({
     categories: [],
     ingredients: [],
     selectedFilters: {
-      categories: undefined,
-      ingredients: [],
+      categories: null,
+      ingredients: null,
       search: "",
     },
     isLoading: false,
@@ -35,9 +35,8 @@ const filterSlice = createSlice({
       state.selectedFilters.search = actions.payload;
     },
     resetFilter(state) {
-      state.selectedFilters.categories = undefined;
-      state.selectedFilters.ingredients = [];
-      state.selectedFilters.area = undefined;
+      state.selectedFilters.categories = null;
+      state.selectedFilters.ingredients = null;
       state.selectedFilters.search = "";
     },
   },
@@ -60,11 +59,7 @@ const filterSlice = createSlice({
   },
 });
 
-export const {
-  setCategories,
-  setIngredients,
-  setSearch,
-  resetFilter,
-} = filterSlice.actions;
+export const { setCategories, setIngredients, setSearch, resetFilter } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

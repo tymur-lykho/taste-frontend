@@ -209,3 +209,7 @@
     height: 36px;
   }
 }
+
+.loginText a {
+  text-decoration: underline;
+}
