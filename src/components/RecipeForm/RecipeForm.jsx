@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import styles from "./AddRecipePage.module.css";
+import styles from "./RecipeForm.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectCategories, selectIngredients } from "../redux/filters/selectors";
-import { fetchFilters } from "../redux/filters/operations";
-
+import { selectFilterData } from "../../redux/filters/selectors";
+import {
+  fetchCategories,
+  fetchIngredients,
+} from "../../redux/filters/operations";
 const validationSchema = Yup.object({
   title: Yup.string()
     .min(3, "Title must be at least 3 characters long")
@@ -24,13 +26,14 @@ const validationSchema = Yup.object({
     .min(0, "Calories cannot be less than 0")
     .max(5000, "Too many calories :)")
     .required("Calories are required"),
-  category: Yup.string()
-    .required("Category is required"),
+  category: Yup.string().required("Category is required"),
   ingredients: Yup.array()
     .of(
       Yup.object({
         name: Yup.string().required("Ingredient name is required"),
-        amount: Yup.string().min(1, "Enter valid amount").required("Amount is required"),
+        amount: Yup.string()
+          .min(1, "Enter valid amount")
+          .required("Amount is required"),
       })
     )
     .min(1, "Please add at least one ingredient"),
@@ -41,14 +44,15 @@ const validationSchema = Yup.object({
 
 export default function AddRecipeForm() {
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
-  const ingredients = useSelector(selectIngredients);
+
+  const { categories, ingredients } = useSelector(selectFilterData);
 
   const [status, setStatus] = useState(null);
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchFilters());
+    dispatch(fetchCategories());
+    dispatch(fetchIngredients());
   }, [dispatch]);
 
   return (
@@ -68,9 +72,6 @@ export default function AddRecipeForm() {
       validationSchema={validationSchema}
       onSubmit={async (values, { resetForm }) => {
         try {
-          // Виклик redux-операції для відправки даних
-          // dispatch(addRecipe(values));
-
           console.log("Recipe data to submit:", values);
           setStatus({ success: "Recipe successfully published!" });
           resetForm();
@@ -91,28 +92,58 @@ export default function AddRecipeForm() {
 
             <label className={styles.formLabel}>Recipe Title</label>
             <Field name="title" type="text" className={styles.formInput} />
-            <ErrorMessage name="title" component="div" className={styles.error} />
+            <ErrorMessage
+              name="title"
+              component="div"
+              className={styles.error}
+            />
 
             <label className={styles.formLabel}>Description</label>
-            <Field as="textarea" name="description" className={styles.formTextarea} />
-            <ErrorMessage name="description" component="div" className={styles.error} />
+            <Field
+              as="textarea"
+              name="description"
+              className={styles.formTextarea}
+            />
+            <ErrorMessage
+              name="description"
+              component="div"
+              className={styles.error}
+            />
 
             <label className={styles.formLabel}>Cooking Time (minutes)</label>
-            <Field name="cookingTime" type="number" className={styles.formInput} />
-            <ErrorMessage name="cookingTime" component="div" className={styles.error} />
+            <Field
+              name="cookingTime"
+              type="number"
+              className={styles.formInput}
+            />
+            <ErrorMessage
+              name="cookingTime"
+              component="div"
+              className={styles.error}
+            />
 
             <label className={styles.formLabel}>Calories</label>
             <Field name="calories" type="number" className={styles.formInput} />
-            <ErrorMessage name="calories" component="div" className={styles.error} />
+            <ErrorMessage
+              name="calories"
+              component="div"
+              className={styles.error}
+            />
 
             <label className={styles.formLabel}>Category</label>
             <Field as="select" name="category" className={styles.formSelect}>
               <option value="">Select...</option>
               {categories.map((cat) => (
-                <option key={cat.id} value={cat.name}>{cat.name}</option>
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
               ))}
             </Field>
-            <ErrorMessage name="category" component="div" className={styles.error} />
+            <ErrorMessage
+              name="category"
+              component="div"
+              className={styles.error}
+            />
           </fieldset>
 
           {/* Photo Upload */}
@@ -120,7 +151,11 @@ export default function AddRecipeForm() {
             <legend>Upload Photo</legend>
             <label htmlFor="photo-upload" className={styles.uploadBox}>
               {preview ? (
-                <img src={preview} alt="preview" className={styles.previewImg} />
+                <img
+                  src={preview}
+                  alt="preview"
+                  className={styles.previewImg}
+                />
               ) : (
                 <span className={styles.plus}>+</span>
               )}
@@ -152,10 +187,16 @@ export default function AddRecipeForm() {
                   <div className={styles.ingredientRow}>
                     <div className={styles.ingredientCol}>
                       <label className={styles.formLabel}>Name</label>
-                      <Field as="select" name="currentIngredientName" className={styles.formSelect}>
+                      <Field
+                        as="select"
+                        name="currentIngredientName"
+                        className={styles.formSelect}
+                      >
                         <option value="">Select...</option>
                         {ingredients.map((ing) => (
-                          <option key={ing.id} value={ing.name}>{ing.name}</option>
+                          <option key={ing.id} value={ing.name}>
+                            {ing.name}
+                          </option>
                         ))}
                       </Field>
                     </div>
@@ -173,7 +214,10 @@ export default function AddRecipeForm() {
                     type="button"
                     className={styles.addBtn}
                     onClick={() => {
-                      if (values.currentIngredientName && values.currentIngredientAmount) {
+                      if (
+                        values.currentIngredientName &&
+                        values.currentIngredientAmount
+                      ) {
                         push({
                           name: values.currentIngredientName,
                           amount: values.currentIngredientAmount,
@@ -220,13 +264,25 @@ export default function AddRecipeForm() {
           {/* Instructions */}
           <fieldset className={styles.fieldset}>
             <legend>Instructions</legend>
-            <Field as="textarea" name="instructions" className={styles.formTextarea} />
-            <ErrorMessage name="instructions" component="div" className={styles.error} />
+            <Field
+              as="textarea"
+              name="instructions"
+              className={styles.formTextarea}
+            />
+            <ErrorMessage
+              name="instructions"
+              component="div"
+              className={styles.error}
+            />
           </fieldset>
 
-          <button type="submit" className={styles.submitBtn}>Publish Recipe</button>
+          <button type="submit" className={styles.submitBtn}>
+            Publish Recipe
+          </button>
 
-          {status?.success && <div className={styles.success}>{status.success}</div>}
+          {status?.success && (
+            <div className={styles.success}>{status.success}</div>
+          )}
           {status?.error && <div className={styles.error}>{status.error}</div>}
         </Form>
       )}
