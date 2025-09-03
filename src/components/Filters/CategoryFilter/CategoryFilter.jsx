@@ -34,6 +34,7 @@ export default function CategoryFilter() {
           : null
       }
       styles={customStyles}
+      placeholder="Category..."
       onChange={handleChangeCategory}
     />
   );

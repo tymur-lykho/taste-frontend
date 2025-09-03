@@ -12,25 +12,17 @@ import { customStyles } from "../selectStyles";
 export default function IngredientsFilter() {
   const dispatch = useDispatch();
   const { ingredients } = useSelector(selectFilterData);
-  const selectedIngredients = useSelector(selectSelectedIngredients);
+  const selectedIngredient = useSelector(selectSelectedIngredients); 
 
   const options = useMemo(
     () => ingredients.map((ing) => ({ value: ing._id, label: ing.name })),
     [ingredients]
   );
 
-  const value = useMemo(
-    () =>
-      options.filter((option) => selectedIngredients.includes(option.value)),
-    [options, selectedIngredients]
-  );
+  const value = options.find((opt) => opt.value === selectedIngredient);
 
-  const handleChange = (selectedOptions) => {
-    const values = selectedOptions
-      ? selectedOptions.map((opt) => opt.value)
-      : [];
-
-    dispatch(setIngredients(values));
+  const handleChange = (selectedOption) => {
+    dispatch(setIngredients(selectedOption?.value || null));
   };
 
   return (
@@ -39,7 +31,6 @@ export default function IngredientsFilter() {
       options={options}
       value={value}
       onChange={handleChange}
-      isMulti
       placeholder="Ingredients..."
       styles={customStyles}
     />
