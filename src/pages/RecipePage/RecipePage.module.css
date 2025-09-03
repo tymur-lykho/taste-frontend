@@ -1,0 +1,245 @@
+.recipePage {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 32px;
+  width: 100%;
+  padding-block: 48px;
+}
+
+.tumbImg {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 276px;
+  overflow: hidden;
+  border-radius: var(--radius-i-sm);
+  @media (min-width: 768px) {
+    height: 624px;
+  }
+
+  @media (min-width: 1440px) {
+    background: #2b2d30;
+  }
+}
+
+.cardRecipe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  order: 1;
+  width: 100%;
+}
+.wrapRecipe {
+  width: 100%;
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .titleProduct {
+    order: 0;
+  }
+
+  .tumbImg {
+    order: 2;
+  }
+
+  .cardRecipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    order: 3;
+  }
+
+  .right {
+    flex-direction: row;
+    order: 1;
+    width: 704px;
+  }
+
+  .wrapRecipe {
+    order: 2;
+  }
+}
+
+@media (min-width: 1440px) {
+  .cardRecipe {
+    display: flex;
+    flex-wrap: nowrap;
+
+    /* gap: 32px; */
+    align-items: start;
+  }
+
+  .wrapRecipe {
+    order: 1;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    width: 393px;
+    order: 2;
+  }
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  @media (min-width: 1440px) {
+    width: 50%;
+  }
+}
+
+.generalInfo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: var(--radius-i-sm);
+  background-color: var(--card-background);
+
+  @media (min-width: 768px) {
+    width: 431px;
+  }
+  @media (min-width: 1440px) {
+    width: 393px;
+  }
+}
+
+.wrapRecipe {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 21.5px;
+}
+
+.list {
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stepsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  line-height: 1.55;
+}
+
+.btnSav {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  gap: 21.25px;
+
+  @media (min-width: 768px) {
+    width: 249px;
+  }
+  @media (min-width: 1440px) {
+    width: 100%;
+  }
+}
+
+.saveWhite {
+  width: 24px;
+  height: 24px;
+  stroke: var(--black-text-color);
+  fill: none;
+  flex-shrink: 0;
+}
+
+.unsave {
+  width: 24px;
+  height: 24px;
+  stroke: var(--white-text-color);
+  fill: var(--btn-text-color);
+}
+
+.message {
+  font-size: var(--text-size);
+  font-weight: var(--weight-regular);
+  line-height: 1.55;
+  text-align: center;
+  color: var(--black-text-color);
+  width: 100%;
+  max-width: 356px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 27px;
+    padding-bottom: 25px;
+  }
+}
+
+.loginBtn,
+.registerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  max-width: 314px;
+  height: 54px;
+  font-size: var(--text-l-size);
+  font-weight: var(--weight-semibold);
+}
+
+.loginBtn:hover,
+.registerBtn:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .loginBtn,
+  .registerBtn {
+    padding: 8px;
+    width: 164px;
+    height: 36px;
+    font-size: var(--text-size);
+  }
+}

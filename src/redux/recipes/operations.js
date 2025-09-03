@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
+axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
 
 // Всі рецепти
 export const fetchRecipes = createAsyncThunk(
@@ -59,6 +59,20 @@ export const fetchFavoritesRecipes = createAsyncThunk(
     }
   }
 );
+
+export const fetchRecipesId = createAsyncThunk(
+  "recipes/fetchRecipesId",
+  async (recipeId, thunkAPI) => {
+    try {
+      const response = await axios.get(`/recipes/${recipeId}`);
+      console.log("🚀 ~ response.data.data:", response.data.data)
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 
 export const fetchFavoritesId = createAsyncThunk(
   "recipes/fetchFavoritesId",

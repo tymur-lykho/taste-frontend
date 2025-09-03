@@ -6,6 +6,7 @@ import {
   addFavoritesRecipe,
   removeFromFavorites,
   fetchFavoritesId,
+  fetchRecipesId,
 } from "./operations";
 
 const handlePending = (state) => {
@@ -36,6 +37,7 @@ const slice = createSlice({
   name: "recipes",
   initialState: {
     items: [],
+    current: null,
     favoritesId: [],
     isLoading: false,
     error: null,
@@ -43,6 +45,9 @@ const slice = createSlice({
     totalItems: null,
   },
   reducers: {
+    resetCurrentRecipe(state) {
+      state.current = null;
+    },
     clearRecipesState: (state) => {
       state.items = [];
       state.page = 1;
@@ -101,9 +106,15 @@ const slice = createSlice({
           state.totalItems -= 1;
         }
       })
-      .addCase(removeFromFavorites.rejected, handleRejected);
+      .addCase(removeFromFavorites.rejected, handleRejected)
+      .addCase(fetchRecipesId.pending, handlePending)
+      .addCase(fetchRecipesId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.current = action.payload;
+      })
+      .addCase(fetchRecipesId.rejected, handleRejected);
   },
 });
 
-export const { clearRecipesState } = slice.actions;
+export const { clearRecipesState, resetCurrentRecipe } = slice.actions;
 export default slice.reducer;

@@ -3,9 +3,12 @@ import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoritesRecipe, removeFromFavorites } from "../../redux/recipes/operations";
+import {
+  addFavoritesRecipe,
+  removeFromFavorites,
+} from "../../redux/recipes/operations";
 import { selectFavoriteRecipes } from "../../redux/recipes/selectors";
 
 import css from "./RecipeCard.module.css";
@@ -13,14 +16,18 @@ import css from "./RecipeCard.module.css";
 export default function RecipesCard({ recipe }) {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
 
-  const isOwnRecipesRoute = location.pathname.includes('/profile/own');
+  const isOwnRecipesRoute = location.pathname.includes("/profile/own");
   let favorite = false;
 
   if (favoriteRecipes !== undefined) {
     favorite = favoriteRecipes.includes(recipe._id) ? true : false;
   }
+  const handleClickLearnMore = () => {
+    navigate(`/recipes/${recipe._id}`, { state: recipe });
+  };
 
   const handleToggleFavorite = () => {
     if (favorite) {
@@ -52,6 +59,7 @@ export default function RecipesCard({ recipe }) {
           className={clsx("white", css.md289)}
           title="Learn more"
           aria-label="Learn more"
+          onClick={handleClickLearnMore}
         >
           Learn more
         </Button>
@@ -59,17 +67,17 @@ export default function RecipesCard({ recipe }) {
         {!isOwnRecipesRoute && (
           <Button
             className={clsx("white", {
-              [css.favoriteActive]: favorite
-            })} 
-            title={favorite ? "Remove from favorite" : "Add to favorite"} 
+              [css.favoriteActive]: favorite,
+            })}
+            title={favorite ? "Remove from favorite" : "Add to favorite"}
             aria-label={favorite ? "Remove from favorite" : "Add to favorite"}
             onClick={handleToggleFavorite}
           >
             <Icon
               className={clsx(css["save-icon"], {
-                [css.active]: favorite
-              })} 
-              iconName="save-icon" 
+                [css.active]: favorite,
+              })}
+              iconName="save-icon"
             />
           </Button>
         )}

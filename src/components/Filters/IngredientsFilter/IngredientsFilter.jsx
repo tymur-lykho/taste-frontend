@@ -40,7 +40,7 @@ export default function IngredientsFilter() {
       options={options}
       value={value}
       onChange={handleChange}
-      isMulti
+      // isMulti
       placeholder="Ingredients..."
     />
   );

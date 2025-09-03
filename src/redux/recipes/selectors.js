@@ -24,3 +24,5 @@ export const selectFavoriteRecipesCount = createSelector([selectFavoriteRecipes]
 //   [selectFavoritesId, (state, recipeId) => recipeId],
 //   (favoritesId, recipeId) => favoritesId.includes(recipeId)
 // );
+
+export const selectRecipesId = (state) => state.recipes.current;
