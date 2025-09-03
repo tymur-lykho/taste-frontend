@@ -33,6 +33,7 @@ import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
 
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
+import RecipePage from "../../pages/RecipePage.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -98,6 +99,7 @@ function App() {
                 />
               }
             />
+            <Route path="/recipes/:id" element={<RecipePage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
