@@ -4,7 +4,7 @@ import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addFavoritesRecipe,
@@ -17,6 +17,7 @@ import AuthRequiredModal from "../Modal/AuthRequiredModal/AuthRequiredModal";
 import css from "./RecipeCard.module.css";
 
 export default function RecipesCard({ recipe }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
@@ -72,6 +73,7 @@ export default function RecipesCard({ recipe }) {
           className={clsx("white", css.md289)}
           title="Learn more"
           aria-label="Learn more"
+          onClick={() => navigate("/recipe/" + recipe._id)}
         >
           Learn more
         </Button>

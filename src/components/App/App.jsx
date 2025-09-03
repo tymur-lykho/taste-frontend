@@ -32,6 +32,7 @@ import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import { PrivateRoute } from "../PrivateRoute.jsx";
 
 import NotFoundPage from "../../pages/NotFoundPage.jsx";
+import RecipePage from "../../pages/RecipePage/RecipePage.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +43,6 @@ function App() {
     dispatch(refreshUser());
     dispatch(fetchCategories());
     dispatch(fetchIngredients());
-    //dispatch(fetchArea);
   }, [dispatch]);
 
   useEffect(() => {
@@ -96,6 +96,7 @@ function App() {
                 />
               }
             />
+            <Route path="/recipe/:id" element={<RecipePage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
