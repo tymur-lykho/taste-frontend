@@ -58,7 +58,7 @@ export default function RecipesCard({ recipe }) {
 
         {!isOwnRecipesRoute && (
           <Button
-            className={clsx("white", {
+            className={clsx("white", css.md40, {
               [css.favoriteActive]: favorite
             })} 
             title={favorite ? "Remove from favorite" : "Add to favorite"} 

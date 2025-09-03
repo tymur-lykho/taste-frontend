@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setIngredients } from "../../../redux/filters/slice";
-// import { fetchFilteredRecipes } from "../../../redux/filters/operations";
 import { useMemo } from "react";
 import {
   selectFilterData,
@@ -8,6 +7,7 @@ import {
 } from "../../../redux/filters/selectors";
 import css from "./IngredientsFilter.module.css";
 import Select from "react-select";
+import { customStyles } from "../selectStyles";
 
 export default function IngredientsFilter() {
   const dispatch = useDispatch();
@@ -31,7 +31,6 @@ export default function IngredientsFilter() {
       : [];
 
     dispatch(setIngredients(values));
-    // dispatch(fetchFilteredRecipes());
   };
 
   return (
@@ -42,6 +41,7 @@ export default function IngredientsFilter() {
       onChange={handleChange}
       isMulti
       placeholder="Ingredients..."
+      styles={customStyles}
     />
   );
 }
