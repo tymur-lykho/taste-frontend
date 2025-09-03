@@ -12,9 +12,9 @@ export default function SearchBox() {
   const dispatch = useDispatch();
   const nameFilter = useSelector(selectSearch);
 
-  const [titleInput, setTitleInput] = useState(nameFilter);
+  const [titleInput, setTitleInput] = useState(nameFilter || "");
 
-  useEffect(() => setTitleInput(nameFilter), [nameFilter]);
+  useEffect(() => setTitleInput(nameFilter || ""), [nameFilter]);
 
   const isValidText = (value) => /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s]*$/.test(value);
 
