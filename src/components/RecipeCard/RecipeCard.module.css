@@ -106,6 +106,7 @@
   }
 }
 
+/* 
 .title {
   font-size: 32px;
   font-weight: var(--weight-semibold);
@@ -168,7 +169,7 @@
     height: 36px;
     font-size: var(--text-size);
   }
-}
+} */
 
 .save-icon {
   width: 24px;
@@ -222,24 +223,25 @@
 
 .save-icon.active,
 .favoriteActive {
+
   &:hover,
-    &:focus,
-    &:focus-visible {
-      background-color: var(--hover-btn-background);
-      border-color: var(--hover-btn-background);
-      fill: var(--hover-btn-background);
-    }
-  
-    &:active {
-      background-color: var(--active-background-btn);
-      box-shadow: --box-shadow-active-btn;
-      fill: var(--active-background-btn);
-    }
-  
-    &:disabled {
-      background-color: var(--disabled-background-btn);
-      fill: var(--disabled-background-btn);
-      opacity: 0.3;
-      box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
-    }
+  &:focus,
+  &:focus-visible {
+    background-color: var(--hover-btn-background);
+    border-color: var(--hover-btn-background);
+    fill: var(--hover-btn-background);
+  }
+
+  &:active {
+    background-color: var(--active-background-btn);
+    box-shadow: --box-shadow-active-btn;
+    fill: var(--active-background-btn);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-background-btn);
+    fill: var(--disabled-background-btn);
+    opacity: 0.3;
+    box-shadow: 0px 0px 0px 6px #4e46b41f, 0px 0px 0px 2px #ffffff;
+  }
 }
