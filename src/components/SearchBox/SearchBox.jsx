@@ -7,6 +7,7 @@ import { setSearch } from "../../redux/filters/slice";
 import { selectSearch } from "../../redux/filters/selectors";
 
 import css from "../SearchBox/SearchBox.module.css";
+import Container from "../../reuseable/Container/Container";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
@@ -52,28 +53,30 @@ export default function SearchBox() {
 
   return (
     <div className={css.heroSection}>
-      <div className={css.heroOverlay}>
-        <h1 className={css.heroTitle}>
-          Plan, Cook, and
-          <br />
-          Share Your Flavors
-        </h1>
-        <form onSubmit={handleSubmit} className={css.heroForm}>
-          <div className={css.inputGroup}>
-            <input
-              type="text"
-              placeholder="Search recipes"
-              value={titleInput}
-              onChange={handleChange}
-              className={css.heroInput}
-            />
-          </div>
-          <button type="submit" className={css.heroButton}>
-            Search
-          </button>
-        </form>
-        <ToastContainer position="top-right" autoClose={3000} />
-      </div>
+      <Container>
+        <div className={css.heroOverlay}>
+          <h1 className={css.heroTitle}>
+            Plan, Cook, and
+            <br />
+            Share Your Flavors
+          </h1>
+          <form onSubmit={handleSubmit} className={css.heroForm}>
+            <div className={css.inputGroup}>
+              <input
+                type="text"
+                placeholder="Search recipes"
+                value={titleInput}
+                onChange={handleChange}
+                className={css.heroInput}
+              />
+            </div>
+            <button type="submit" className={css.heroButton}>
+              Search
+            </button>
+          </form>
+          <ToastContainer position="top-right" autoClose={3000} />
+        </div>
+      </Container>
     </div>
   );
 }

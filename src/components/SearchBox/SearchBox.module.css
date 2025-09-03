@@ -1,10 +1,6 @@
 .heroSection {
-  position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin: 0 -50vw 48px -50vw;
-  padding: 128px 32px 98px;
+  width: 100%;
+  padding: 128px 0 98px;
   color: var(--white-text-color);
   background-image: linear-gradient(to right, #000000e6, #0000004d),
     url("/images/main-mob.webp");
@@ -25,8 +21,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 329px;
-  margin: 0 auto;
+  padding: 0 16px;
 }
 
 .heroTitle {
@@ -126,7 +121,7 @@
 
   .heroOverlay {
     max-width: 768px;
-    padding: 0 32px;
+    padding: 0;
   }
 
   .heroTitle {
@@ -167,10 +162,5 @@
 
   .heroForm {
     gap: 12px;
-  }
-
-  .heroOverlay {
-    max-width: 1440px;
-    padding: 0 108px;
   }
 }
