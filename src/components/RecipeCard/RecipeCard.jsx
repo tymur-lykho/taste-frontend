@@ -3,31 +3,24 @@ import Cal from "../Cal/Cal";
 import Time from "../Time/Time";
 import { Button } from "../Button/Button";
 import Icon from "../../reuseable/Icon/Icon";
-import { useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addFavoritesRecipe, removeFromFavorites } from "../../redux/recipes/operations";
-import { selectFavoriteRecipes } from "../../redux/recipes/selectors";
-
 import css from "./RecipeCard.module.css";
+import { useFavorite } from "../hooks/useFavorite";
+import FavoriteAuthModal from "../../reuseable/FavoriteAuthModal/FavoriteAuthModal";
+import { useNavigate } from "react-router-dom";
 
 export default function RecipesCard({ recipe }) {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const favoriteRecipes = useSelector(selectFavoriteRecipes);
+  const navigate = useNavigate();
+  const {
+    isOwnRecipesRoute,
+    isFavorite,
+    isProcessing,
+    isOpenModal,
+    closeModal,
+    handleToggleFavorite,
+  } = useFavorite(recipe);
 
-  const isOwnRecipesRoute = location.pathname.includes('/profile/own');
-  let favorite = false;
-
-  if (favoriteRecipes !== undefined) {
-    favorite = favoriteRecipes.includes(recipe._id) ? true : false;
-  }
-
-  const handleToggleFavorite = () => {
-    if (favorite) {
-      dispatch(removeFromFavorites(recipe._id));
-    } else {
-      dispatch(addFavoritesRecipe(recipe._id));
-    }
+  const handleClickLearnMore = () => {
+    navigate(`/recipes/${recipe.id}`, { state: recipe });
   };
 
   return (
@@ -52,6 +45,7 @@ export default function RecipesCard({ recipe }) {
           className={clsx("white", css.md289)}
           title="Learn more"
           aria-label="Learn more"
+          onClick={handleClickLearnMore}
         >
           Learn more
         </Button>
@@ -59,21 +53,23 @@ export default function RecipesCard({ recipe }) {
         {!isOwnRecipesRoute && (
           <Button
             className={clsx("white", {
-              [css.favoriteActive]: favorite
-            })} 
-            title={favorite ? "Remove from favorite" : "Add to favorite"} 
-            aria-label={favorite ? "Remove from favorite" : "Add to favorite"}
+              [css.favoriteActive]: isFavorite,
+            })}
+            title={isFavorite ? "Remove from favorite" : "Add to favorite"}
+            aria-label={isFavorite ? "Remove from favorite" : "Add to favorite"}
             onClick={handleToggleFavorite}
+            disabled={isProcessing}
           >
             <Icon
               className={clsx(css["save-icon"], {
-                [css.active]: favorite
-              })} 
-              iconName="save-icon" 
+                [css.active]: isFavorite,
+              })}
+              iconName="save-icon"
             />
           </Button>
         )}
       </div>
+      {isOpenModal && <FavoriteAuthModal onClose={closeModal} />}
     </div>
   );
 }
