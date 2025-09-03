@@ -7,6 +7,7 @@ import {
   removeFromFavorites,
   fetchFavoritesId,
 } from "./operations";
+import { logout } from "../auth/operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -101,7 +102,11 @@ const slice = createSlice({
           state.totalItems -= 1;
         }
       })
-      .addCase(removeFromFavorites.rejected, handleRejected);
+      .addCase(removeFromFavorites.rejected, handleRejected)
+
+      .addCase(logout.fulfilled, (state) => {
+        state.favoriteRecipes = [];
+      });
   },
 });
 
