@@ -23,7 +23,6 @@
   color: var(--white-text-color);
   text-decoration: inherit;
   transition: opacity 0.3s ease;
-
 }
 
 .link::after {
@@ -63,7 +62,6 @@
   background: var(--light-brown-background);
   text-decoration: none;
   transition: background 0.3s ease, box-shadow 0.3s ease;
-
 }
 
 .addRecipe::after {
@@ -72,7 +70,8 @@
 
 .addRecipe:hover {
   background: var(--hover-btn-background);
-  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--white-text-color);
+  box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12),
+    0 0 0 2px var(--white-text-color);
 }
 
 .addRecipeActive {
@@ -150,7 +149,6 @@
 
 /* Add Recipe */
 .order2 {
-  width: 100%;
   order: 3;
 }
 
@@ -176,7 +174,6 @@
   justify-content: space-between;
   gap: 16px;
   width: 314px;
-
 }
 
 .confirmBtn {
@@ -213,10 +210,9 @@
   background: var(--hover-white-btn-background);
 }
 
-
 /* ================= Десктоп / планшет ================= */
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .navLinks {
     display: flex;
     align-items: center;
@@ -241,7 +237,6 @@
   .addRecipe {
     width: 127px;
     height: 44px;
-
   }
 
   .avatar {
@@ -257,11 +252,9 @@
   }
 }
 
-
-
 /* ================= Великий десктоп ================= */
 
-@media(min-width: 1440px) {
+@media (min-width: 1440px) {
   .navLinks {
     gap: 32px;
   }
