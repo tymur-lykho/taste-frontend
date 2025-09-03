@@ -1,37 +1,31 @@
-body {
-  background: #f8f9f4;
-  font-family: Arial, sans-serif;
-  color: #222;
-}
-
-form {
+.form {
   padding: 0px 16px;
 }
 
-label {
+/* --- Form fields --- */
+.formLabel {
   display: block;
   font-weight: 500;
   margin-bottom: 8px;
 }
 
-input,
-textarea,
-select {
+.formInput,
+.formTextarea,
+.formSelect {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  /* font-size: 1rem; */
   margin-bottom: 32px;
 }
 
-textarea {
-  /* min-height: 100px; */
+.formTextarea {
   height: 144px;
   resize: vertical;
 }
 
-.AddRecipePagetitle {
+/* --- Titles --- */
+.addRecipePageTitle {
   margin-top: 0px;
   margin-bottom: 32px;
 }
@@ -41,15 +35,16 @@ textarea {
   margin-bottom: 16px;
   color: var(--black);
 }
-.uploadphoto-title {
+
+.uploadPhotoTitle {
   margin-top: 0px;
   margin-bottom: 4px;
   font-size: none;
 }
 
-.photo-upload {
+/* --- Photo upload --- */
+.photoUpload {
   background: #9f9f9f;
-
   border-radius: 16px;
   width: 100%;
   height: 383px;
@@ -62,7 +57,7 @@ textarea {
 }
 
 /* --- Two columns --- */
-.two-cols {
+.twoCols {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -72,7 +67,7 @@ textarea {
 .ingredients {
 }
 
-.ingredient-row {
+.ingredientRow {
   grid-template-columns: 2fr 1fr auto;
   gap: 1rem;
   align-items: center;
@@ -80,7 +75,7 @@ textarea {
 }
 
 /* --- Buttons --- */
-.add-btn {
+.addBtn {
   background: #9b6c43;
   color: #fff;
 
@@ -90,10 +85,9 @@ textarea {
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
-
 }
 
-.submit-btn {
+.submitBtn {
   background: #9b6c43;
   color: #fff;
   padding: 0.75rem 1rem;
@@ -106,30 +100,34 @@ textarea {
   margin-top: 1rem;
 }
 
-.add-btn:hover,
-.submit-btn:hover {
+.addBtn:hover,
+.submitBtn:hover {
   background: #70492d;
 }
 
-.general-info {
+/* --- General Info --- */
+.generalInfo {
   display: flex;
   flex-direction: column-reverse;
 }
-.title-inf-gen {
+
+.titleInfGen {
   margin-top: 24px;
   margin-bottom: 16px;
 }
-.title-inf {
+
+.titleInf {
   margin-top: 8px;
   margin-bottom: 32px;
 }
 
+/* --- Media Queries --- */
 @media only screen and (min-width: 768px) {
-  .title-inf-gen {
+  .titleInfGen {
     margin-bottom: 32px;
   }
 
-  .ingredient-row {
+  .ingredientRow {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
@@ -137,21 +135,23 @@ textarea {
     width: auto;
   }
 
-  .ingredient-col {
+  .ingredientCol {
     display: flex;
     flex-direction: column;
     width: auto;
   }
-  .uploadphoto-title {
+
+  .uploadPhotoTitle {
     margin-top: 0px;
     margin-bottom: 18px;
     font-size: none;
   }
+
   .form {
     padding: 0px 32px;
   }
-  .add-btn {
 
+  .addBtn {
     border-radius: 8px;
     padding: 4px 8px;
     height: 23px;
@@ -160,10 +160,11 @@ textarea {
 }
 
 @media only screen and (min-width: 1440px) {
-  .title-inf {
+  .titleInf {
     margin-top: 40px;
   }
-  .title-inf-gen {
+
+  .titleInfGen {
     margin-top: 40px;
   }
 
@@ -179,67 +180,66 @@ textarea {
     margin: 0px;
   }
 
-  .general-info {
+  .generalInfo {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 24px;
     align-items: start;
   }
 
-  .general-infotitle {
+  .generalInfoTitle {
     margin-top: 40px;
     margin-bottom: 32px;
   }
-  .photo-upload {
-    height: 374px;
-  }
 
-  .AddRecipePagetitle {
-    margin: 0px;
-  }
-  .photo-upload {
+  .photoUpload {
     border-radius: 16px;
     width: 391px;
     height: 383px;
   }
+
+  .addRecipePageTitle {
+    margin: 0px;
+  }
+
   .ingredients {
     display: block;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  .labels-row {
+  .labelsRow {
     display: grid;
-
     margin-bottom: 0.25rem;
     font-weight: 500;
   }
 
-  .ingredient-row {
+  .ingredientRow {
     width: 809px;
   }
 
-  .add-btn {
+  .addBtn {
     border-radius: 8px;
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
-
     align-self: flex-start;
     display: block;
     margin-left: 562px;
   }
-  .ingredient-actions {
+
+  .ingredientActions {
     display: flex;
-  align-items: flex-start;
+    align-items: flex-start;
   }
 
-  .ingredient-columns {
+  .ingredientColumns {
     display: flex;
     gap: 20px; 
   }
-  .ingredient-col,
-  .ingredient-col-amount {
+
+  .ingredientCol,
+  .ingredientColAmount {
     display: flex;
     flex-direction: column;
   }
