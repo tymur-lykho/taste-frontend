@@ -7,6 +7,11 @@
   padding-block: 48px;
 }
 
+@media (min-width: 768px) {
+  .recipePage h2 {
+      font-size: 32px;
+  }
+}
 .subtitle {
   font-size: 24px;
 
@@ -14,6 +19,7 @@
     font-size: 32px;
   }
 }
+
 
 .tumbImg {
   display: flex;
@@ -144,16 +150,32 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  /* padding: 8px 21.5px; */
+
+  padding: 8px 0;
+}
+
+.ingredientsWrap {
+  padding: 0 21.5px;
 }
 
 .list {
+  padding: 8px;
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  /* padding: 8px 21.5px; */
+}
+
+/* .list {
   list-style-type: disc;
   display: flex;
   flex-direction: column;
   gap: 30px;
   margin-left: 20px;
-}
+
+} */
 
 .steps {
   display: flex;
@@ -222,5 +244,35 @@
     align-items: center;
     gap: 27px;
     padding-bottom: 25px;
+  }
+}
+
+
+.loginBtn,
+.registerBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+  width: 100%;
+  max-width: 314px;
+  height: 54px;
+  font-size: var(--text-l-size);
+  font-weight: var(--weight-semibold);
+}
+
+.loginBtn:hover,
+.registerBtn:hover {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .loginBtn,
+  .registerBtn {
+    padding: 8px;
+    width: 164px;
+    height: 36px;
+    font-size: var(--text-size);
   }
 }
