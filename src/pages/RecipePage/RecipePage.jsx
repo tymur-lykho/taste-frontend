@@ -111,50 +111,54 @@ export default function RecipePage() {
     ? recipe.thumb.replace("preview", "preview/large")
     : recipe.thumb;
 
-  const getCategoryName = () => {
-    const category = categories.find(
-      (c) => String(c._id) === String(recipe.category)
-    );
-    return category ? category.name : "N/A";
-  };
+  // const getCategoryName = () => {
+  //   const category = categories.find(
+  //     (c) => String(c._id) === String(recipe.category)
+  //   );
+  //   return category ? category.name : "N/A";
+  // };
 
-  const getIngredientName = (ingredient) => {
-    const searchIngredient = ingredientsAll.find(
-      (i) => String(i._id) === String(ingredient.id)
-    );
-    return searchIngredient ? searchIngredient.name : "Unknown ingredient";
-  };
+  // const getIngredientName = (ingredient) => {
+  //   const searchIngredient = ingredientsAll.find(
+  //     (i) => String(i._id) === String(ingredient.id)
+  //   );
+  //   return searchIngredient ? searchIngredient.name : "Unknown ingredient";
+  // };
 
   return (
     <Container className={css.recipePage}>
       <div className={css.tumbImg}>
         <img
           src={normalizedUrl}
-          alt={recipe.description || recipe.title}
-          className={css["cardImg"]}
+          alt={recipe.description}
+          className={css.cardImg}
         />
       </div>
+
       <h1 className={css.titleProduct}>{recipe.title}</h1>
+
       <div className={css.cardRecipe}>
         <div className={css.wrapRecipe}>
           <section className={css.about}>
-            <h2 className={css.subtitle}>About Recipe</h2>
+            <h2>About Recipe</h2>
             <p>{recipe.description}</p>
           </section>
 
           <section className={css.ingredients}>
-            <h2 className={css.subtitle}>Ingredients</h2>
-            <ul className={css.list}>
-              {recipe.ingredients?.map((item, index) => (
-                <li key={item._id || item.id?.id || index}>
-                  {getIngredientName(item)} — {item.measure || ""}
-                </li>
-              ))}
-            </ul>
+            <h2>Ingredients</h2>
+            <div className={css.ingredientsWrap}>
+              <ul className={css.list}>
+                {recipe.ingredients?.map((item) => (
+                  <li key={item._id}>
+                    {item.id?.name || item.name} {item.measure || ""}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
 
           <section className={css.steps}>
-            <h2 className={css.subtitle}>Preparation Steps</h2>
+            <h2>Preparation Steps</h2>
             <ol className={css.stepsWrap}>
               {recipe.instructions
                 .split(/\r?\n/)
@@ -170,8 +174,13 @@ export default function RecipePage() {
           <section className={css.generalInfo}>
             <h3 className={css.title}>General informations</h3>
             <p>
-              <strong>Category:</strong> {getCategoryName()}
+              <strong>Category:</strong> {recipe.category?.name || "N/A"}
             </p>
+            {recipe.cuisine && (
+              <p>
+                <strong>Cuisine:</strong> {recipe.cuisine}
+              </p>
+            )}
             {recipe.time && (
               <p>
                 <strong>Cooking Time:</strong> {recipe.time} min
@@ -179,8 +188,7 @@ export default function RecipePage() {
             )}
             {recipe.calories && (
               <p>
-                <strong>Calories:</strong> Approximately {recipe.calories} kcal
-                per serving
+                <strong>Calories:</strong> ~{recipe.calories} kcal per serving
               </p>
             )}
           </section>
