@@ -12,14 +12,12 @@ export default function BurgerMenu({ isLoggedIn, openModal }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  // Блокуємо скрол при відкритому меню
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "visible";
     }
-    // Очистка при розмонтуванні
     return () => {
       document.body.style.overflow = "visible";
     };

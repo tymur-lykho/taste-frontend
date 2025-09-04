@@ -1,5 +1,4 @@
 import NavigationFooter from "../NavigationFooter/NavigationFooter";
-import Icon from "../../Icon/Icon";
 import css from "./Footer.module.css";
 import Container from "../../reuseable/Container/Container";
 import MainLogo from "../MainLogo/MainLogo";

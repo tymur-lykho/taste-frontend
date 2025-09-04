@@ -12,7 +12,6 @@ const getActiveLinkClass = ({ isActive }) => {
 };
 
 export default function Navigation({ openModal }) {
-  // _отримує openModal з AppBar_
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
@@ -25,15 +24,10 @@ export default function Navigation({ openModal }) {
         </li>
 
         <li className={css.navItem}>
-          {isLoggedIn ? (
-            <UserMenu openModal={openModal} /> // _передаємо openModal у UserMenu_
-          ) : (
-            <AuthNav />
-          )}
+          {isLoggedIn ? <UserMenu openModal={openModal} /> : <AuthNav />}
         </li>
       </ul>
       <BurgerMenu isLoggedIn={isLoggedIn} openModal={openModal} />{" "}
-      {/* _передаємо для мобільного меню_ */}
     </nav>
   );
 }

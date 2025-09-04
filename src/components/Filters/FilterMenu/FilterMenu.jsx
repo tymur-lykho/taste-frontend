@@ -1,13 +1,14 @@
-import css from "./FilterMenu.module.css";
-import ResetFiltersLink from "../ResetFilter/ResetFilter";
-import { useState } from "react";
 import clsx from "clsx";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import Icon from "../../../reuseable/Icon/Icon";
+
+import ResetFiltersLink from "../ResetFilter/ResetFilter";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
 import IngredientsFilter from "../IngredientsFilter/IngredientsFilter";
-// import { selectPagination } from "../../../redux/recipes/selectors";
-import { useSelector } from "react-redux";
 import { selectTotalItems } from "../../../redux/recipes/selectors";
+
+import css from "./FilterMenu.module.css";
 
 export default function FilterMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ export default function FilterMenu() {
 
   return (
     <div className={css.filterMenu}>
-       <p className={css.totalItems} >
+      <p className={css.totalItems}>
         {totalItems} {totalItems > 1 ? "reсipes" : "recipe"}{" "}
       </p>
       <div className={css.btnWrapper}>

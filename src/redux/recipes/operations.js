@@ -1,9 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
-
-// Всі рецепти
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchAll",
   async ({ page, filters }, thunkAPI) => {
@@ -11,10 +8,6 @@ export const fetchRecipes = createAsyncThunk(
       const { search = "", categories, ingredients = [] } = filters;
 
       const ingredientsParams = ingredients || undefined;
-
-      // const ingredientsParams = Array.isArray(ingredients)
-      //   ? ingredients.join(",")
-      //   : undefined;
 
       const params = {
         page: page,

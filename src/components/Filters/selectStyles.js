@@ -2,7 +2,6 @@ export const customStyles = {
   control: (provided, state) => ({
     ...provided,
     minHeight: "33px",
-    height: "33px",
     padding: "4px 8px",
     alignContent: "center",
     borderColor: state.isFocused ? "#E0E0E0" : "#ccc",
@@ -20,7 +19,6 @@ export const customStyles = {
   }),
   singleValue: (provided) => ({
     ...provided,
-    // backgroundColor: "#D3D3D3",
     padding: "4px 12px",
     minWidth: "41px",
     borderRadius: "4px",
