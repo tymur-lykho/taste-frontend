@@ -186,7 +186,7 @@
 .saveWhite {
   width: 24px;
   height: 24px;
-  stroke: var(--black-text-color);
+  stroke: var(--white-text-color);
   fill: none;
   flex-shrink: 0;
 }
