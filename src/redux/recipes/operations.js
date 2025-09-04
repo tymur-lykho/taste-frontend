@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
+// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api";
 
 // Всі рецепти
 export const fetchRecipes = createAsyncThunk(

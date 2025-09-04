@@ -1,0 +1,137 @@
+.form {
+  padding: 0px 16px;
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 32px;
+  }
+
+  .instruction {
+    min-height: 144px;
+  }
+}
+
+.error {
+  position: relative;
+  top: -30px;
+  left: 14px;
+  color: #c80000;
+}
+
+.select {
+  min-height: 45px;
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.AddRecipePagetitle {
+  margin-top: 0px;
+  margin-bottom: 32px;
+}
+
+.title {
+  margin-top: 0px;
+  margin-bottom: 16px;
+  color: var(--black);
+}
+
+/* --- Two columns --- */
+.two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* --- Buttons --- */
+
+.submit-btn {
+  background: #9b6c43;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background: #70492d;
+}
+
+.general-info {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.title-inf-gen {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .title-inf-gen {
+    margin-bottom: 32px;
+  }
+
+  .form {
+    padding: 0px 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .title-inf-gen {
+    margin-top: 40px;
+  }
+
+  .form {
+    padding: 0px;
+    max-width: 1226px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    margin: 0px;
+  }
+
+  .general-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .general-infotitle {
+    margin-top: 40px;
+    margin-bottom: 32px;
+  }
+
+  .AddRecipePagetitle {
+    margin: 0px;
+  }
+  .ingredients {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .labels-row {
+    display: grid;
+
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+}

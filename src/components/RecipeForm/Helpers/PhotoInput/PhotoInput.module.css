@@ -1,0 +1,44 @@
+.uploadphoto-title {
+  margin-top: 0px;
+  margin-bottom: 4px;
+  font-size: none;
+}
+
+.photo-upload {
+  background: #9f9f9f;
+
+  border-radius: 16px;
+  width: 100%;
+  height: 383px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 1rem;
+}
+.icon {
+  width: 82px;
+  height: 82px;
+  fill: transparent;
+  stroke: var(--black-text-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .uploadphoto-title {
+    margin-top: 0px;
+    margin-bottom: 18px;
+    font-size: none;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .photo-upload {
+    height: 374px;
+    width: 391px;
+  }
+  .icon {
+    width: 163px;
+    height: 136px;
+  }
+}

@@ -1,0 +1,84 @@
+.ingredient-row {
+  grid-template-columns: 2fr 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.title-inf {
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.add-btn {
+  background: #9b6c43;
+  color: #fff;
+
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+.add-btn:hover {
+  background: #70492d;
+}
+
+@media only screen and (min-width: 768px) {
+  .ingredient-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    width: auto;
+  }
+  .ingredient-col {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+  }
+  .add-btn {
+    border-radius: 8px;
+    padding: 4px 8px;
+    height: 23px;
+    width: 247px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .ingredients {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ingredient-row {
+    width: 809px;
+  }
+  .ingredient-columns {
+    display: flex;
+    gap: 20px;
+  }
+  .ingredient-col,
+  .ingredient-col-amount {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-inf {
+    margin-top: 40px;
+  }
+  .add-btn {
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    align-self: flex-start;
+    display: block;
+    margin-left: 562px;
+  }
+  .ingredient-actions {
+    display: flex;
+    align-items: flex-start;
+  }
+}
