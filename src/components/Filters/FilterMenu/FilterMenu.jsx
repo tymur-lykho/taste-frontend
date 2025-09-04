@@ -6,18 +6,19 @@ import Icon from "../../../reuseable/Icon/Icon";
 import CategoryFilter from "../CategoryFilter/CategoryFilter";
 import IngredientsFilter from "../IngredientsFilter/IngredientsFilter";
 // import { selectPagination } from "../../../redux/recipes/selectors";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { selectTotalItems } from "../../../redux/recipes/selectors";
 
 export default function FilterMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const filterMenu = () => setIsOpen(!isOpen);
-  // const { totalItems } = useSelector(selectPagination);
+  const totalItems = useSelector(selectTotalItems);
 
   return (
     <div className={css.filterMenu}>
-       {/* <p className={css.totalItems} >
+       <p className={css.totalItems} >
         {totalItems} {totalItems > 1 ? "reсipes" : "recipe"}{" "}
-      </p> */}
+      </p>
       <div className={css.btnWrapper}>
         <p className={css.txt}>Filters</p>
         <button
@@ -35,8 +36,8 @@ export default function FilterMenu() {
       </div>
 
       <div className={clsx(css.wrapFilters, { [css.open]: isOpen })}>
-        <CategoryFilter className={css.field} />
-        <IngredientsFilter className={css.field} />
+        <CategoryFilter className={css.fieldC} />
+        <IngredientsFilter className={css.fieldI} />
         <ResetFiltersLink className={css.resetLink} />
       </div>
     </div>

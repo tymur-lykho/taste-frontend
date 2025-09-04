@@ -1,13 +1,25 @@
 .select {
   width: 100%;
   text-align: left;
-  border: 1px solid var(--light-gray, #d9d9d9);
-  height: 33px;
+  height: 33px !important;
 
+  @media (min-width: 1440px) {
+    order: 2;
+    height: 33px;
+  }
+}
+.select :global(.react-select__control) {
+  min-height: 3px !important;
+  height: 33px !important;
+  padding: 4px 8px;
+}
+.select :global(.react-select__value-container) {
+  padding: 0 6px !important;
+  height: 33px !important;
 }
 
-  .react-select__placeholder {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.react-select__placeholder {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

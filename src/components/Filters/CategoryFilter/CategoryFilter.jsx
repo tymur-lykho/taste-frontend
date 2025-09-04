@@ -5,8 +5,8 @@ import {
 } from "../../../redux/filters/selectors";
 import Select from "react-select";
 import { setCategories } from "../../../redux/filters/slice";
-import css from "./CategoryFilter.module.css"
-
+import css from "./CategoryFilter.module.css";
+import { customStyles } from "../selectStyles";
 
 export default function CategoryFilter() {
   const dispatch = useDispatch();
@@ -22,7 +22,8 @@ export default function CategoryFilter() {
   };
 
   return (
-    <Select className={css.select}
+    <Select
+      className={css.select}
       options={categories.map((cat) => ({
         value: cat._id,
         label: cat.name,
@@ -32,6 +33,8 @@ export default function CategoryFilter() {
           ? { value: selectedCategory._id, label: selectedCategory.name }
           : null
       }
+      styles={customStyles}
+      placeholder="Category..."
       onChange={handleChangeCategory}
     />
   );
