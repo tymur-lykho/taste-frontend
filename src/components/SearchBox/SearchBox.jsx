@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
 
 import { setSearch } from "../../redux/filters/slice";
 import { selectSearch } from "../../redux/filters/selectors";
@@ -13,9 +12,9 @@ export default function SearchBox() {
   const dispatch = useDispatch();
   const nameFilter = useSelector(selectSearch);
 
-  const [titleInput, setTitleInput] = useState(nameFilter);
+  const [titleInput, setTitleInput] = useState(nameFilter || "");
 
-  useEffect(() => setTitleInput(nameFilter), [nameFilter]);
+  useEffect(() => setTitleInput(nameFilter || ""), [nameFilter]);
 
   const isValidText = (value) => /^[a-zA-Zа-яА-ЯёЁіІїЇєЄґҐ\s]*$/.test(value);
 
@@ -24,30 +23,29 @@ export default function SearchBox() {
     const value = titleInput.trim();
 
     if (!value) {
-      toast.error("Please enter a recipe name", { toastId: "empty-input" });
+      toast.error("Please enter a recipe name", { id: "search-error" });
       return;
     }
     if (value.length < 3) {
       toast.error("Recipe name must be at least 3 characters", {
-        toastId: "too-short",
+        id: "search-error",
       });
       return;
     }
     if (!isValidText(value)) {
-      toast.error("Only letters are allowed", { toastId: "only-letters" });
+      toast.error("Only letters are allowed", { id: "search-error" });
       return;
     }
 
     dispatch(setSearch(titleInput));
-    toast.success("Search submitted!", { toastId: "success-search" });
+    toast.success("Search submitted!", { id: "search-success" });
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setTitleInput(value);
-
     if (!isValidText(value)) {
-      toast.error("Only letters are allowed", { toastId: "only-letters" });
+      toast.error("Only letters are allowed", { id: "search-error" });
     }
   };
 
@@ -74,7 +72,6 @@ export default function SearchBox() {
               Search
             </button>
           </form>
-          <ToastContainer position="top-right" autoClose={3000} />
         </div>
       </Container>
     </div>

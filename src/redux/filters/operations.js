@@ -24,15 +24,3 @@ export const fetchIngredients = createAsyncThunk(
     }
   }
 );
-
-export const fetchArea = createAsyncThunk(
-  "filters/fetchArea",
-  async (_, thunkAPI) => {
-    try {
-      const response = axios.get("/area");
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);

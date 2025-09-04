@@ -9,9 +9,17 @@
 
 @media (min-width: 768px) {
   .recipePage h2 {
+      font-size: 32px;
+  }
+}
+.subtitle {
+  font-size: 24px;
+
+  @media only screen and (min-width: 768px) {
     font-size: 32px;
   }
 }
+
 
 .tumbImg {
   display: flex;
@@ -20,6 +28,7 @@
   height: 276px;
   overflow: hidden;
   border-radius: var(--radius-i-sm);
+
   @media (min-width: 768px) {
     height: 624px;
   }
@@ -141,6 +150,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+
   padding: 8px 0;
 }
 
@@ -154,7 +164,18 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  /* padding: 8px 21.5px; */
 }
+
+/* .list {
+  list-style-type: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: 20px;
+
+} */
 
 .steps {
   display: flex;
@@ -226,6 +247,7 @@
   }
 }
 
+
 .loginBtn,
 .registerBtn {
   display: flex;
@@ -254,3 +276,4 @@
     font-size: var(--text-size);
   }
 }
+

@@ -8,7 +8,6 @@ import SvgSprite from "../../SvgSprite/SvgSprite.jsx";
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
-  selectUser,
 } from "../../redux/auth/selectors.js";
 
 import {
@@ -38,22 +37,20 @@ import RecipePage from "../../pages/RecipePage/RecipePage.jsx";
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-  const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
     dispatch(fetchCategories());
     dispatch(fetchIngredients());
-    //dispatch(fetchArea);
   }, [dispatch]);
 
   useEffect(() => {
-    if (user) {
+    if (isLoggedIn) {
       dispatch(clearRecipesState());
       dispatch(fetchFavoritesId());
     }
-  }, [user, dispatch]);
+  }, [isLoggedIn, dispatch]);
 
   return isRefreshing ? (
     <strong>Refreshing user...</strong>

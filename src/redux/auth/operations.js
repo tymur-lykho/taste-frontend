@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
-axios.defaults.baseURL = "http://localhost:3000/api/";
+axios.defaults.baseURL = "https://tasteorama-backend-dcjy.onrender.com/api/";
+// axios.defaults.baseURL = "http://localhost:3000/api/";
 
 const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

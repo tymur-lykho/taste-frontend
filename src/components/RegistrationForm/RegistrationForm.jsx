@@ -206,7 +206,7 @@ export default function RegistrationForm() {
             {isSubmitting ? "Registering..." : "Register"}
           </button>
           <p className={css.loginText}>
-            Already have an account? <Link href="/login">Log in</Link>
+            Already have an account? <Link to="/login">Log in</Link>
           </p>
         </Form>
       )}

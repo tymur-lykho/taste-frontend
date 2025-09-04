@@ -51,7 +51,9 @@ export default function HomePage() {
     <section className={css.wrapper}>
       <SearchBox />
       <Container>
-        <h2 className={css.subtitle}>Recipes</h2>
+        <h2 className={css.subtitle}>
+          {search ? `Search Results for “${search}”` : "Recipes"}
+        </h2>
         <RecipesList
           fillters={<Filters />}
           hasNextPage={nextPage}

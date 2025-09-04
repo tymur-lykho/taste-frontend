@@ -1,16 +1,8 @@
-.logoContainer {
-  margin-left: 16px;
-}
-
-@media (min-width: 768px) {
-  .logoContainer {
-    margin-left: 12.47px;
-  }
-}
-
 .linkLogo {
+
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
   width: 165px;
   height: 46px;
