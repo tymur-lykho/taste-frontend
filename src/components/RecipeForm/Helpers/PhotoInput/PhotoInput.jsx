@@ -6,15 +6,11 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function PhotoInput({ name }) {
   const { setFieldValue } = useFormikContext();
-  // const [field, meta] = useField(name);
   const [preview, setPreview] = useState(null);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
-      // const formData = new FormData();
-
       const file = acceptedFiles[0];
-      // formData.append("file", file);
       if (file) {
         console.log(file);
 
@@ -41,18 +37,6 @@ export default function PhotoInput({ name }) {
     <div>
       <h2 className={styles["uploadphoto-title"]}>Upload Photo</h2>
       <div className={styles["photo-upload"]} {...getRootProps()}>
-        {/* <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) {
-              console.log(file); // має бути File
-              setFieldValue("photo", file);
-              setPreview(URL.createObjectURL(file));
-            }
-          }}
-        /> */}
         <input {...getInputProps()} />
         {preview ? (
           <img

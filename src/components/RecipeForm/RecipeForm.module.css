@@ -1,3 +1,7 @@
+.container {
+  padding-block: 48px;
+}
+
 .form {
   padding: 0px 16px;
 
@@ -13,6 +17,7 @@
 
   .instruction {
     min-height: 144px;
+    margin-bottom: 0;
   }
 }
 
@@ -45,6 +50,23 @@
   color: var(--black);
 }
 
+.instructionSection {
+  margin-top: 40px;
+
+  @media only screen and (min-width: 1440px) {
+    max-width: 809px;
+  }
+}
+
+.instructionTitle {
+  font-size: 24px;
+  margin-bottom: 16px;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 32px;
+  }
+}
+
 /* --- Two columns --- */
 .two-cols {
   display: grid;
@@ -64,7 +86,8 @@
   cursor: pointer;
   transition: background 0.2s;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 40px;
+  max-width: 809px;
 }
 
 .submit-btn:hover {
@@ -74,15 +97,21 @@
 .general-info {
   display: flex;
   flex-direction: column-reverse;
+
+  @media only screen and (min-width: 1440px) {
+    margin-top: 40px;
+  }
 }
 .title-inf-gen {
   margin-top: 24px;
   margin-bottom: 16px;
+  font-size: 24px;
 }
 
 @media only screen and (min-width: 768px) {
   .title-inf-gen {
     margin-bottom: 32px;
+    font-size: 32px;
   }
 
   .form {
@@ -92,7 +121,7 @@
 
 @media only screen and (min-width: 1440px) {
   .title-inf-gen {
-    margin-top: 40px;
+    margin-top: 0;
   }
 
   .form {
@@ -109,7 +138,7 @@
 
   .general-info {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 809px 1fr;
     gap: 24px;
     align-items: start;
   }

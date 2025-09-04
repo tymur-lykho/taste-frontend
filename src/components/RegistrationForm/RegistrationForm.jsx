@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 
 import EyeButton from "../EyeButton/EyeButton";
 
@@ -32,14 +32,15 @@ export default function RegistrationForm() {
       .required("Field is required"),
     email: Yup.string()
       .email("Not valid email")
-      .max(128, "Too Long!Max-128 character")
+      .matches(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i, "Not valid email")
+      .max(128, "Too Long! Max-128 character")
       .required("Field is required"),
     password: Yup.string()
       .matches(
         /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/,
         "Must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character"
       )
-      .max(128, "Too Long!Max-128 character")
+      .max(128, "Too Long! Max-128 character")
       .required("Field is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords do not match")

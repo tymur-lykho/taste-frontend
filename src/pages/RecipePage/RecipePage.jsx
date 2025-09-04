@@ -38,9 +38,6 @@ export default function RecipePage() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
 
-  const categories = useSelector((state) => state.filters.categories);
-  const ingredientsAll = useSelector((state) => state.filters.ingredients);
-
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const closeModal = () => {
@@ -111,20 +108,6 @@ export default function RecipePage() {
     ? recipe.thumb.replace("preview", "preview/large")
     : recipe.thumb;
 
-  // const getCategoryName = () => {
-  //   const category = categories.find(
-  //     (c) => String(c._id) === String(recipe.category)
-  //   );
-  //   return category ? category.name : "N/A";
-  // };
-
-  // const getIngredientName = (ingredient) => {
-  //   const searchIngredient = ingredientsAll.find(
-  //     (i) => String(i._id) === String(ingredient.id)
-  //   );
-  //   return searchIngredient ? searchIngredient.name : "Unknown ingredient";
-  // };
-
   return (
     <Container className={css.recipePage}>
       <div className={css.tumbImg}>
@@ -150,7 +133,7 @@ export default function RecipePage() {
               <ul className={css.list}>
                 {recipe.ingredients?.map((item) => (
                   <li key={item._id}>
-                    {item.id?.name || item.name} {item.measure || ""}
+                    {item.id?.name || item.name} — {item.measure || ""}
                   </li>
                 ))}
               </ul>

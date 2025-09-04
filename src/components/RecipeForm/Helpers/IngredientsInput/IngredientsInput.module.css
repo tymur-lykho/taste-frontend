@@ -8,27 +8,76 @@
 .title-inf {
   margin-top: 8px;
   margin-bottom: 32px;
+  font-size: 24px;
 }
 
 .add-btn {
   background: #9b6c43;
   color: #fff;
 
-  padding: 0.75rem 1rem;
+  padding: 12px 16px;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   width: 100%;
 }
+
 .add-btn:hover {
   background: #70492d;
 }
 
+.ingredientTable {
+  margin-top: 32px;
+  width: 100%;
+  border-collapse: collapse;
+
+  @media only screen and (min-width: 768px) {
+    max-width: 431px;
+  }
+
+  thead {
+    border-bottom: 1px solid #c5c5c5;
+  }
+
+  td {
+    border-bottom: 1px solid #c5c5c5;
+    padding: 16px 0;
+  }
+
+  th {
+    text-align: left;
+    padding: 16px 0px;
+  }
+}
+
+.deleteIcon {
+  fill: transparent;
+  stroke: #000;
+  width: 24px;
+  height: 24px;
+}
+
+.remove-btn {
+  padding: 0;
+}
+
+.ingredient-col,
+.ingredient-col-amount {
+  label {
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
+  .title-inf {
+    font-size: 32px;
+  }
+
   .ingredient-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
     width: auto;
@@ -37,12 +86,24 @@
     display: flex;
     flex-direction: column;
     width: auto;
+
+    select {
+      margin-bottom: 0;
+    }
   }
   .add-btn {
+    margin-left: auto;
     border-radius: 8px;
-    padding: 4px 8px;
-    height: 23px;
-    width: 247px;
+    padding: 8px;
+    max-width: 249px;
+  }
+
+  .ingredient-col-amount {
+    max-width: 249px;
+
+    input {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -54,6 +115,8 @@
   }
   .ingredient-row {
     width: 809px;
+    display: flex;
+    justify-content: space-between;
   }
   .ingredient-columns {
     display: flex;
@@ -63,6 +126,12 @@
   .ingredient-col-amount {
     display: flex;
     flex-direction: column;
+  }
+  .ingredient-col {
+    width: 100%;
+  }
+  .ingredient-col-amount {
+    min-width: 288px;
   }
   .title-inf {
     margin-top: 40px;
@@ -75,7 +144,10 @@
 
     align-self: flex-start;
     display: block;
-    margin-left: 562px;
+    margin-left: auto;
+    margin-right: 415px;
+
+    width: 288px;
   }
   .ingredient-actions {
     display: flex;

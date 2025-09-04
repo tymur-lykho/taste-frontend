@@ -1,12 +1,13 @@
-import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import styles from "./RecipeForm.module.css";
-import { useDispatch } from "react-redux";
-import PhotoInput from "./Helpers/PhotoInput/PhotoInput.jsx";
-import IngredientsInput from "./Helpers/IngredientsInput/IngredientsInput.jsx";
-import CategoryInput from "./Helpers/CategoryInput/CategoryInput.jsx";
 import axios from "axios";
 import toast from "react-hot-toast";
+import * as Yup from "yup";
+import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+
+import styles from "./RecipeForm.module.css";
+import PhotoInput from "./Helpers/PhotoInput/PhotoInput.jsx";
+import Container from "../../reuseable/Container/Container.jsx";
+import CategoryInput from "./Helpers/CategoryInput/CategoryInput.jsx";
+import IngredientsInput from "./Helpers/IngredientsInput/IngredientsInput.jsx";
 
 const initialValues = {
   thumb: null,
@@ -59,22 +60,7 @@ const validationSchema = Yup.object({
     .required("Instructions are required"),
 });
 
-const post = async (data) => {
-  try {
-    console.log(data.thumb, "photo");
-    toast.loading("load", { id: "post" });
-    const res = await axios.post("/recipes", data, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    console.log(res);
-    toast.success("Done", { id: "post" });
-  } catch (error) {
-    console.log(error);
-    toast.error("Error", { id: "post" });
-  }
-};
-
-const chatGPTpost = async (values, { resetForm }) => {
+const post = async (values, { resetForm }) => {
   try {
     const formData = new FormData();
     console.log(values.thumb, "photo");
@@ -92,7 +78,7 @@ const chatGPTpost = async (values, { resetForm }) => {
     }
 
     // Додаємо фото, якщо воно є
-    if (values.photo) {
+    if (values.thumb) {
       formData.append("thumb", values.thumb);
     }
 
@@ -117,102 +103,102 @@ export default function RecipeForm() {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      // onSubmit={(values, { resetForm }) => {
-      //   const payload = {
-      //     title: values.title,
-      //     description: values.description,
-      //     time: values.cookingTime,
-      //     calories: values.calories,
-      //     category: values.category,
-      //     instructions: values.instructions,
-      //     ingredients: values.ingredients,
-      //   };
-      //   post(payload);
-      // }}
-      onSubmit={chatGPTpost}
+      onSubmit={post}
     >
       {({ values }) => (
-        <Form className={styles.form}>
-          <h1 className={styles.title}>Add Recipe</h1>
+        <Container className={styles.container}>
+          <Form className={styles.form}>
+            <h1 className={styles.title}>Add Recipe</h1>
 
-          <div className={styles["general-info"]}>
-            <div>
-              <h2 className={styles["title-inf-gen"]}>General Information</h2>
-
-              <label className={styles.label}>Recipe Title</label>
-              <Field
-                name="title"
-                type="text"
-                placeholder="Enter the name of your recipe"
-              />
-              <ErrorMessage
-                name="title"
-                component="div"
-                className={styles.error}
-              />
-
-              <label className={styles.label}>Recipe Description</label>
-              <Field
-                as="textarea"
-                name="description"
-                placeholder="Enter a brief description"
-              />
-              <ErrorMessage
-                name="description"
-                component="div"
-                className={styles.error}
-              />
-
+            <div className={styles["general-info"]}>
               <div>
-                <label className={styles.label}>Cooking time in minutes</label>
-                <Field name="cookingTime" type="number" placeholder="10" />
+                <h2 className={styles["title-inf-gen"]}>General Information</h2>
+
+                <label className={styles.label}>Recipe Title</label>
+                <Field
+                  name="title"
+                  type="text"
+                  placeholder="Enter the name of your recipe"
+                />
                 <ErrorMessage
-                  name="cookingTime"
+                  name="title"
                   component="div"
                   className={styles.error}
                 />
-              </div>
 
-              <div className={styles["two-cols"]}>
+                <label className={styles.label}>Recipe Description</label>
+                <Field
+                  as="textarea"
+                  name="description"
+                  placeholder="Enter a brief description"
+                />
+                <ErrorMessage
+                  name="description"
+                  component="div"
+                  className={styles.error}
+                />
+
                 <div>
-                  <label className={styles.label}>Calories</label>
-                  <Field name="calories" type="number" placeholder="150" />
+                  <label className={styles.label}>
+                    Cooking time in minutes
+                  </label>
+                  <Field
+                    name="cookingTime"
+                    type="number"
+                    placeholder="10"
+                    onWheel={(e) => e.currentTarget.blur()}
+                  />
                   <ErrorMessage
-                    name="calories"
+                    name="cookingTime"
                     component="div"
                     className={styles.error}
                   />
                 </div>
-                <CategoryInput key={"category"} styles={styles} />
+
+                <div className={styles["two-cols"]}>
+                  <div>
+                    <label className={styles.label}>Calories</label>
+                    <Field
+                      name="calories"
+                      type="number"
+                      placeholder="150"
+                      onWheel={(e) => e.currentTarget.blur()}
+                    />
+                    <ErrorMessage
+                      name="calories"
+                      component="div"
+                      className={styles.error}
+                    />
+                  </div>
+                  <CategoryInput key={"category"} styles={styles} />
+                </div>
               </div>
+
+              <PhotoInput name={"thumb"} />
             </div>
 
-            <PhotoInput name={"thumb"} />
-          </div>
+            <IngredientsInput values={values} />
 
-          {/* Ingredients */}
-          <IngredientsInput values={values} />
+            <div className={styles.instructionSection}>
+              <h2 className={styles.instructionTitle}>Instructions</h2>
+              <Field
+                as="textarea"
+                name="instructions"
+                placeholder="Enter instructions"
+                className={styles.instruction}
+              />
+              <ErrorMessage
+                name="instructions"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          {/* Instructions */}
-          <div>
-            <h2>Instructions</h2>
-            <Field
-              as="textarea"
-              name="instructions"
-              placeholder="Enter instructions"
-              className={styles.instruction}
-            />
-            <ErrorMessage
-              name="instructions"
-              component="div"
-              className={styles.error}
-            />
-          </div>
-
-          <button type="submit" className={styles["submit-btn"]}>
-            Publish Recipe
-          </button>
-        </Form>
+            <button type="submit" className={styles["submit-btn"]}>
+              Publish Recipe
+            </button>
+          </Form>
+        </Container>
       )}
     </Formik>
   );

@@ -2,6 +2,7 @@ import { Field, FieldArray } from "formik";
 import styles from "./IngredientsInput.module.css";
 import { useSelector } from "react-redux";
 import { selectFilterData } from "../../../../redux/filters/selectors";
+import Icon from "../../../../reuseable/Icon/Icon";
 
 export default function IngredientsInput({ values }) {
   const { ingredients } = useSelector(selectFilterData);
@@ -58,7 +59,7 @@ export default function IngredientsInput({ values }) {
             </div>
 
             {values.ingredients.length > 0 && (
-              <table className={styles["ingredient-table"]}>
+              <table className={styles.ingredientTable}>
                 <thead>
                   <tr>
                     <th>Name:</th>
@@ -68,8 +69,6 @@ export default function IngredientsInput({ values }) {
                 </thead>
                 <tbody>
                   {values.ingredients.map((ingredient, index) => {
-                    // console.log(ingredient);
-
                     return (
                       <tr key={index}>
                         <td>
@@ -85,7 +84,10 @@ export default function IngredientsInput({ values }) {
                             onClick={() => remove(index)}
                             className={styles["remove-btn"]}
                           >
-                            🗑
+                            <Icon
+                              className={styles.deleteIcon}
+                              iconName={"icon-delete"}
+                            />
                           </button>
                         </td>
                       </tr>

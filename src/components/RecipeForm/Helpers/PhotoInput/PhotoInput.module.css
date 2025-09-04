@@ -1,7 +1,7 @@
 .uploadphoto-title {
   margin-top: 0px;
   margin-bottom: 4px;
-  font-size: none;
+  font-size: 24px;
 }
 
 .photo-upload {
@@ -28,7 +28,7 @@
   .uploadphoto-title {
     margin-top: 0px;
     margin-bottom: 18px;
-    font-size: none;
+    font-size: 32px;
   }
 }
 
