@@ -8,7 +8,7 @@ import {
   removeFromFavorites,
 } from "../../redux/recipes/operations";
 
-export function useFavorite(recipe) {
+export function useFavorite(recipeId) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const location = useLocation();
@@ -22,7 +22,7 @@ export function useFavorite(recipe) {
 
   const isOwnRecipesRoute = location.pathname.includes("/profile/own");
 
-  const isFavorite = favoriteRecipes?.includes(recipe._id) ?? false;
+  const isFavorite = favoriteRecipes?.includes(recipeId) ?? false;
 
   const handleToggleFavorite = useCallback(async () => {
     if (!isLoggedIn) {
@@ -35,14 +35,14 @@ export function useFavorite(recipe) {
 
     try {
       if (isFavorite) {
-        await dispatch(removeFromFavorites(recipe._id));
+        await dispatch(removeFromFavorites(recipeId));
       } else {
-        await dispatch(addFavoritesRecipe(recipe._id));
+        await dispatch(addFavoritesRecipe(recipeId));
       }
     } finally {
       setIsProcessing(false);
     }
-  }, [isLoggedIn, isFavorite, isProcessing, dispatch, recipe._id, openModal]);
+  }, [isLoggedIn, isFavorite, isProcessing, dispatch, recipeId, openModal]);
 
   return {
     isOwnRecipesRoute,

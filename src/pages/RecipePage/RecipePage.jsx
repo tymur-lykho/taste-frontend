@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import clsx from "clsx";
 
@@ -9,14 +8,13 @@ import Icon from "../../reuseable/Icon/Icon.jsx";
 import { Button } from "../../components/Button/Button.jsx";
 import FavoriteAuthModal from "../../reuseable/FavoriteAuthModal/FavoriteAuthModal.jsx";
 import { selectRecipes, selectRecipesId } from "../../redux/recipes/selectors";
-import { fetchFavoritesId, fetchRecipesId } from "../../redux/recipes/operations.js";
-import { resetCurrentRecipe } from "../../redux/recipes/slice.js";
+import { fetchRecipesId } from "../../redux/recipes/operations.js";
 import { useFavorite } from "../../components/hooks/useFavorite.js";
+import { useParams } from "react-router-dom";
 
 export default function RecipePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const location = useLocation();
 
   const recipesFromStore = useSelector(selectRecipes);
   const recipeCurrent = useSelector(selectRecipesId);
@@ -25,9 +23,7 @@ export default function RecipePage() {
     (r) => String(r._id) === String(id)
   );
 
-  const recipe = useMemo(() => {
-    return location.state || recipeFromStore || recipeCurrent;
-  }, [location.state, recipeFromStore, recipeCurrent]);
+  const recipe = recipeFromStore || recipeCurrent;
 
   useEffect(() => {
     if (!recipe) {
@@ -35,13 +31,7 @@ export default function RecipePage() {
     }
   }, [dispatch, recipe, id]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetCurrentRecipe());
-    };
-  }, [dispatch]);
-
-  if (!recipe) return null;
+  if (!recipe) return <p>Processing</p>;
 
   const normalizedUrl = recipe?.thumb?.includes("preview")
     ? recipe.thumb.replace("preview", "preview/large")
@@ -53,7 +43,7 @@ export default function RecipePage() {
     isOpenModal,
     closeModal,
     handleToggleFavorite,
-  } = useFavorite(recipe);
+  } = useFavorite(recipe?._id);
 
   return (
     <Container className={css.recipePage}>
@@ -76,13 +66,15 @@ export default function RecipePage() {
 
           <section className={css.ingredients}>
             <h2>Ingredients</h2>
-            <ul className={css.list}>
-              {recipe.ingredients?.map((item) => (
-                <li key={item._id}>
-                  {item.id?.name || item.name} {item.measure || ""}
-                </li>
-              ))}
-            </ul>
+            <div className={css.ingredientsWrap}>
+              <ul className={css.list}>
+                {recipe.ingredients?.map((item) => (
+                  <li key={item._id}>
+                    {item.id?.name || item.name} {item.measure || ""}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
 
           <section className={css.steps}>
