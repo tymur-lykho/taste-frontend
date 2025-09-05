@@ -31,7 +31,6 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
 export default function RecipePage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const location = useLocation();
   const recipeCurrent = useSelector(selectRecipesId);
   const recipesFromStore = useSelector(selectRecipes);
   const isLoading = useSelector(selectIsLoading);
@@ -39,6 +38,10 @@ export default function RecipePage() {
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0});
+  }, []);
 
   const closeModal = () => {
     setIsOpenModal(false);
@@ -70,21 +73,17 @@ export default function RecipePage() {
     (recipe) => String(recipe._id) === String(id)
   );
 
-  const [recipe, setRecipe] = useState(
-    location.state || recipeFromStore || recipeCurrent
-  );
+  const recipe = recipeFromStore || recipeCurrent;
 
   useEffect(() => {
     if (isLoggedIn) dispatch(fetchFavoritesId());
   }, [isLoggedIn, dispatch]);
 
   useEffect(() => {
-    if (recipeCurrent) {
-      setRecipe(recipeCurrent);
-    } else if (!recipe && id) {
+    if (!recipeCurrent) {
       dispatch(fetchRecipesId(id));
     }
-  }, [dispatch, recipe, recipeCurrent, id]);
+  }, [dispatch, recipeCurrent, id]);
 
   useEffect(() => {
     return () => {
