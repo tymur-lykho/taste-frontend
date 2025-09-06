@@ -7,6 +7,16 @@ import {
   fetchCurrentUser,
 } from "./operations";
 
+const handlePending = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleRejected = (state, action) => {
+  state.isLoading = false;
+  state.error = action.payload || action.error.message;
+};
+
 const slice = createSlice({
   name: "auth",
   initialState: {
@@ -18,14 +28,17 @@ const slice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    error: null,
   },
   extraReducers: (builder) => {
     builder
+      .addCase(register.pending, handlePending)
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      .addCase(register.rejected, handleRejected)
 
       .addCase(login.fulfilled, (state, action) => {
         state.token = action.payload;
