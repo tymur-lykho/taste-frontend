@@ -21,13 +21,13 @@ export default function FilterMenu() {
         {totalItems} {totalItems > 1 ? "reсipes" : "recipe"}{" "}
       </p>
       <div className={css.btnWrapper}>
-        <p className={css.txt}>Filters</p>
+        {/* <p className={css.txt}>Filters</p> */}
         <button
           className={clsx(css.btnFilter)}
           onClick={filterMenu}
           aria-label="filter"
           title="filter"
-        >
+        >Filters 
           {isOpen ? (
             <Icon iconName="filter-close" className={clsx(css.icon)} />
           ) : (

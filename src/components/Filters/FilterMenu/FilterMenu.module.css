@@ -26,17 +26,20 @@
   }
 }
 
-.btnWrapper {
+.btnFilter {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 67px;
   height: 28px;
+  padding: 0;
+  padding-bottom: 4px;
   gap: 4px;
+  font-size: var(--text-s-size);
   border-radius: var(--radius-i-sm);
 
   @media (min-width: 768px) {
-    width: 100%;
+    /* width: 100%; */
     align-self: flex-end;
     justify-content: flex-end;
   }
@@ -52,16 +55,17 @@
   font-weight: 600;
 }
 
-.btnFilter {
+/* .btnFilter {
   display: block;
   width: 24px;
   height: 24px;
   padding: 0;
-}
+} */
 
 .icon {
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
   stroke: var(--black-text-color);
   fill: none;
 }

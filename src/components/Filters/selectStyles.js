@@ -4,6 +4,7 @@ export const customStyles = {
     minHeight: "33px",
     padding: "4px 8px",
     alignContent: "center",
+    cursor: "pointer",
     borderColor: state.isFocused ? "#E0E0E0" : "#ccc",
     boxShadow: state.isFocused
       ? "0px 0px 1px 0px #00000066, 0px 8px 24px -6px #00000029"

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import * as Yup from "yup";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 
 import EyeButton from "../EyeButton/EyeButton";
@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 export default function RegistrationForm() {
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
-
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -54,6 +53,7 @@ export default function RegistrationForm() {
       toast.success("Registration successful!");
       resetForm();
     } catch (error) {
+      console.log("🚀 ~ handleSubmit ~ error:", error)
       toast.error(error.message || "Registration failed");
     }
   };

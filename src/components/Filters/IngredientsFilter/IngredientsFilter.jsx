@@ -1,18 +1,16 @@
-import { useMemo } from "react";
-import Select from "react-select";
 import { useSelector, useDispatch } from "react-redux";
-
 import { setIngredients } from "../../../redux/filters/slice";
+import { useMemo } from "react";
 import {
   selectFilterData,
   selectSelectedIngredients,
 } from "../../../redux/filters/selectors";
-
 import css from "./IngredientsFilter.module.css";
+import Select from "react-select";
 import { customStyles } from "../selectStyles";
 
 export default function IngredientsFilter() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const { ingredients } = useSelector(selectFilterData);
   const selectedIngredient = useSelector(selectSelectedIngredients);
 

@@ -67,6 +67,21 @@ export default function SearchBox() {
                 onChange={handleChange}
                 className={css.heroInput}
               />
+              {titleInput && (
+                <button
+                  type="button"
+                  className={css.clearButton}
+                  onClick={() => {
+                    dispatch(setSearch(""));
+                    setTitleInput("");
+                    toast.success("Search cleared!", { id: "clear-success" });
+                  }}
+                  aria-label="Clear search"
+                  title="Clear search"
+                >
+                  &times;
+                </button>
+              )}
             </div>
             <button type="submit" className={css.heroButton}>
               Search
